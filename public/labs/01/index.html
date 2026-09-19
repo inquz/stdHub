@@ -1,0 +1,93 @@
+<!-- example:document:start -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Планировщик студента — ЛР 1</title>
+</head>
+<body id="top">
+  <header>
+    <p>Учебный проект · лабораторная работа 1</p>
+    <h1>Планировщик студента</h1>
+    <p>Предметы, задачи и сроки сдачи в одном месте.</p>
+  </header>
+  <nav aria-label="Разделы планировщика">
+    <ul>
+      <li><a href="#about">О планировщике</a></li>
+      <li><a href="#subjects">Предметы</a></li>
+      <li><a href="#tasks">Учебные задачи</a></li>
+    </ul>
+  </nav>
+<!-- example:document:end -->
+  <main>
+    <section id="about" aria-labelledby="about-title">
+      <h2 id="about-title">О планировщике</h2>
+      <p>Планировщик помогает собрать учебные задания и увидеть сроки сдачи.
+        На этом этапе показан статический пример; изменение задач появится позже.</p>
+      <p>Снимок учебных данных на <time datetime="2026-09-13">13.09.2026</time>.
+        Все предметы и задачи в примере вымышлены.</p>
+    </section>
+<!-- example:subjects:start -->
+    <section id="subjects" aria-labelledby="subjects-title">
+      <h2 id="subjects-title">Предметы</h2>
+      <ul>
+        <li>Web-технологии</li>
+        <li>Математика</li>
+        <li>Английский язык</li>
+        <li>Алгоритмы</li>
+      </ul>
+    </section>
+<!-- example:subjects:end -->
+    <section id="tasks" aria-labelledby="tasks-title">
+      <h2 id="tasks-title">Учебные задачи</h2>
+      <ol>
+        <li>
+          <strong>Разметить страницу планировщика</strong> — Web-технологии.
+          Срок: <time datetime="2026-09-11">11.09.2026</time>. Выполнена.
+        </li>
+        <li>
+          <strong>Решить задачи по матрицам</strong> — Математика.
+          Срок: <time datetime="2026-09-12">12.09.2026</time>. Просрочена.
+        </li>
+        <li>
+          <strong>Добавить форму учебной задачи</strong> — Web-технологии.
+          Срок: <time datetime="2026-09-13">13.09.2026</time>. В работе.
+        </li>
+        <li>
+          <strong>Прочитать текст о технологиях</strong> — Английский язык.
+          Срок: <time datetime="2026-09-14">14.09.2026</time>. В работе.
+        </li>
+        <li>
+          <strong>Разобрать линейный поиск</strong> — Алгоритмы.
+          Срок: <time datetime="2026-09-15">15.09.2026</time>. В работе.
+        </li>
+        <li>
+          <strong>Подготовить примеры производных</strong> — Математика.
+          Срок: <time datetime="2026-09-16">16.09.2026</time>. В работе.
+        </li>
+        <li>
+          <strong>Оформить карточки задач</strong> — Web-технологии.
+          Срок: <time datetime="2026-09-17">17.09.2026</time>. В работе.
+        </li>
+        <li>
+          <strong>Повторить технические термины</strong> — Английский язык.
+          Срок: <time datetime="2026-09-10">10.09.2026</time>. Выполнена.
+        </li>
+        <li>
+          <strong>Сравнить способы сортировки</strong> — Алгоритмы.
+          Срок: <time datetime="2026-09-19">19.09.2026</time>. В работе.
+        </li>
+        <li>
+          <strong>Собрать отчёт по HTML</strong> — Web-технологии.
+          Срок: <time datetime="2026-09-20">20.09.2026</time>. В работе.
+        </li>
+      </ol>
+    </section>
+  </main>
+  <footer>
+    <p>Учебный проект по дисциплине «Web-технологии».</p>
+    <a href="#top">К началу страницы</a>
+  </footer>
+</body>
+</html>

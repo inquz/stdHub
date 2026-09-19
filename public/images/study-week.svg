@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 330" role="img" aria-labelledby="title desc">
+  <title id="title">Пример учебной недели</title>
+  <desc id="desc">Пять дней: HTML, математика, английский, алгоритмы и подготовка отчёта.</desc>
+  <rect width="550" height="330" rx="16" fill="#eef3ff"/>
+  <g font-family="Arial, sans-serif" fill="#202632">
+    <text x="28" y="44" font-size="24" font-weight="700">План на учебную неделю</text>
+    <g font-size="20">
+      <text x="28" y="96">ПН</text><text x="100" y="96">HTML: структура страницы</text>
+      <text x="28" y="144">ВТ</text><text x="100" y="144">Математика: задачи</text>
+      <text x="28" y="192">СР</text><text x="100" y="192">Английский: чтение</text>
+      <text x="28" y="240">ЧТ</text><text x="100" y="240">Алгоритмы: практика</text>
+      <text x="28" y="288">ПТ</text><text x="100" y="288">Подготовка отчёта</text>
+    </g>
+  </g>
+</svg>

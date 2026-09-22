@@ -17,8 +17,8 @@ export default function ReportPage() {
       <header className="report-cover">
         <div className="report-cover-main">
           <p className="eyebrow">Документация проекта <span aria-hidden="true">/</span> Web-технологии</p>
-          <h1>Весь путь.<br /><span>В одном отчёте.</span></h1>
-          <p className="lead">{report.title}: от первой HTML-страницы до интерактивного приложения. Теория, код и результаты каждого этапа.</p>
+          <h1>Отчёт по<br /><span>лабораторным</span></h1>
+          <p className="lead">{report.title}. Задания, исходный код и результаты работ по HTML, CSS и JavaScript.</p>
           <div className="report-cover-actions no-print"><PrintButton /><span>Откроется окно печати.<br />Выберите «Сохранить как PDF».</span></div>
         </div>
         <div className="report-cover-document">
@@ -45,7 +45,7 @@ export default function ReportPage() {
         <div className="report-toc-heading"><div><p className="eyebrow">Структура документа</p><h2>Оглавление</h2></div><span>{labs.length} лабораторных работ</span></div>
         <ol>{labs.map((lab) => (
           <li key={lab.id}>
-            <a href={`#lab-${lab.id}`}>
+            <a className={`report-toc-status-${lab.status}`} href={`#lab-${lab.id}`}>
               <span className="report-toc-number">{String(lab.id).padStart(2, "0")}</span>
               <span className="report-toc-copy"><span>{lab.title}</span><small>{lab.topic} <span aria-hidden="true">·</span> {labStatusLabels[lab.status]}</small></span>
               <Icon name={lab.status === "done" ? "check" : "arrow-up-right"} size={17} />

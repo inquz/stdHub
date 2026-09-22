@@ -1,18 +1,20 @@
+import type { LabSourceFile } from "../lab-source-files";
+
 export type Lab = {
   id: number;
   title: string;
   topic: "HTML" | "CSS" | "Вёрстка" | "JavaScript";
   status: "planned" | "in-progress" | "done";
   contribution?: string;
-  goal?: string;
   task?: string;
-  theory?: string[];
   steps?: string[];
-  sourceExamples?: { file: "lab01" | "lab02"; section: string; title: string }[];
+  sourceExamples?: { file: LabSourceFile; section: string; title: string }[];
   demo?: { src: string; title: string };
+  demoVariants?: { src: string; title: string }[];
+  figures?: { src: string; caption: string; width: number; height: number }[];
+  comparison?: { columns: string[]; rows: string[][] };
   result?: string;
   checks?: string[];
-  conclusion?: string;
   sources?: { title: string; href: string }[];
 };
 

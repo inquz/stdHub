@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>StudHub — CSS-меню · ЛР 5</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">К содержимому</a>
+  <header class="site-header shell">
+    <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">≋</span> StudHub <span class="version">/ ЛР 05</span></a>
+<!-- example:menu:start -->
+    <nav class="main-nav" aria-label="Разделы планировщика">
+      <details class="nav-menu">
+        <summary>Разделы</summary>
+        <ul class="menu-panel">
+          <li><a href="#overview">Обзор <span>01</span></a></li>
+          <li><a href="#subjects">Предметы <span>04</span></a></li>
+          <li><a href="#tasks">Задачи <span>10</span></a></li>
+          <li><a href="#new-task">Новая задача <span>+</span></a></li>
+        </ul>
+      </details>
+      <details class="nav-menu">
+        <summary>Предметы</summary>
+        <ul class="menu-panel">
+          <li><a href="#subject-web">Web-технологии</a></li>
+          <li><a href="#subject-math">Математика</a></li>
+          <li><a href="#subject-english">Английский язык</a></li>
+          <li><a href="#subject-algorithms">Алгоритмы</a></li>
+        </ul>
+      </details>
+    </nav>
+<!-- example:menu:end -->
+  </header>
+  <main class="shell" id="main">
+
+    <section class="hero" id="overview" aria-labelledby="page-title">
+      <p class="eyebrow">Личное учебное пространство / 05</p>
+      <h1 id="page-title">Всё нужное —<br>в паре нажатий.</h1>
+      <p>Предметы, сроки и немного порядка перед новой неделей. Откройте меню в шапке, чтобы перейти к нужному разделу.</p>
+      <a class="button" href="#tasks">Посмотреть задачи <span aria-hidden="true">↓</span></a>
+    </section>
+    <div class="stats" aria-label="Сводка учебных задач">
+      <div class="stat stat--done"><strong>02<span class="visually-hidden"> из 10</span></strong><span>выполнены</span></div>
+      <div class="stat"><strong>07</strong><span>в работе</span></div>
+      <div class="stat stat--late"><strong>01</strong><span>просрочена</span></div>
+    </div>
+    <p class="menu-guide">Меню открывается нажатием, касанием или клавишами <kbd>Enter</kbd> / <kbd>Пробел</kbd>. Перейти к ссылкам — <kbd>Tab</kbd>. Повторное нажатие на заголовок закрывает меню.</p>
+    <section id="subjects" aria-labelledby="subjects-title">
+      <div class="section-heading"><h2 id="subjects-title">Мои предметы</h2><p>4 дисциплины в этом семестре</p></div>
+      <ul class="subject-list">
+        <li class="subject-card subject-card--web" id="subject-web">
+          <h3>Web-технологии</h3>
+          <p>Задач: 4 · готово: 1</p>
+        </li>
+        <li class="subject-card subject-card--math" id="subject-math">
+          <h3>Математика</h3>
+          <p>Задач: 2 · готово: 0</p>
+        </li>
+        <li class="subject-card subject-card--english" id="subject-english">
+          <h3>Английский язык</h3>
+          <p>Задач: 2 · готово: 1</p>
+        </li>
+        <li class="subject-card subject-card--algorithms" id="subject-algorithms">
+          <h3>Алгоритмы</h3>
+          <p>Задач: 2 · готово: 0</p>
+        </li>
+      </ul>
+    </section>
+    <div class="planner-columns">
+    <section class="panel tasks-panel" id="tasks" aria-labelledby="tasks-title">
+      <div class="section-heading"><h2 id="tasks-title">Учебные задачи</h2><p>2 из 10 выполнены</p></div>
+      <ol class="task-list">
+        <li class="task task--done">
+          <div>
+            <h3>Разметить страницу планировщика</h3>
+            <p class="task-meta"><span>Web-технологии</span><time datetime="2026-09-11">11.09.2026</time></p>
+          </div>
+          <span class="status status--done"><span aria-hidden="true">✓</span> Выполнена</span>
+        </li>
+        <li class="task task--overdue">
+          <div>
+            <h3>Решить задачи по матрицам</h3>
+            <p class="task-meta"><span>Математика</span><time datetime="2026-09-12">12.09.2026</time></p>
+          </div>
+          <span class="status status--overdue"><span aria-hidden="true">!</span> Просрочена</span>
+        </li>
+        <li class="task task--pending">
+          <div>
+            <h3>Добавить форму учебной задачи</h3>
+            <p class="task-meta"><span>Web-технологии</span><time datetime="2026-09-13">13.09.2026</time></p>
+          </div>
+          <span class="status status--pending"><span aria-hidden="true">○</span> В работе</span>
+        </li>
+        <li class="task task--pending">
+          <div>
+            <h3>Прочитать текст о технологиях</h3>
+            <p class="task-meta"><span>Английский язык</span><time datetime="2026-09-14">14.09.2026</time></p>
+          </div>
+          <span class="status status--pending"><span aria-hidden="true">○</span> В работе</span>
+        </li>
+        <li class="task task--pending">
+          <div>
+            <h3>Разобрать линейный поиск</h3>
+            <p class="task-meta"><span>Алгоритмы</span><time datetime="2026-09-15">15.09.2026</time></p>
+          </div>
+          <span class="status status--pending"><span aria-hidden="true">○</span> В работе</span>
+        </li>
+        <li class="task task--pending">
+          <div>
+            <h3>Подготовить примеры производных</h3>
+            <p class="task-meta"><span>Математика</span><time datetime="2026-09-16">16.09.2026</time></p>
+          </div>
+          <span class="status status--pending"><span aria-hidden="true">○</span> В работе</span>
+        </li>
+        <li class="task task--pending">
+          <div>
+            <h3>Оформить карточки задач</h3>
+            <p class="task-meta"><span>Web-технологии</span><time datetime="2026-09-17">17.09.2026</time></p>
+          </div>
+          <span class="status status--pending"><span aria-hidden="true">○</span> В работе</span>
+        </li>
+        <li class="task task--done">
+          <div>
+            <h3>Повторить технические термины</h3>
+            <p class="task-meta"><span>Английский язык</span><time datetime="2026-09-10">10.09.2026</time></p>
+          </div>
+          <span class="status status--done"><span aria-hidden="true">✓</span> Выполнена</span>
+        </li>
+        <li class="task task--pending">
+          <div>
+            <h3>Сравнить способы сортировки</h3>
+            <p class="task-meta"><span>Алгоритмы</span><time datetime="2026-09-19">19.09.2026</time></p>
+          </div>
+          <span class="status status--pending"><span aria-hidden="true">○</span> В работе</span>
+        </li>
+        <li class="task task--pending">
+          <div>
+            <h3>Собрать отчёт по HTML</h3>
+            <p class="task-meta"><span>Web-технологии</span><time datetime="2026-09-20">20.09.2026</time></p>
+          </div>
+          <span class="status status--pending"><span aria-hidden="true">○</span> В работе</span>
+        </li>
+      </ol>
+    </section>
+<!-- example:form:start -->
+    <section class="panel form-panel" id="new-task" aria-labelledby="form-title">
+      <h2 id="form-title">Новая задача</h2>
+      <p class="form-note" id="form-note">Учебная форма: проверит поля и откроет страницу результата. Задача не сохранится.</p>
+      <form class="task-form" action="form-result.html" method="get" aria-describedby="form-note">
+        <fieldset>
+          <legend>Все поля обязательны</legend>
+          <div class="field">
+            <label for="task-title">Что нужно сделать?</label>
+            <input id="task-title" name="title" type="text" required maxlength="100" aria-describedby="title-hint">
+            <small id="title-hint">Название до 100 символов.</small>
+          </div>
+          <div class="field">
+            <label for="task-subject">Предмет</label>
+            <select id="task-subject" name="subjectId" required>
+              <option value="">Выберите предмет</option>
+              <option value="web">Web-технологии</option>
+              <option value="math">Математика</option>
+              <option value="english">Английский язык</option>
+              <option value="algorithms">Алгоритмы</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="task-date">Срок сдачи</label>
+            <input id="task-date" name="dueDate" type="date" required>
+          </div>
+          <div class="form-actions">
+            <button class="button" type="submit">Проверить форму <span aria-hidden="true">↗</span></button>
+            <button class="button button--quiet" type="reset">Очистить</button>
+          </div>
+        </fieldset>
+      </form>
+    </section>
+<!-- example:form:end -->
+    </div>
+
+    <aside class="note" aria-labelledby="snapshot-title">
+      <h3 id="snapshot-title">Учебный снимок · <time datetime="2026-09-13">13.09.2026</time></h3>
+      <p>Четыре вымышленных предмета, десять задач. Состояния и даты зафиксированы для сравнения лабораторных; данные не обновляются и не сохраняются.</p>
+    </aside>
+  </main>
+  <footer class="site-footer shell">
+    <p>StudHub · CSS-меню без JavaScript</p>
+    <a href="#top">Наверх ↑</a>
+  </footer>
+</body>
+</html>

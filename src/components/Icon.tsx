@@ -1,7 +1,7 @@
 import type { ReactNode, SVGProps } from "react";
 
 export type IconName =
-  | "arrow-up-right" | "arrow-right" | "arrow-left" | "check" | "book"
+  | "arrow-up-right" | "arrow-right" | "arrow-left" | "arrow-down" | "check" | "book"
   | "grid" | "calendar" | "file" | "code" | "layers" | "sun" | "moon"
   | "menu" | "close" | "chevron-down" | "external" | "clock" | "sparkles"
   | "plus" | "copy" | "download";
@@ -10,6 +10,7 @@ const paths: Record<IconName, ReactNode> = {
   "arrow-up-right": <path d="M6 18 18 6M6 6h12v12" />,
   "arrow-right": <path d="M4 12h16m-6-6 6 6-6 6" />,
   "arrow-left": <path d="M20 12H4m6-6-6 6 6 6" />,
+  "arrow-down": <path d="M12 4v16m-6-6 6 6 6-6" />,
   check: <path d="m5 12 4 4L19 6" />,
   book: <><path d="M12 5.5C9 3.5 5.5 3.5 3 4v15c3-.5 6.5-.5 9 1 2.5-1.5 6-1.5 9-1V4c-2.5-.5-6-.5-9 1.5Z" /><path d="M12 5.5V20" /></>,
   grid: <><rect x="3" y="3" width="7" height="7" rx="1.5" /><rect x="14" y="3" width="7" height="7" rx="1.5" /><rect x="3" y="14" width="7" height="7" rx="1.5" /><rect x="14" y="14" width="7" height="7" rx="1.5" /></>,
@@ -32,7 +33,7 @@ const paths: Record<IconName, ReactNode> = {
 
 export function Icon({ name, size = 20, ...props }: SVGProps<SVGSVGElement> & { name: IconName; size?: number }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false" {...props}>
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false" data-icon={name} {...props}>
       {paths[name]}
     </svg>
   );

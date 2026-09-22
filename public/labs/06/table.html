@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>StudHub — Табличная вёрстка · ЛР 6</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">К содержимому</a>
+  <header class="site-header shell">
+    <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">≋</span> StudHub <span class="version">/ ЛР 06</span></a>
+    <nav class="page-nav" aria-label="Разделы планировщика">
+      <a href="#tasks">Задачи</a>
+      <a href="#new-task">Новая задача</a>
+      <a href="#layouts">Виды вёрстки</a>
+    </nav>
+  </header>
+  <main class="shell" id="main">
+    <nav class="variant-nav" aria-label="Варианты компоновки">
+      <a href="flow.html">01 / Поток</a>
+      <a href="table.html" aria-current="page">02 / Таблица</a>
+      <a href="index.html">03 / Grid</a>
+    </nav>
+    <p class="variant-note">Табличная компоновка: ячейки table располагают задачи и форму рядом.</p>
+    <section class="hero" id="overview" aria-labelledby="page-title">
+      <p class="eyebrow">Личное учебное пространство / 06</p>
+      <h1 id="page-title">На эту неделю<br>уже есть план.</h1>
+      <p>Четыре предмета, десять задач и ближайшие сроки. В трёх вариантах страницы одинаковое содержимое — меняется только способ его размещения.</p>
+      <a class="button" href="#tasks">Посмотреть задачи <span aria-hidden="true">↓</span></a>
+    </section>
+    <div class="stats" aria-label="Сводка учебных задач">
+      <div class="stat stat--done"><strong>02<span class="visually-hidden"> из 10</span></strong><span>выполнены</span></div>
+      <div class="stat"><strong>07</strong><span>в работе</span></div>
+      <div class="stat stat--late"><strong>01</strong><span>просрочена</span></div>
+    </div>
+    <section id="subjects" aria-labelledby="subjects-title">
+      <div class="section-heading"><h2 id="subjects-title">Мои предметы</h2><p>4 дисциплины в этом семестре</p></div>
+      <ul class="subject-list">
+        <li class="subject-card subject-card--web" id="subject-web">
+          <h3>Web-технологии</h3>
+          <p>Задач: 4 · готово: 1</p>
+        </li>
+        <li class="subject-card subject-card--math" id="subject-math">
+          <h3>Математика</h3>
+          <p>Задач: 2 · готово: 0</p>
+        </li>
+        <li class="subject-card subject-card--english" id="subject-english">
+          <h3>Английский язык</h3>
+          <p>Задач: 2 · готово: 1</p>
+        </li>
+        <li class="subject-card subject-card--algorithms" id="subject-algorithms">
+          <h3>Алгоритмы</h3>
+          <p>Задач: 2 · готово: 0</p>
+        </li>
+      </ul>
+    </section>
+    <p class="variant-note" id="table-hint">На узком экране таблицу можно прокрутить по горизонтали. Это ограничение выбранной компоновки; итоговый вариант Grid перестраивается без такой прокрутки.</p>
+<!-- example:table:start -->
+    <div class="table-scroll" role="region" aria-label="Табличный вариант планировщика" aria-describedby="table-hint" tabindex="0">
+      <table class="table-layout" role="presentation">
+        <tbody>
+          <tr>
+            <td class="table-tasks">
+    <section class="panel tasks-panel" id="tasks" aria-labelledby="tasks-title">
+      <div class="section-heading"><h2 id="tasks-title">Учебные задачи</h2><p>2 из 10 выполнены</p></div>
+      <ol class="task-list">
+        <li class="task task--done">
+          <div>
+            <h3>Разметить страницу планировщика</h3>
+            <p class="task-meta"><span>Web-технологии</span><time datetime="2026-09-11">11.09.2026</time></p>
+          </div>
+          <span class="status status--done"><span aria-hidden="true">✓</span> Выполнена</span>
+        </li>
+        <li class="task task--overdue">
+          <div>
+            <h3>Решить задачи по матрицам</h3>
+            <p class="task-meta"><span>Математика</span><time datetime="2026-09-12">12.09.2026</time></p>
+          </div>
+          <span class="status status--overdue"><span aria-hidden="true">!</span> Просрочена</span>
+        </li>
+        <li class="task task--pending">
+          <div>
+            <h3>Добавить форму учебной задачи</h3>
+            <p class="task-meta"><span>Web-технологии</span><time datetime="2026-09-13">13.09.2026</time></p>
+          </div>
+          <span class="status status--pending"><span aria-hidden="true">○</span> В работе</span>
+        </li>
+        <li class="task task--pending">
+          <div>
+            <h3>Прочитать текст о технологиях</h3>
+            <p class="task-meta"><span>Английский язык</span><time datetime="2026-09-14">14.09.2026</time></p>
+          </div>
+          <span class="status status--pending"><span aria-hidden="true">○</span> В работе</span>
+        </li>
+        <li class="task task--pending">
+          <div>
+            <h3>Разобрать линейный поиск</h3>
+            <p class="task-meta"><span>Алгоритмы</span><time datetime="2026-09-15">15.09.2026</time></p>
+          </div>
+          <span class="status status--pending"><span aria-hidden="true">○</span> В работе</span>
+        </li>
+        <li class="task task--pending">
+          <div>
+            <h3>Подготовить примеры производных</h3>
+            <p class="task-meta"><span>Математика</span><time datetime="2026-09-16">16.09.2026</time></p>
+          </div>
+          <span class="status status--pending"><span aria-hidden="true">○</span> В работе</span>
+        </li>
+        <li class="task task--pending">
+          <div>
+            <h3>Оформить карточки задач</h3>
+            <p class="task-meta"><span>Web-технологии</span><time datetime="2026-09-17">17.09.2026</time></p>
+          </div>
+          <span class="status status--pending"><span aria-hidden="true">○</span> В работе</span>
+        </li>
+        <li class="task task--done">
+          <div>
+            <h3>Повторить технические термины</h3>
+            <p class="task-meta"><span>Английский язык</span><time datetime="2026-09-10">10.09.2026</time></p>
+          </div>
+          <span class="status status--done"><span aria-hidden="true">✓</span> Выполнена</span>
+        </li>
+        <li class="task task--pending">
+          <div>
+            <h3>Сравнить способы сортировки</h3>
+            <p class="task-meta"><span>Алгоритмы</span><time datetime="2026-09-19">19.09.2026</time></p>
+          </div>
+          <span class="status status--pending"><span aria-hidden="true">○</span> В работе</span>
+        </li>
+        <li class="task task--pending">
+          <div>
+            <h3>Собрать отчёт по HTML</h3>
+            <p class="task-meta"><span>Web-технологии</span><time datetime="2026-09-20">20.09.2026</time></p>
+          </div>
+          <span class="status status--pending"><span aria-hidden="true">○</span> В работе</span>
+        </li>
+      </ol>
+    </section>
+            </td>
+            <td>
+<!-- example:form:start -->
+    <section class="panel form-panel" id="new-task" aria-labelledby="form-title">
+      <h2 id="form-title">Новая задача</h2>
+      <p class="form-note" id="form-note">Учебная форма: проверит поля и откроет страницу результата. Задача не сохранится.</p>
+      <form class="task-form" action="form-result.html" method="get" aria-describedby="form-note">
+        <fieldset>
+          <legend>Все поля обязательны</legend>
+          <div class="field">
+            <label for="task-title">Что нужно сделать?</label>
+            <input id="task-title" name="title" type="text" required maxlength="100" aria-describedby="title-hint">
+            <small id="title-hint">Название до 100 символов.</small>
+          </div>
+          <div class="field">
+            <label for="task-subject">Предмет</label>
+            <select id="task-subject" name="subjectId" required>
+              <option value="">Выберите предмет</option>
+              <option value="web">Web-технологии</option>
+              <option value="math">Математика</option>
+              <option value="english">Английский язык</option>
+              <option value="algorithms">Алгоритмы</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="task-date">Срок сдачи</label>
+            <input id="task-date" name="dueDate" type="date" required>
+          </div>
+          <div class="form-actions">
+            <button class="button" type="submit">Проверить форму <span aria-hidden="true">↗</span></button>
+            <button class="button button--quiet" type="reset">Очистить</button>
+          </div>
+        </fieldset>
+      </form>
+    </section>
+<!-- example:form:end -->
+      <aside class="note layout-note" aria-labelledby="layout-note-title">
+        <h3 id="layout-note-title">Одинаковые данные, разная компоновка</h3>
+        <p>Выберите вариант в начале страницы и измените ширину окна. В потоке форма всегда ниже задач; в таблице остаётся справа; Grid переносит её вниз до 760 px.</p>
+      </aside>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+<!-- example:table:end -->
+    <section class="comparison" id="layouts" aria-labelledby="layouts-title">
+      <h2 id="layouts-title">Три способа собрать страницу</h2>
+      <p>В каждом примере одинаковые блоки: шапка, меню и содержимое. Уменьшите ширину окна: у блочного варианта меню переместится над содержимым, а у табличного останется слева.</p>
+<!-- example:layouts:start -->
+      <div class="comparison-grid">
+        <article class="comparison-card">
+          <h3>01. Плоская</h3>
+          <div class="layout-preview flat-preview" aria-label="Плоская компоновка: блоки друг под другом">
+            <div class="sample-header">StudHub / шапка</div>
+            <div class="sample-menu">Меню</div>
+            <div class="sample-main">Учебные задачи</div>
+          </div>
+          <p>Обычный поток документа. Блоки идут один за другим, дополнительных колонок нет.</p>
+        </article>
+        <article class="comparison-card">
+          <h3>02. Табличная</h3>
+          <div class="layout-preview">
+            <table class="sample-table" role="presentation">
+              <tbody>
+                <tr><td class="sample-header" colspan="2">StudHub / шапка</td></tr>
+                <tr><td class="sample-menu">Меню</td><td class="sample-main">Учебные задачи</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Расположение задают строки и ячейки. Здесь таблица показана как учебный пример старого способа компоновки.</p>
+        </article>
+        <article class="comparison-card">
+          <h3>03. Блочная</h3>
+          <div class="layout-preview block-preview" aria-label="Блочная компоновка: сетка меняется на узком экране">
+            <div class="sample-header">StudHub / шапка</div>
+            <div class="sample-menu">Меню</div>
+            <div class="sample-main">Учебные задачи</div>
+          </div>
+          <p>Те же блоки, но расположение задаёт CSS Grid. До 760 px сетка превращается в одну колонку.</p>
+        </article>
+      </div>
+<!-- example:layouts:end -->
+    </section>
+    <aside class="note" aria-labelledby="snapshot-title">
+      <h3 id="snapshot-title">Учебный снимок · <time datetime="2026-09-13">13.09.2026</time></h3>
+      <p>Четыре вымышленных предмета, десять задач. Состояния и даты зафиксированы для сравнения лабораторных; данные не обновляются и не сохраняются.</p>
+    </aside>
+  </main>
+  <footer class="site-footer shell">
+    <p>StudHub · Сравнение видов вёрстки</p>
+    <a href="#top">Наверх ↑</a>
+  </footer>
+</body>
+</html>

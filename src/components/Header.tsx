@@ -4,7 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { BrandMark, Icon } from "./Icon";
-import { isNavigationActive, mainNavigation, shortLabTitle, type SidebarItem } from "./Sidebar";
+import { CourseProgress, isNavigationActive, mainNavigation, type SidebarItem } from "./Sidebar";
+import { ProfileAvatar } from "./ProfileAvatar";
 import { ThemeToggle } from "./ThemeToggle";
 
 export function Header({ items = [] }: { items?: SidebarItem[] }) {
@@ -58,22 +59,7 @@ export function Header({ items = [] }: { items?: SidebarItem[] }) {
                 </Link>
               ))}
             </nav>
-            <nav className="mobile-labs" aria-label="Лабораторные работы на мобильном экране">
-              <p className="sidebar-label">Лабораторные работы</p>
-              <ol className="sidebar-list">
-                {items.map((lab) => (
-                  <li key={lab.id}>
-                    <Link href={`/labs/${lab.id}`} title={lab.title} aria-current={pathname === `/labs/${lab.id}` ? "page" : undefined} onNavigate={closeMenu}>
-                      <span className={`sidebar-lab-number${lab.status === "done" ? " is-done" : ""}`}>
-                        {lab.status === "done" ? <Icon name="check" size={12} /> : String(lab.id).padStart(2, "0")}
-                      </span>
-                      <span>{shortLabTitle(lab)}</span>
-                      {lab.status === "done" && <span className="sr-only"> — готова</span>}
-                    </Link>
-                  </li>
-                ))}
-              </ol>
-            </nav>
+            <CourseProgress items={items} />
           </div>
         </details>
 
@@ -87,7 +73,7 @@ export function Header({ items = [] }: { items?: SidebarItem[] }) {
       <div className="header-actions">
         <span className="header-course"><span aria-hidden="true" />Учимся. Создаём. Растём.</span>
         <ThemeToggle />
-        <span className="header-avatar" aria-hidden="true">S</span>
+        <ProfileAvatar />
       </div>
     </header>
   );

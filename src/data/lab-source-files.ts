@@ -1,0 +1,17 @@
+// Only these public files can be displayed as source code in a report.
+export const labSourceFiles = {
+  lab01: { path: "labs/01/index.html", language: "HTML" },
+  lab02: { path: "labs/02/index.html", language: "HTML" },
+  lab03: { path: "labs/03/index.html", language: "HTML" },
+  lab03css: { path: "labs/03/styles.css", language: "CSS" },
+  lab04: { path: "labs/04/index.html", language: "HTML" },
+  lab04css: { path: "labs/04/styles.css", language: "CSS" },
+  lab05: { path: "labs/05/index.html", language: "HTML" },
+  lab05css: { path: "labs/05/styles.css", language: "CSS" },
+  lab06: { path: "labs/06/index.html", language: "HTML" },
+  lab06flow: { path: "labs/06/flow.html", language: "HTML" },
+  lab06table: { path: "labs/06/table.html", language: "HTML" },
+  lab06css: { path: "labs/06/styles.css", language: "CSS" },
+} as const;
+
+export type LabSourceFile = keyof typeof labSourceFiles;

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>StudHub · подключение CSS — ЛР 3</title>
+<!-- example:connections:start -->
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .cascade-sample {
+      color: #f4bf9e;
+    }
+  </style>
+<!-- example:connections:end -->
+</head>
+<body id="top">
+  <header class="site-header">
+    <div class="brand-line">
+      <span class="brand">StudHub</span>
+      <span class="edition">ЛР 03 / подключение CSS</span>
+    </div>
+    <p class="eyebrow">Личное учебное пространство</p>
+    <h1>Держим задачи перед глазами.</h1>
+    <p class="intro">Предметы, дедлайны и немного порядка в учебной неделе.</p>
+  </header>
+  <nav class="site-nav" aria-label="Разделы планировщика">
+    <ul>
+      <li><a href="#about">Обзор</a></li>
+      <li><a href="#subjects">Предметы</a></li>
+      <li><a href="#tasks">Задачи</a></li>
+      <li><a href="#new-task">Форма задачи</a></li>
+      <li><a href="#css-example">Пример CSS</a></li>
+    </ul>
+  </nav>
+  <main>
+    <section class="overview" id="about" aria-labelledby="about-title">
+      <p class="eyebrow">13 сентября 2026</p>
+      <h2 id="about-title">На этой неделе</h2>
+      <p class="section-note">Демонстрационный список из предыдущих работ. Данные вымышлены:
+        состояние задач зафиксировано на <time datetime="2026-09-13">13.09.2026</time>.</p>
+      <div class="stats">
+        <dl class="stat"><dt>Всего задач</dt><dd>10</dd></dl>
+        <dl class="stat stat-done"><dt>Выполнено</dt><dd>02</dd></dl>
+        <dl class="stat stat-overdue"><dt>Просрочено</dt><dd>01</dd></dl>
+      </div>
+    </section>
+    <section id="subjects" aria-labelledby="subjects-title">
+      <h2 id="subjects-title">Четыре предмета</h2>
+      <ul class="subject-list">
+        <li>Web-технологии</li>
+        <li>Математика</li>
+        <li>Английский язык</li>
+        <li>Алгоритмы</li>
+      </ul>
+    </section>
+    <section id="tasks" aria-labelledby="tasks-title">
+      <h2 id="tasks-title">Учебные задачи</h2>
+      <p class="section-note" id="table-note">Список пока нельзя редактировать. На узком экране таблицу можно прокрутить вбок.</p>
+      <div class="table-scroll" role="region" aria-labelledby="tasks-title" aria-describedby="table-note" tabindex="0">
+        <table>
+          <caption>Задачи и сроки на 13.09.2026</caption>
+          <thead>
+            <tr>
+              <th scope="col">Задача и предмет</th>
+              <th scope="col">Срок</th>
+              <th scope="col">Состояние</th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr data-state="done">
+            <th scope="row">Разметить страницу планировщика<br><small>Web-технологии</small></th>
+            <td><time datetime="2026-09-11">11.09.2026</time></td>
+            <td><span class="status status-done">Выполнена</span></td>
+          </tr>
+          <tr data-state="overdue">
+            <th scope="row">Решить задачи по матрицам<br><small>Математика</small></th>
+            <td><time datetime="2026-09-12">12.09.2026</time></td>
+            <td><span class="status status-overdue">Просрочена</span></td>
+          </tr>
+          <tr data-state="active">
+            <th scope="row">Добавить форму учебной задачи<br><small>Web-технологии</small></th>
+            <td><time datetime="2026-09-13">13.09.2026</time></td>
+            <td><span class="status status-active">В работе</span></td>
+          </tr>
+          <tr data-state="active">
+            <th scope="row">Прочитать текст о технологиях<br><small>Английский язык</small></th>
+            <td><time datetime="2026-09-14">14.09.2026</time></td>
+            <td><span class="status status-active">В работе</span></td>
+          </tr>
+          <tr data-state="active">
+            <th scope="row">Разобрать линейный поиск<br><small>Алгоритмы</small></th>
+            <td><time datetime="2026-09-15">15.09.2026</time></td>
+            <td><span class="status status-active">В работе</span></td>
+          </tr>
+          <tr data-state="active">
+            <th scope="row">Подготовить примеры производных<br><small>Математика</small></th>
+            <td><time datetime="2026-09-16">16.09.2026</time></td>
+            <td><span class="status status-active">В работе</span></td>
+          </tr>
+          <tr data-state="active">
+            <th scope="row">Оформить карточки задач<br><small>Web-технологии</small></th>
+            <td><time datetime="2026-09-17">17.09.2026</time></td>
+            <td><span class="status status-active">В работе</span></td>
+          </tr>
+          <tr data-state="done">
+            <th scope="row">Повторить технические термины<br><small>Английский язык</small></th>
+            <td><time datetime="2026-09-10">10.09.2026</time></td>
+            <td><span class="status status-done">Выполнена</span></td>
+          </tr>
+          <tr data-state="active">
+            <th scope="row">Сравнить способы сортировки<br><small>Алгоритмы</small></th>
+            <td><time datetime="2026-09-19">19.09.2026</time></td>
+            <td><span class="status status-active">В работе</span></td>
+          </tr>
+          <tr data-state="active">
+            <th scope="row">Собрать отчёт по HTML<br><small>Web-технологии</small></th>
+            <td><time datetime="2026-09-20">20.09.2026</time></td>
+            <td><span class="status status-active">В работе</span></td>
+          </tr>
+                  </tbody>
+        </table>
+      </div>
+    </section>
+    <section id="new-task" aria-labelledby="form-title">
+      <h2 id="form-title">Добавим задачу?</h2>
+      <p class="section-note" id="form-note">Пока это проверка формы: заполните обязательные поля.
+        Откроется страница результата, но задача не сохранится.</p>
+      <form class="task-form" action="form-result.html" method="get" aria-describedby="form-note">
+        <fieldset>
+          <legend>Новая задача</legend>
+          <div class="form-fields">
+            <div class="field">
+              <label for="task-title">Название (обязательно)</label>
+              <input id="task-title" name="title" type="text" required maxlength="100"
+                placeholder="Например, подготовить доклад" aria-describedby="title-hint">
+              <small id="title-hint">Не более 100 символов.</small>
+            </div>
+            <div class="field">
+              <label for="task-subject">Предмет (обязательно)</label>
+              <select id="task-subject" name="subjectId" required>
+              <option value="">Выберите предмет</option>
+              <option value="web">Web-технологии</option>
+              <option value="math">Математика</option>
+              <option value="english">Английский язык</option>
+              <option value="algorithms">Алгоритмы</option>
+            </select>
+            </div>
+            <div class="field">
+              <label for="task-date">Срок сдачи (обязательно)</label>
+              <input id="task-date" name="dueDate" type="date" required>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button type="submit">Проверить форму</button>
+            <button class="secondary" type="reset">Очистить</button>
+          </div>
+        </fieldset>
+      </form>
+    </section>
+    <section id="css-example" aria-labelledby="css-title">
+      <p class="eyebrow">Небольшой эксперимент</p>
+      <h2 id="css-title">Один текст, три источника цвета</h2>
+      <p class="section-note">Основной дизайн хранится в styles.css. Блок style и атрибут style
+        меняют только образцы ниже.</p>
+<!-- example:samples:start -->
+      <div class="examples">
+        <div class="style-example">
+          <p class="external-sample">Внешний файл</p>
+          <small>Цвет из styles.css: #C6B6EF</small>
+        </div>
+        <div class="style-example">
+          <p class="cascade-sample">Блок style</p>
+          <small>Позднее правило: #F4BF9E</small>
+        </div>
+        <div class="style-example">
+          <p class="cascade-sample" style="color: #98d9b0">Атрибут style</p>
+          <small>Стиль на элементе: #98D9B0</small>
+        </div>
+      </div>
+<!-- example:samples:end -->
+      <p class="cascade-note">Для .cascade-sample внешний файл и блок style задают обычные
+        авторские правила без слоёв, с одинаковой специфичностью. Блок style подключён позже
+        и меняет цвет на персиковый. В третьем образце обычный inline-стиль перекрывает эти правила.
+        Здесь нет !important: это результат именно данного примера, а не безусловный порядок приоритетов.</p>
+    </section>
+    <section aria-labelledby="week-title">
+      <h2 id="week-title">План на пять дней</h2>
+      <figure class="week-figure">
+        <img src="../../images/study-week.svg" width="220" height="132"
+          alt="Учебная неделя: понедельник — HTML, вторник — математика, среда — английский, четверг — алгоритмы, пятница — отчёт.">
+        <figcaption>Пример распределения занятий. Схема осталась из второй работы, теперь вокруг неё есть отступы и подпись.</figcaption>
+      </figure>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <p>Учебный проект · HTML + CSS · без JavaScript</p>
+    <a href="#top">К началу страницы ↑</a>
+  </footer>
+</body>
+</html>

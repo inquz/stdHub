@@ -25,7 +25,7 @@ export function LabsExplorer({ items }: { items: LabSummary[] }) {
         <div className="filter-tabs" role="group" aria-label="Технология">{categories.map((item) => <button type="button" key={item} aria-pressed={item === category} onClick={() => setCategory(item)}>{item}<span>{items.filter((lab) => matchesCategory(lab, item)).length}</span></button>)}</div>
         <label className="search-field"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" /><path d="m16 16 4 4" /></svg><input type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Найти работу…" aria-label="Поиск лабораторной" /></label>
       </div>
-      <p className="catalog-count" aria-live="polite">{search || category !== "Все работы" ? `Найдено: ${filtered.length} из ${items.length}` : "Каждая работа — ещё один шаг к готовому продукту"}</p>
+      <p className="catalog-count" aria-live="polite">{search || category !== "Все работы" ? `Найдено: ${filtered.length} из ${items.length}` : `Всего работ: ${items.length}`}</p>
       {filtered.length ? <ol className="lab-grid">{filtered.map((lab) => <LabCard key={lab.id} lab={lab} />)}</ol> : <div className="empty-state"><span className="empty-symbol" aria-hidden="true">⌕</span><h2>Пока ничего не нашлось</h2><p>Попробуй другую тему или короткий поисковый запрос.</p><button className="button secondary" type="button" onClick={() => { setCategory("Все работы"); setQuery(""); }}>Сбросить фильтры</button></div>}
     </section>
   );

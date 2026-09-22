@@ -18,31 +18,26 @@ export const mainNavigation: { href: string; title: string; icon: IconName }[] =
   { href: "/report", title: "Отчёт", icon: "file" },
 ];
 
-const labTitles: Record<number, string> = {
-  1: "Структура HTML",
-  2: "Формы и таблицы",
-  3: "Знакомство с CSS",
-  4: "Селекторы и блоки",
-  5: "Меню навигации",
-  6: "Вёрстка и компоновка",
-  7: "Основы JavaScript",
-  8: "Объекты и массивы",
-  9: "Работа с DOM",
-  10: "События и интерактив",
-};
-
-export function shortLabTitle(lab: SidebarItem) {
-  return labTitles[lab.id] ?? lab.title;
-}
-
 export function isNavigationActive(pathname: string, href: string) {
   return href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
 }
 
-export function Sidebar({ items }: { items: SidebarItem[] }) {
-  const pathname = usePathname();
+export function CourseProgress({ items }: { items: SidebarItem[] }) {
   const completed = items.filter((lab) => lab.status === "done").length;
   const progress = items.length ? Math.round(completed / items.length * 100) : 0;
+
+  return (
+    <div className="sidebar-progress">
+      <p className="sidebar-progress-course">Веб-технологии</p>
+      <div><span>Готовность работ</span><strong>{progress}%</strong></div>
+      <progress value={completed} max={items.length || 1} aria-label={`Готово ${completed} из ${items.length} лабораторных`} />
+      <p><Icon name="check" size={13} /> {completed} из {items.length} лабораторных готовы</p>
+    </div>
+  );
+}
+
+export function Sidebar({ items }: { items: SidebarItem[] }) {
+  const pathname = usePathname();
 
   return (
     <div className="sidebar-inner">
@@ -62,28 +57,7 @@ export function Sidebar({ items }: { items: SidebarItem[] }) {
           ))}
         </nav>
 
-        <nav className="course-navigation" aria-label="Лабораторные работы">
-          <div className="sidebar-label"><span>Веб-технологии</span><span>01—{String(items.length).padStart(2, "0")}</span></div>
-          <ol className="sidebar-list">
-            {items.map((lab) => (
-              <li key={lab.id}>
-                <Link href={`/labs/${lab.id}`} aria-current={pathname === `/labs/${lab.id}` ? "page" : undefined} title={lab.title}>
-                  <span className={`sidebar-lab-number${lab.status === "done" ? " is-done" : ""}`}>
-                    {lab.status === "done" ? <Icon name="check" size={12} /> : String(lab.id).padStart(2, "0")}
-                  </span>
-                  <span className="sidebar-lab-title">{shortLabTitle(lab)}</span>
-                  {lab.status === "done" && <span className="sr-only"> — готова</span>}
-                </Link>
-              </li>
-            ))}
-          </ol>
-        </nav>
-
-        <div className="sidebar-progress">
-          <div><span>Шаг за шагом</span><strong>{progress}%</strong></div>
-          <progress value={completed} max={items.length || 1} aria-label={`Готово ${completed} из ${items.length} лабораторных`} />
-          <p>{completed} из {items.length} лабораторных готовы</p>
-        </div>
+        <CourseProgress items={items} />
       </div>
 
       <div className="sidebar-profile">

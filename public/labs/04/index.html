@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>StudHub · карточки и состояния — ЛР 4</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body id="top">
+  <header class="site-header">
+    <div class="brand-line">
+      <span class="brand">StudHub</span>
+      <span class="edition">ЛР 04 / карточки и состояния</span>
+    </div>
+    <p class="eyebrow">Личное учебное пространство</p>
+    <h1>Держим задачи перед глазами.</h1>
+    <p class="intro">Предметы, дедлайны и немного порядка в учебной неделе.</p>
+  </header>
+  <nav class="site-nav" aria-label="Разделы планировщика">
+    <ul>
+      <li><a href="#about">Обзор</a></li>
+      <li><a href="#subjects">Предметы</a></li>
+      <li><a href="#tasks">Задачи</a></li>
+      <li><a href="#new-task">Форма задачи</a></li>
+      <li><a href="#box-model">Блочная модель</a></li>
+    </ul>
+  </nav>
+  <main>
+    <section class="overview" id="about" aria-labelledby="about-title">
+      <p class="eyebrow">13 сентября 2026</p>
+      <h2 class="section-title" id="about-title" data-number="01">На этой неделе</h2>
+      <p class="section-note">Демонстрационный список из предыдущих работ. Данные вымышлены:
+        состояние задач зафиксировано на <time datetime="2026-09-13">13.09.2026</time>.</p>
+      <div class="stats">
+        <dl class="stat"><dt>Всего задач</dt><dd>10</dd></dl>
+        <dl class="stat stat-done"><dt>Выполнено</dt><dd>02</dd></dl>
+        <dl class="stat stat-overdue"><dt>Просрочено</dt><dd>01</dd></dl>
+      </div>
+    </section>
+    <section id="subjects" aria-labelledby="subjects-title">
+      <h2 class="section-title" id="subjects-title" data-number="02">Четыре предмета</h2>
+      <ul class="subject-list">
+        <li>Web-технологии</li>
+        <li>Математика</li>
+        <li>Английский язык</li>
+        <li>Алгоритмы</li>
+      </ul>
+    </section>
+    <section id="tasks" aria-labelledby="tasks-title">
+      <h2 class="section-title" id="tasks-title" data-number="03">Учебные задачи</h2>
+      <p class="section-note" id="tasks-note">Те же десять задач, теперь в карточках. Состояния зафиксированы на 13.09.2026;
+        переключатель ниже меняет только плотность списка.</p>
+      <input class="density-toggle" id="compact-view" type="checkbox" aria-controls="task-list" aria-describedby="tasks-note">
+      <label class="density-label" for="compact-view">Компактный вид</label>
+      <ul class="task-list" id="task-list">
+<!-- example:cards:start -->
+        <li class="task-card" data-state="done">
+          <p class="task-subject">Web-технологии</p>
+          <h3>Разметить страницу планировщика</h3>
+          <div class="task-meta">
+            <span class="status">Выполнена</span>
+            <span class="task-date">Срок: <time datetime="2026-09-11">11.09.2026</time></span>
+          </div>
+        </li>
+        <li class="task-card" data-state="overdue">
+          <p class="task-subject">Математика</p>
+          <h3>Решить задачи по матрицам</h3>
+          <div class="task-meta">
+            <span class="status">Просрочена</span>
+            <span class="task-date">Срок: <time datetime="2026-09-12">12.09.2026</time></span>
+          </div>
+        </li>
+<!-- example:cards:end -->
+        <li class="task-card" data-state="active">
+          <p class="task-subject">Web-технологии</p>
+          <h3>Добавить форму учебной задачи</h3>
+          <div class="task-meta">
+            <span class="status">В работе</span>
+            <span class="task-date">Срок: <time datetime="2026-09-13">13.09.2026</time></span>
+          </div>
+        </li>
+        <li class="task-card" data-state="active">
+          <p class="task-subject">Английский язык</p>
+          <h3>Прочитать текст о технологиях</h3>
+          <div class="task-meta">
+            <span class="status">В работе</span>
+            <span class="task-date">Срок: <time datetime="2026-09-14">14.09.2026</time></span>
+          </div>
+        </li>
+        <li class="task-card" data-state="active">
+          <p class="task-subject">Алгоритмы</p>
+          <h3>Разобрать линейный поиск</h3>
+          <div class="task-meta">
+            <span class="status">В работе</span>
+            <span class="task-date">Срок: <time datetime="2026-09-15">15.09.2026</time></span>
+          </div>
+        </li>
+        <li class="task-card" data-state="active">
+          <p class="task-subject">Математика</p>
+          <h3>Подготовить примеры производных</h3>
+          <div class="task-meta">
+            <span class="status">В работе</span>
+            <span class="task-date">Срок: <time datetime="2026-09-16">16.09.2026</time></span>
+          </div>
+        </li>
+        <li class="task-card" data-state="active">
+          <p class="task-subject">Web-технологии</p>
+          <h3>Оформить карточки задач</h3>
+          <div class="task-meta">
+            <span class="status">В работе</span>
+            <span class="task-date">Срок: <time datetime="2026-09-17">17.09.2026</time></span>
+          </div>
+        </li>
+        <li class="task-card" data-state="done">
+          <p class="task-subject">Английский язык</p>
+          <h3>Повторить технические термины</h3>
+          <div class="task-meta">
+            <span class="status">Выполнена</span>
+            <span class="task-date">Срок: <time datetime="2026-09-10">10.09.2026</time></span>
+          </div>
+        </li>
+        <li class="task-card" data-state="active">
+          <p class="task-subject">Алгоритмы</p>
+          <h3>Сравнить способы сортировки</h3>
+          <div class="task-meta">
+            <span class="status">В работе</span>
+            <span class="task-date">Срок: <time datetime="2026-09-19">19.09.2026</time></span>
+          </div>
+        </li>
+        <li class="task-card" data-state="active">
+          <p class="task-subject">Web-технологии</p>
+          <h3>Собрать отчёт по HTML</h3>
+          <div class="task-meta">
+            <span class="status">В работе</span>
+            <span class="task-date">Срок: <time datetime="2026-09-20">20.09.2026</time></span>
+          </div>
+        </li>
+      </ul>
+    </section>
+    <section id="new-task" aria-labelledby="form-title">
+      <h2 class="section-title" id="form-title" data-number="04">Добавим задачу?</h2>
+      <p class="section-note" id="form-note">Пока это проверка формы: заполните обязательные поля.
+        Откроется страница результата, но задача не сохранится.</p>
+      <form class="task-form" action="form-result.html" method="get" aria-describedby="form-note">
+        <fieldset>
+          <legend>Новая задача</legend>
+          <div class="form-fields">
+            <div class="field">
+              <label for="task-title">Название (обязательно)</label>
+              <input id="task-title" name="title" type="text" required maxlength="100"
+                placeholder="Например, подготовить доклад" aria-describedby="title-hint">
+              <small id="title-hint">Не более 100 символов.</small>
+            </div>
+            <div class="field">
+              <label for="task-subject">Предмет (обязательно)</label>
+              <select id="task-subject" name="subjectId" required>
+              <option value="">Выберите предмет</option>
+              <option value="web">Web-технологии</option>
+              <option value="math">Математика</option>
+              <option value="english">Английский язык</option>
+              <option value="algorithms">Алгоритмы</option>
+            </select>
+            </div>
+            <div class="field">
+              <label for="task-date">Срок сдачи (обязательно)</label>
+              <input id="task-date" name="dueDate" type="date" required>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button type="submit">Проверить форму</button>
+            <button class="secondary" type="reset">Очистить</button>
+            <button class="secondary" type="button" disabled aria-describedby="save-note">Сохранить задачу</button>
+          </div>
+          <p class="disabled-note" id="save-note">Сохранение недоступно в этой версии. «Проверить форму» показывает только результат отправки.</p>
+        </fieldset>
+      </form>
+    </section>
+    <section id="box-model" aria-labelledby="box-title">
+      <h2 class="section-title" id="box-title" data-number="05">Из чего складывается размер карточки</h2>
+      <p class="section-note">У обеих карточек задана ширина 160 px, padding 16 px, border 4 px и margin 8 px.
+        Меняется только box-sizing.</p>
+      <div class="box-comparison">
+        <figure class="box-frame">
+          <figcaption><code>content-box</code><small>По внешнему краю рамки: 200 px</small></figcaption>
+          <div class="box-example box-content-model">
+            <div class="box-content">Контент<br>160 px</div>
+          </div>
+        </figure>
+        <figure class="box-frame">
+          <figcaption><code>border-box</code><small>По внешнему краю рамки: 160 px</small></figcaption>
+          <div class="box-example box-border-model">
+            <div class="box-content">Контент<br>120 px</div>
+          </div>
+        </figure>
+      </div>
+      <div class="box-key" aria-label="Обозначения цветов схемы">
+        <span>Контент</span><span class="key-padding">Padding</span>
+        <span class="key-border">Border</span><span class="key-margin">Margin / свободное место</span>
+      </div>
+      <p class="section-note">В content-box к ширине контента прибавляются внутренние отступы и рамка:
+        160 + 32 + 8 = 200 px. В border-box они уже входят в 160 px.
+        Внешний отступ margin в эту ширину не входит ни в одном варианте.</p>
+    </section>
+    <section aria-labelledby="week-title">
+      <h2 class="section-title" id="week-title" data-number="06">План на пять дней</h2>
+      <figure class="week-figure">
+        <img src="../../images/study-week.svg" width="220" height="132"
+          alt="Учебная неделя: понедельник — HTML, вторник — математика, среда — английский, четверг — алгоритмы, пятница — отчёт.">
+        <figcaption>Пример распределения занятий. Схема осталась из второй работы, теперь вокруг неё есть отступы и подпись.</figcaption>
+      </figure>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <p>Учебный проект · HTML + CSS · без JavaScript</p>
+    <a href="#top">К началу страницы ↑</a>
+  </footer>
+</body>
+</html>

@@ -22,7 +22,7 @@ export default function ReportPage() {
           <div className="report-cover-actions no-print"><PrintButton /><span>Откроется окно печати.<br />Выберите «Сохранить как PDF».</span></div>
         </div>
         <div className="report-cover-document">
-          <div className="report-document-top"><Icon name="file" size={26} /><span>STUDHUB / ОТЧЁТ</span></div>
+          <div className="report-document-top"><Icon name="file" size={26} /><span>XlsParse / ОТЧЁТ</span></div>
           <p className="report-document-title">{report.title}</p>
           <p className="report-document-subtitle">HTML · CSS · JavaScript</p>
           <div className="report-completion"><strong>{String(completed).padStart(2, "0")}<span> / {labs.length}</span></strong><span>глав готово</span></div>

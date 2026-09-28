@@ -1,0 +1,25 @@
+/* example:states:start */
+.day-card { transition: border-color .15s, box-shadow .15s; }
+.day-card:hover { border-color: #74957e; box-shadow: 0 3px 12px #23443310; }
+.file-field:focus-within { border-color: var(--lime); background: #ffffff0c; }
+.file-field input[required] { border-left: 2px solid var(--lime); padding-left: 6px; }
+.file-field input::file-selector-button:hover { background: var(--lime); }
+.week-options input:checked + label { box-shadow: 0 1px 4px #0002; }
+.week-options input:focus-visible + label { outline: 3px solid white; outline-offset: 2px; }
+.button:disabled { background: #dfe4da; color: #65715e; border-color: #cbd3c3; cursor: not-allowed; }
+.preview-panel:has(#compact-view:checked) .pair { padding-block: 8px; }
+.preview-panel:has(#compact-view:checked) .lesson { padding: 7px 10px; }
+/* example:states:end */
+
+/* example:weeks:start */
+/* Radio state filters only the static example; no file processing happens here. */
+.workspace:has(#week-upper:checked) .lesson[data-week="lower"],
+.workspace:has(#week-lower:checked) .lesson[data-week="upper"] { display: none; }
+.workspace:has(#week-upper:checked) .mode-both,
+.workspace:has(#week-lower:checked) .mode-both { display: none; }
+.workspace:has(#week-upper:checked) .mode-upper,
+.workspace:has(#week-lower:checked) .mode-lower { display: inline-block; }
+.workspace:has(#week-lower:checked) .lesson[data-week="lower"] { margin-top: 0; }
+/* example:weeks:end */
+
+@media (prefers-reduced-motion: reduce) { .day-card { transition: none; } }

@@ -1,7 +1,7 @@
 export type Theme = "light" | "dark";
 
-const storageKey = "studhub-theme";
-const changeEvent = "studhub-theme-change";
+const storageKey = "XlsParse-theme";
+const changeEvent = "XlsParse-theme-change";
 const defaultTheme: Theme = "dark";
 let preference: Theme | null | undefined;
 

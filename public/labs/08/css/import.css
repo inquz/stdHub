@@ -1,0 +1,10 @@
+[hidden] { display: none !important; }
+.import-info { margin-top: 16px; padding: 12px; border: 1px solid var(--line); border-radius: 9px; color: var(--muted); font-size: 12px; overflow-wrap: anywhere; }
+.import-info > * + * { margin-top: 6px; }
+.import-info time { display: block; }
+#import-warnings:empty { display: none; }
+#sheet-field label { display: block; }
+#sheet-select { width: 100%; min-height: 40px; margin-top: 5px; padding: 6px; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 5px; }
+.upload-panel button:disabled { opacity: .65; cursor: wait; }
+.version-chip { white-space: normal; }
+.lesson-notes { margin-top: 6px; color: var(--muted); font-size: 10px; line-height: 1.5; overflow-wrap: anywhere; }

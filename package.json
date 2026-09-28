@@ -11,8 +11,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "setup:python": "node scripts/setup-python.mjs",
     "labs:generate": "node scripts/generate-html-labs.mjs",
     "labs:generate:css": "node scripts/generate-css-labs.mjs",
+    "labs:generate:js": "node scripts/generate-js-labs.mjs",
     "test": "node --test tests/*.test.mjs"
   },
   "dependencies": {

@@ -5,7 +5,7 @@ import { useEffect, useId, useRef, useState, useSyncExternalStore, type ChangeEv
 import { createPortal } from "react-dom";
 import { Icon } from "./Icon";
 
-const PHOTO_KEY = "studhub-profile-photo";
+const PHOTO_KEY = "XlsParse-profile-photo";
 const MAX_FILE_SIZE = 8 * 1024 * 1024;
 const listeners = new Set<() => void>();
 let currentPhoto: string | null | undefined;

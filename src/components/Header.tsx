@@ -51,7 +51,7 @@ export function Header({ items = [] }: { items?: SidebarItem[] }) {
             <span className="mobile-close-icon"><Icon name="close" /></span>
           </summary>
           <div className="mobile-menu-panel">
-            <Link className="brand mobile-brand" href="/" onNavigate={closeMenu}><BrandMark /><span>StudHub</span></Link>
+            <Link className="brand mobile-brand" href="/" onNavigate={closeMenu}><BrandMark /><span>XlsParse</span></Link>
             <nav className="primary-navigation" aria-label="Основная навигация на мобильном экране">
               {mainNavigation.map((item) => (
                 <Link key={item.href} href={item.href} aria-current={isNavigationActive(pathname, item.href) ? "page" : undefined} onNavigate={closeMenu}>

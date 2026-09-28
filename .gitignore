@@ -1,6 +1,11 @@
 # Dependencies (keep package-lock.json in Git)
 node_modules/
 
+# Local Python environment and bytecode
+.venv/
+__pycache__/
+*.py[cod]
+
 # Next.js build output and generated types
 /.next/
 /out/

@@ -1,0 +1,11 @@
+/* example:imports:start */
+@import url("./css/base.css");
+@import url("./css/layout.css");
+@import url("./css/components.css");
+@import url("./css/examples.css");
+@import url("./css/schedule.css");
+@import url("./css/states.css");
+@import url("./css/menu.css");
+@import url("./css/teachers.css");
+@import url("./css/variants.css");
+/* example:imports:end */

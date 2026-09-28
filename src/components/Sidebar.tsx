@@ -41,9 +41,9 @@ export function Sidebar({ items }: { items: SidebarItem[] }) {
 
   return (
     <div className="sidebar-inner">
-      <Link className="brand" href="/" aria-label="StudHub — на главную">
+      <Link className="brand" href="/" aria-label="XlsParse — на главную">
         <BrandMark />
-        <span>Stud<span className="brand-light">Hub</span><small>пространство для учёбы</small></span>
+        <span>Xls<span className="brand-light">Parse</span><small>парсер расписания</small></span>
       </Link>
 
       <div className="sidebar-scroll">

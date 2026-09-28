@@ -20,6 +20,11 @@ export const labSourceFiles = {
   lab06table: { path: "labs/06/table.html", language: "HTML" },
   lab06css: { path: "labs/06/styles.css", language: "CSS" },
   lab06variants: { path: "labs/06/css/variants.css", language: "CSS" },
+  lab07js: { path: "labs/07/js/app.js", language: "JavaScript" },
+  labFileValidation: { path: "labs/shared/files.js", language: "JavaScript" },
+  lab08data: { path: "labs/08/js/schedule.js", language: "JavaScript" },
+  lab08api: { path: "labs/08/js/api.js", language: "JavaScript" },
+  lab08js: { path: "labs/08/js/app.js", language: "JavaScript" },
 } as const;
 
 export type LabSourceFile = keyof typeof labSourceFiles;

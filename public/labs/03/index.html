@@ -3,198 +3,195 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>StudHub · подключение CSS — ЛР 3</title>
+  <meta name="color-scheme" content="light">
+  <title>Пароскоп · ЛР 3</title>
 <!-- example:connections:start -->
   <link rel="stylesheet" href="styles.css">
   <style>
-    .cascade-sample {
-      color: #f4bf9e;
-    }
+    /* Same specificity as the external rule: the later declaration wins. */
+    .cascade-internal { color: #9b411e; }
   </style>
 <!-- example:connections:end -->
 </head>
 <body id="top">
-  <header class="site-header">
-    <div class="brand-line">
-      <span class="brand">StudHub</span>
-      <span class="edition">ЛР 03 / подключение CSS</span>
-    </div>
-    <p class="eyebrow">Личное учебное пространство</p>
-    <h1>Держим задачи перед глазами.</h1>
-    <p class="intro">Предметы, дедлайны и немного порядка в учебной неделе.</p>
+  <a class="skip-link" href="#main">К содержимому</a>
+  <header class="site-header container">
+    <a class="brand" href="#top" aria-label="Пароскоп — наверх"><span class="brand-mark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 3v4m10-4v4M3 11h18m-13 4h2m4 0h2"/></svg></span>пароскоп<span class="brand-dot">.</span></a>
+    <nav aria-label="Навигация"><a href="#how-it-works">Как это работает</a><a href="#schedule">Расписание</a></nav>
+    <span class="version-chip">ЛР 03 <span aria-hidden="true">/</span> CSS</span>
   </header>
-  <nav class="site-nav" aria-label="Разделы планировщика">
-    <ul>
-      <li><a href="#about">Обзор</a></li>
-      <li><a href="#subjects">Предметы</a></li>
-      <li><a href="#tasks">Задачи</a></li>
-      <li><a href="#new-task">Форма задачи</a></li>
-      <li><a href="#css-example">Пример CSS</a></li>
-    </ul>
-  </nav>
-  <main>
-    <section class="overview" id="about" aria-labelledby="about-title">
-      <p class="eyebrow">13 сентября 2026</p>
-      <h2 id="about-title">На этой неделе</h2>
-      <p class="section-note">Демонстрационный список из предыдущих работ. Данные вымышлены:
-        состояние задач зафиксировано на <time datetime="2026-09-13">13.09.2026</time>.</p>
-      <div class="stats">
-        <dl class="stat"><dt>Всего задач</dt><dd>10</dd></dl>
-        <dl class="stat stat-done"><dt>Выполнено</dt><dd>02</dd></dl>
-        <dl class="stat stat-overdue"><dt>Просрочено</dt><dd>01</dd></dl>
+  <main id="main" class="container">
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span>Для тех, кому снова прислали Excel</p>
+        <h1 id="hero-title">Расписание прислали.<br><span>Разбираться опять нам.</span></h1>
+        <p class="hero-description">Превратим клетчатый хаос в понятную картинку.<br>В чат группы — с заботой. В деканат — с вопросами.</p>
       </div>
+      <aside class="hero-note"><span aria-hidden="true">✳</span><p>Увеличивает<br><strong>читаемость.</strong><br>Не посещаемость.</p></aside>
     </section>
-    <section id="subjects" aria-labelledby="subjects-title">
-      <h2 id="subjects-title">Четыре предмета</h2>
-      <ul class="subject-list">
-        <li>Web-технологии</li>
-        <li>Математика</li>
-        <li>Английский язык</li>
-        <li>Алгоритмы</li>
-      </ul>
-    </section>
-    <section id="tasks" aria-labelledby="tasks-title">
-      <h2 id="tasks-title">Учебные задачи</h2>
-      <p class="section-note" id="table-note">Список пока нельзя редактировать. На узком экране таблицу можно прокрутить вбок.</p>
-      <div class="table-scroll" role="region" aria-labelledby="tasks-title" aria-describedby="table-note" tabindex="0">
-        <table>
-          <caption>Задачи и сроки на 13.09.2026</caption>
-          <thead>
-            <tr>
-              <th scope="col">Задача и предмет</th>
-              <th scope="col">Срок</th>
-              <th scope="col">Состояние</th>
-            </tr>
-          </thead>
-          <tbody>
-          <tr data-state="done">
-            <th scope="row">Разметить страницу планировщика<br><small>Web-технологии</small></th>
-            <td><time datetime="2026-09-11">11.09.2026</time></td>
-            <td><span class="status status-done">Выполнена</span></td>
-          </tr>
-          <tr data-state="overdue">
-            <th scope="row">Решить задачи по матрицам<br><small>Математика</small></th>
-            <td><time datetime="2026-09-12">12.09.2026</time></td>
-            <td><span class="status status-overdue">Просрочена</span></td>
-          </tr>
-          <tr data-state="active">
-            <th scope="row">Добавить форму учебной задачи<br><small>Web-технологии</small></th>
-            <td><time datetime="2026-09-13">13.09.2026</time></td>
-            <td><span class="status status-active">В работе</span></td>
-          </tr>
-          <tr data-state="active">
-            <th scope="row">Прочитать текст о технологиях<br><small>Английский язык</small></th>
-            <td><time datetime="2026-09-14">14.09.2026</time></td>
-            <td><span class="status status-active">В работе</span></td>
-          </tr>
-          <tr data-state="active">
-            <th scope="row">Разобрать линейный поиск<br><small>Алгоритмы</small></th>
-            <td><time datetime="2026-09-15">15.09.2026</time></td>
-            <td><span class="status status-active">В работе</span></td>
-          </tr>
-          <tr data-state="active">
-            <th scope="row">Подготовить примеры производных<br><small>Математика</small></th>
-            <td><time datetime="2026-09-16">16.09.2026</time></td>
-            <td><span class="status status-active">В работе</span></td>
-          </tr>
-          <tr data-state="active">
-            <th scope="row">Оформить карточки задач<br><small>Web-технологии</small></th>
-            <td><time datetime="2026-09-17">17.09.2026</time></td>
-            <td><span class="status status-active">В работе</span></td>
-          </tr>
-          <tr data-state="done">
-            <th scope="row">Повторить технические термины<br><small>Английский язык</small></th>
-            <td><time datetime="2026-09-10">10.09.2026</time></td>
-            <td><span class="status status-done">Выполнена</span></td>
-          </tr>
-          <tr data-state="active">
-            <th scope="row">Сравнить способы сортировки<br><small>Алгоритмы</small></th>
-            <td><time datetime="2026-09-19">19.09.2026</time></td>
-            <td><span class="status status-active">В работе</span></td>
-          </tr>
-          <tr data-state="active">
-            <th scope="row">Собрать отчёт по HTML<br><small>Web-технологии</small></th>
-            <td><time datetime="2026-09-20">20.09.2026</time></td>
-            <td><span class="status status-active">В работе</span></td>
-          </tr>
-                  </tbody>
-        </table>
-      </div>
-    </section>
-    <section id="new-task" aria-labelledby="form-title">
-      <h2 id="form-title">Добавим задачу?</h2>
-      <p class="section-note" id="form-note">Пока это проверка формы: заполните обязательные поля.
-        Откроется страница результата, но задача не сохранится.</p>
-      <form class="task-form" action="form-result.html" method="get" aria-describedby="form-note">
-        <fieldset>
-          <legend>Новая задача</legend>
-          <div class="form-fields">
-            <div class="field">
-              <label for="task-title">Название (обязательно)</label>
-              <input id="task-title" name="title" type="text" required maxlength="100"
-                placeholder="Например, подготовить доклад" aria-describedby="title-hint">
-              <small id="title-hint">Не более 100 символов.</small>
-            </div>
-            <div class="field">
-              <label for="task-subject">Предмет (обязательно)</label>
-              <select id="task-subject" name="subjectId" required>
-              <option value="">Выберите предмет</option>
-              <option value="web">Web-технологии</option>
-              <option value="math">Математика</option>
-              <option value="english">Английский язык</option>
-              <option value="algorithms">Алгоритмы</option>
-            </select>
-            </div>
-            <div class="field">
-              <label for="task-date">Срок сдачи (обязательно)</label>
-              <input id="task-date" name="dueDate" type="date" required>
-            </div>
+    <ol id="how-it-works" class="steps" aria-label="Как это работает">
+      <li><span>01</span><div><strong>Загрузи Excel</strong><small>Тот самый. Из чата.</small></div></li>
+      <li><span>02</span><div><strong>Выбери неделю</strong><small>Верхняя, нижняя или обе.</small></div></li>
+      <li><span>03</span><div><strong>Скачай картинку</strong><small>И стань легендой группы.</small></div></li>
+    </ol>
+    <div class="workspace">
+      <section class="upload-panel" aria-labelledby="upload-title">
+        <p class="eyebrow">Из таблицы в люди</p>
+        <h2 id="upload-title">Разберём твой Excel.</h2>
+        <p class="panel-description">Один файл. Одна неделя.<br>Ноль приближений двумя пальцами.</p>
+<!-- example:form:start -->
+        <form id="schedule-form" action="form-result.html" method="get" aria-describedby="stage-note">
+          <div class="file-field">
+            <span class="upload-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V3m-5 5 5-5 5 5M4 15v5a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5"/></svg></span>
+            <label for="schedule-file">Выбери расписание</label>
+            <span class="file-hint" id="file-hint">Excel · .xls или .xlsx</span>
+            <input id="schedule-file" name="schedule" type="file" accept=".xls,.xlsx" required aria-describedby="file-hint">
           </div>
-          <div class="form-actions">
-            <button type="submit">Проверить форму</button>
-            <button class="secondary" type="reset">Очистить</button>
-          </div>
-        </fieldset>
-      </form>
-    </section>
-    <section id="css-example" aria-labelledby="css-title">
-      <p class="eyebrow">Небольшой эксперимент</p>
-      <h2 id="css-title">Один текст, три источника цвета</h2>
-      <p class="section-note">Основной дизайн хранится в styles.css. Блок style и атрибут style
-        меняют только образцы ниже.</p>
+          <fieldset class="week-picker">
+            <legend>Какая неделя?</legend>
+            <div class="week-options">
+              <input class="visually-hidden" id="week-upper" type="radio" name="week" value="upper" required><label for="week-upper">Верхняя</label>
+              <input class="visually-hidden" id="week-lower" type="radio" name="week" value="lower" required><label for="week-lower">Нижняя</label>
+              <input class="visually-hidden" id="week-both" type="radio" name="week" value="both" required checked><label for="week-both">Обе</label>
+            </div>
+          </fieldset>
+          <button class="button button-primary" type="submit">Скачать картинку <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+          <button class="button-reset" type="reset">Начать заново</button>
+          <p id="stage-note" class="stage-note">Пока показываем пример КИ-24. Выбор недели пока не меняет таблицу. Чтение Excel и PNG — на этапе JavaScript. Кнопка откроет пояснение.</p>
+        </form>
+<!-- example:form:end -->
+        <p class="privacy-note">Содержимое Excel не отправляется.<br>Деканат ничего не узнает.</p>
+      </section>
+      <section id="schedule" class="preview-panel" aria-labelledby="schedule-title">
+        <div class="preview-heading"><div><p class="eyebrow">Пример расписания</p><h2 id="schedule-title">КИ-24 <span>на связи</span></h2></div><span class="preview-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8" r="1"/><path d="m3 17 5-5 4 4 4-6 5 7"/></svg></span></div>
+        <div class="preview-meta"><span>Осень 2026–2027</span><span class="mode-label mode-both">Обе недели</span></div>
+        <p id="table-note" class="preview-caption">Номера пар и аудитории — из расписания. Время звонков не выдумываем.</p>
+        <div class="table-scroll" role="region" aria-label="Расписание КИ-24, прокручиваемая таблица" tabindex="0">
+<table aria-describedby="table-note">
+        <caption>КИ-24 · осенний семестр 2026–2027 · верхняя и нижняя недели</caption>
+        <thead>
+          <tr>
+            <th scope="col">День</th>
+            <th scope="col">Пара</th>
+            <th scope="col">Верхняя неделя</th>
+            <th scope="col">Нижняя неделя</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="rowgroup" rowspan="3">Понедельник</th>
+            <th scope="row">2</th>
+            <td>Психология · лекция · 9.413</td>
+            <td>Веб-технологии · лекция · 4.014</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Операционные системы · лекция · 2.234</td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td>Программирование интерфейсов вычислительных систем · лабораторная · 4.023</td>
+            <td>Программирование интерфейсов вычислительных систем · практика · 4.023</td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <th scope="rowgroup" rowspan="4">Вторник</th>
+            <th scope="row">2</th>
+            <td colspan="2">Компьютерные системы · лабораторная · 4.026</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Операционные системы · лабораторная · 4.024</td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td colspan="2">Окно. Можно морально подготовиться к следующей паре.</td>
+          </tr>
+          <tr>
+            <th scope="row">5</th>
+            <td colspan="2">Профессионально-прикладная физическая подготовка · практика · аудитория не указана</td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <th scope="rowgroup" rowspan="3">Среда</th>
+            <th scope="row">2</th>
+            <td>Специализированные компьютеры · лекция · 2.234</td>
+            <td>Пары нет</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Организация и функционирование процессорных устройств · лекция · 4.035</td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td colspan="2">Специализированные компьютеры · лабораторная · 4.040</td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <th scope="rowgroup" rowspan="4">Четверг</th>
+            <th scope="row">2</th>
+            <td colspan="2">Компьютерные системы · лекция · 2.234</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Цифровая схемотехника специализированных устройств КС · лекция · 4.035</td>
+            <td>Веб-технологии · лабораторная · 4.019</td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td>Организация и функционирование процессорных устройств · лабораторная · 4.014</td>
+            <td>Пары нет</td>
+          </tr>
+          <tr>
+            <th scope="row">5</th>
+            <td>Веб-технологии · лабораторная · 4.019</td>
+            <td>Пары нет</td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <th scope="rowgroup" rowspan="3">Пятница</th>
+            <th scope="row">1</th>
+            <td colspan="2">Программирование интерфейсов вычислительных систем · лекция · 4.014</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Веб-технологии · лекция · 4.014</td>
+            <td>Психология · практика · 8.212</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Цифровая схемотехника специализированных устройств КС · лабораторная · 4.031</td>
+          </tr>
+        </tbody>
+      </table>
+        </div>
+        <p class="preview-footnote">Общие пары занимают обе колонки. Разные недели стоят рядом.<br>Красивое расписание не является уважительной причиной прогула.</p>
+      </section>
+    </div>
+    <details class="study-panel" id="css-lab">
+      <summary><span class="eyebrow">Под капотом · ЛР 03</span><span>Кто покрасил этот текст?</span></summary>
+      <div class="study-content">
+      <p>Три способа задать цвет. Каскад решает, кто тут главный.</p>
 <!-- example:samples:start -->
-      <div class="examples">
-        <div class="style-example">
-          <p class="external-sample">Внешний файл</p>
-          <small>Цвет из styles.css: #C6B6EF</small>
-        </div>
-        <div class="style-example">
-          <p class="cascade-sample">Блок style</p>
-          <small>Позднее правило: #F4BF9E</small>
-        </div>
-        <div class="style-example">
-          <p class="cascade-sample" style="color: #98d9b0">Атрибут style</p>
-          <small>Стиль на элементе: #98D9B0</small>
-        </div>
+      <div class="sample-grid">
+        <p class="cascade-external"><code>Внешний CSS</code><strong>Я из файла.</strong><span>#245fce</span></p>
+        <p class="cascade-internal"><code>Блок &lt;style&gt;</code><strong>А я пришёл позже.</strong><span>#9b411e</span></p>
+        <p class="cascade-internal" style="color: #157052"><code>Атрибут style</code><strong>У меня VIP-пропуск.</strong><span>#157052</span></p>
       </div>
 <!-- example:samples:end -->
-      <p class="cascade-note">Для .cascade-sample внешний файл и блок style задают обычные
-        авторские правила без слоёв, с одинаковой специфичностью. Блок style подключён позже
-        и меняет цвет на персиковый. В третьем образце обычный inline-стиль перекрывает эти правила.
-        Здесь нет !important: это результат именно данного примера, а не безусловный порядок приоритетов.</p>
-    </section>
-    <section aria-labelledby="week-title">
-      <h2 id="week-title">План на пять дней</h2>
-      <figure class="week-figure">
-        <img src="../../images/study-week.svg" width="220" height="132"
-          alt="Учебная неделя: понедельник — HTML, вторник — математика, среда — английский, четверг — алгоритмы, пятница — отчёт.">
-        <figcaption>Пример распределения занятий. Схема осталась из второй работы, теперь вокруг неё есть отступы и подпись.</figcaption>
-      </figure>
-    </section>
+      <p class="study-note">Внешнее правило и блок style имеют одинаковую специфичность.
+        Позднее правило побеждает. У третьего примера обычный inline-стиль сильнее этих правил.
+        В примере нет !important и слоёв каскада.</p>
+      </div>
+    </details>
   </main>
-  <footer class="site-footer">
-    <p>Учебный проект · HTML + CSS · без JavaScript</p>
-    <a href="#top">К началу страницы ↑</a>
+  <footer class="site-footer container">
+    <span>Пароскоп <span aria-hidden="true">✳</span> Пары те же. Боли меньше.</span>
+    <a href="#top">Наверх ↑</a>
   </footer>
 </body>
 </html>

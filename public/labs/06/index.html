@@ -3,221 +3,363 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="dark">
-  <title>StudHub — Grid · ЛР 6</title>
+  <meta name="color-scheme" content="light">
+  <title>Пароскоп · ЛР 6</title>
+<!-- example:connections:start -->
   <link rel="stylesheet" href="styles.css">
+<!-- example:connections:end -->
 </head>
 <body id="top">
   <a class="skip-link" href="#main">К содержимому</a>
-  <header class="site-header shell">
-    <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">≋</span> StudHub <span class="version">/ ЛР 06</span></a>
-    <nav class="page-nav" aria-label="Разделы планировщика">
-      <a href="#tasks">Задачи</a>
-      <a href="#new-task">Новая задача</a>
-      <a href="#layouts">Виды вёрстки</a>
+  <header class="site-header container">
+    <a class="brand" href="#top" aria-label="Пароскоп — наверх"><span class="brand-mark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 3v4m10-4v4M3 11h18m-13 4h2m4 0h2"/></svg></span>пароскоп<span class="brand-dot">.</span></a>
+    <!-- example:menu:start -->
+    <nav class="dropdown-nav" aria-label="Навигация по Пароскопу">
+      <details class="nav-dropdown" name="site-menu">
+        <summary>Разделы <span class="menu-plus" aria-hidden="true">+</span></summary>
+        <ul class="dropdown-list">
+          <li><a href="#how-it-works">Как это работает</a></li>
+          <li><a href="#upload-title">Загрузить Excel</a></li>
+          <li><a href="#schedule">Расписание</a></li>
+          <li><a href="#css-lab">Под капотом</a></li>
+        </ul>
+      </details>
+      <details class="nav-dropdown" name="site-menu">
+        <summary>Дни недели <span class="menu-plus" aria-hidden="true">+</span></summary>
+        <ul class="dropdown-list">
+          <li><a href="#weekday-0">Понедельник</a></li>
+          <li><a href="#weekday-1">Вторник</a></li>
+          <li><a href="#weekday-2">Среда</a></li>
+          <li><a href="#weekday-3">Четверг</a></li>
+          <li><a href="#weekday-4">Пятница</a></li>
+        </ul>
+      </details>
     </nav>
+<!-- example:menu:end -->
+    <span class="version-chip">ЛР 06 <span aria-hidden="true">/</span> CSS</span>
   </header>
-  <main class="shell" id="main">
-    <nav class="variant-nav" aria-label="Варианты компоновки">
-      <a href="flow.html">01 / Поток</a>
-      <a href="table.html">02 / Таблица</a>
-      <a href="index.html" aria-current="page">03 / Grid</a>
-    </nav>
-    <p class="variant-note">Блочная компоновка: CSS Grid и Flexbox. Итоговый вариант страницы.</p>
-    <section class="hero" id="overview" aria-labelledby="page-title">
-      <p class="eyebrow">Личное учебное пространство / 06</p>
-      <h1 id="page-title">На эту неделю<br>уже есть план.</h1>
-      <p>Четыре предмета, десять задач и ближайшие сроки. В трёх вариантах страницы одинаковое содержимое — меняется только способ его размещения.</p>
-      <a class="button" href="#tasks">Посмотреть задачи <span aria-hidden="true">↓</span></a>
-    </section>
-    <div class="stats" aria-label="Сводка учебных задач">
-      <div class="stat stat--done"><strong>02<span class="visually-hidden"> из 10</span></strong><span>выполнены</span></div>
-      <div class="stat"><strong>07</strong><span>в работе</span></div>
-      <div class="stat stat--late"><strong>01</strong><span>просрочена</span></div>
-    </div>
-    <section id="subjects" aria-labelledby="subjects-title">
-      <div class="section-heading"><h2 id="subjects-title">Мои предметы</h2><p>4 дисциплины в этом семестре</p></div>
-      <ul class="subject-list">
-        <li class="subject-card subject-card--web" id="subject-web">
-          <h3>Web-технологии</h3>
-          <p>Задач: 4 · готово: 1</p>
-        </li>
-        <li class="subject-card subject-card--math" id="subject-math">
-          <h3>Математика</h3>
-          <p>Задач: 2 · готово: 0</p>
-        </li>
-        <li class="subject-card subject-card--english" id="subject-english">
-          <h3>Английский язык</h3>
-          <p>Задач: 2 · готово: 1</p>
-        </li>
-        <li class="subject-card subject-card--algorithms" id="subject-algorithms">
-          <h3>Алгоритмы</h3>
-          <p>Задач: 2 · готово: 0</p>
-        </li>
-      </ul>
-    </section>
-<!-- example:grid:start -->
-    <div class="planner-grid">
-    <section class="panel tasks-panel" id="tasks" aria-labelledby="tasks-title">
-      <div class="section-heading"><h2 id="tasks-title">Учебные задачи</h2><p>2 из 10 выполнены</p></div>
-      <ol class="task-list">
-        <li class="task task--done">
-          <div>
-            <h3>Разметить страницу планировщика</h3>
-            <p class="task-meta"><span>Web-технологии</span><time datetime="2026-09-11">11.09.2026</time></p>
-          </div>
-          <span class="status status--done"><span aria-hidden="true">✓</span> Выполнена</span>
-        </li>
-        <li class="task task--overdue">
-          <div>
-            <h3>Решить задачи по матрицам</h3>
-            <p class="task-meta"><span>Математика</span><time datetime="2026-09-12">12.09.2026</time></p>
-          </div>
-          <span class="status status--overdue"><span aria-hidden="true">!</span> Просрочена</span>
-        </li>
-        <li class="task task--pending">
-          <div>
-            <h3>Добавить форму учебной задачи</h3>
-            <p class="task-meta"><span>Web-технологии</span><time datetime="2026-09-13">13.09.2026</time></p>
-          </div>
-          <span class="status status--pending"><span aria-hidden="true">○</span> В работе</span>
-        </li>
-        <li class="task task--pending">
-          <div>
-            <h3>Прочитать текст о технологиях</h3>
-            <p class="task-meta"><span>Английский язык</span><time datetime="2026-09-14">14.09.2026</time></p>
-          </div>
-          <span class="status status--pending"><span aria-hidden="true">○</span> В работе</span>
-        </li>
-        <li class="task task--pending">
-          <div>
-            <h3>Разобрать линейный поиск</h3>
-            <p class="task-meta"><span>Алгоритмы</span><time datetime="2026-09-15">15.09.2026</time></p>
-          </div>
-          <span class="status status--pending"><span aria-hidden="true">○</span> В работе</span>
-        </li>
-        <li class="task task--pending">
-          <div>
-            <h3>Подготовить примеры производных</h3>
-            <p class="task-meta"><span>Математика</span><time datetime="2026-09-16">16.09.2026</time></p>
-          </div>
-          <span class="status status--pending"><span aria-hidden="true">○</span> В работе</span>
-        </li>
-        <li class="task task--pending">
-          <div>
-            <h3>Оформить карточки задач</h3>
-            <p class="task-meta"><span>Web-технологии</span><time datetime="2026-09-17">17.09.2026</time></p>
-          </div>
-          <span class="status status--pending"><span aria-hidden="true">○</span> В работе</span>
-        </li>
-        <li class="task task--done">
-          <div>
-            <h3>Повторить технические термины</h3>
-            <p class="task-meta"><span>Английский язык</span><time datetime="2026-09-10">10.09.2026</time></p>
-          </div>
-          <span class="status status--done"><span aria-hidden="true">✓</span> Выполнена</span>
-        </li>
-        <li class="task task--pending">
-          <div>
-            <h3>Сравнить способы сортировки</h3>
-            <p class="task-meta"><span>Алгоритмы</span><time datetime="2026-09-19">19.09.2026</time></p>
-          </div>
-          <span class="status status--pending"><span aria-hidden="true">○</span> В работе</span>
-        </li>
-        <li class="task task--pending">
-          <div>
-            <h3>Собрать отчёт по HTML</h3>
-            <p class="task-meta"><span>Web-технологии</span><time datetime="2026-09-20">20.09.2026</time></p>
-          </div>
-          <span class="status status--pending"><span aria-hidden="true">○</span> В работе</span>
-        </li>
-      </ol>
-    </section>
-<!-- example:form:start -->
-    <section class="panel form-panel" id="new-task" aria-labelledby="form-title">
-      <h2 id="form-title">Новая задача</h2>
-      <p class="form-note" id="form-note">Учебная форма: проверит поля и откроет страницу результата. Задача не сохранится.</p>
-      <form class="task-form" action="form-result.html" method="get" aria-describedby="form-note">
-        <fieldset>
-          <legend>Все поля обязательны</legend>
-          <div class="field">
-            <label for="task-title">Что нужно сделать?</label>
-            <input id="task-title" name="title" type="text" required maxlength="100" aria-describedby="title-hint">
-            <small id="title-hint">Название до 100 символов.</small>
-          </div>
-          <div class="field">
-            <label for="task-subject">Предмет</label>
-            <select id="task-subject" name="subjectId" required>
-              <option value="">Выберите предмет</option>
-              <option value="web">Web-технологии</option>
-              <option value="math">Математика</option>
-              <option value="english">Английский язык</option>
-              <option value="algorithms">Алгоритмы</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="task-date">Срок сдачи</label>
-            <input id="task-date" name="dueDate" type="date" required>
-          </div>
-          <div class="form-actions">
-            <button class="button" type="submit">Проверить форму <span aria-hidden="true">↗</span></button>
-            <button class="button button--quiet" type="reset">Очистить</button>
-          </div>
-        </fieldset>
-      </form>
-    </section>
-<!-- example:form:end -->
-      <aside class="note layout-note" aria-labelledby="layout-note-title">
-        <h3 id="layout-note-title">Одинаковые данные, разная компоновка</h3>
-        <p>Выберите вариант в начале страницы и измените ширину окна. В потоке форма всегда ниже задач; в таблице остаётся справа; Grid переносит её вниз до 760 px.</p>
-      </aside>
-    </div>
-<!-- example:grid:end -->
-    <section class="comparison" id="layouts" aria-labelledby="layouts-title">
-      <h2 id="layouts-title">Три способа собрать страницу</h2>
-      <p>В каждом примере одинаковые блоки: шапка, меню и содержимое. Уменьшите ширину окна: у блочного варианта меню переместится над содержимым, а у табличного останется слева.</p>
-<!-- example:layouts:start -->
-      <div class="comparison-grid">
-        <article class="comparison-card">
-          <h3>01. Плоская</h3>
-          <div class="layout-preview flat-preview" aria-label="Плоская компоновка: блоки друг под другом">
-            <div class="sample-header">StudHub / шапка</div>
-            <div class="sample-menu">Меню</div>
-            <div class="sample-main">Учебные задачи</div>
-          </div>
-          <p>Обычный поток документа. Блоки идут один за другим, дополнительных колонок нет.</p>
-        </article>
-        <article class="comparison-card">
-          <h3>02. Табличная</h3>
-          <div class="layout-preview">
-            <table class="sample-table" role="presentation">
-              <tbody>
-                <tr><td class="sample-header" colspan="2">StudHub / шапка</td></tr>
-                <tr><td class="sample-menu">Меню</td><td class="sample-main">Учебные задачи</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <p>Расположение задают строки и ячейки. Здесь таблица показана как учебный пример старого способа компоновки.</p>
-        </article>
-        <article class="comparison-card">
-          <h3>03. Блочная</h3>
-          <div class="layout-preview block-preview" aria-label="Блочная компоновка: сетка меняется на узком экране">
-            <div class="sample-header">StudHub / шапка</div>
-            <div class="sample-menu">Меню</div>
-            <div class="sample-main">Учебные задачи</div>
-          </div>
-          <p>Те же блоки, но расположение задаёт CSS Grid. До 760 px сетка превращается в одну колонку.</p>
-        </article>
+  <main id="main" class="container">
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span>Для тех, кому снова прислали Excel</p>
+        <h1 id="hero-title">Расписание прислали.<br><span>Разбираться опять нам.</span></h1>
+        <p class="hero-description">Превратим клетчатый хаос в понятную картинку.<br>В чат группы — с заботой. В деканат — с вопросами.</p>
       </div>
-<!-- example:layouts:end -->
+      <aside class="hero-note"><span aria-hidden="true">✳</span><p>Увеличивает<br><strong>читаемость.</strong><br>Не посещаемость.</p></aside>
     </section>
-    <aside class="note" aria-labelledby="snapshot-title">
-      <h3 id="snapshot-title">Учебный снимок · <time datetime="2026-09-13">13.09.2026</time></h3>
-      <p>Четыре вымышленных предмета, десять задач. Состояния и даты зафиксированы для сравнения лабораторных; данные не обновляются и не сохраняются.</p>
-    </aside>
+    <ol id="how-it-works" class="steps" aria-label="Как это работает">
+      <li><span>01</span><div><strong>Загрузи Excel</strong><small>Тот самый. Из чата.</small></div></li>
+      <li><span>02</span><div><strong>Выбери неделю</strong><small>Верхняя, нижняя или обе.</small></div></li>
+      <li><span>03</span><div><strong>Скачай картинку</strong><small>И стань легендой группы.</small></div></li>
+    </ol>
+    <!-- example:layouts:start -->
+    <nav class="layout-switch" aria-label="Вариант вёрстки">
+      <span>Один сайт, три способа:</span>
+      <a href="flow.html">01 · Поток</a>
+      <a href="table.html">02 · Таблица</a>
+      <a href="index.html" aria-current="page">03 · Grid</a>
+    </nav>
+<!-- example:layouts:end -->
+    <div class="workspace layout-grid">
+      <section class="upload-panel" aria-labelledby="upload-title">
+        <p class="eyebrow">Из таблицы в люди</p>
+        <h2 id="upload-title">Разберём твой Excel.</h2>
+        <p class="panel-description">Один файл. Одна неделя.<br>Ноль приближений двумя пальцами.</p>
+<!-- example:form:start -->
+        <form id="schedule-form" action="form-result.html" method="get" aria-describedby="stage-note">
+          <div class="file-field">
+            <span class="upload-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V3m-5 5 5-5 5 5M4 15v5a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5"/></svg></span>
+            <label for="schedule-file">Выбери расписание</label>
+            <span class="file-hint" id="file-hint">Excel · .xls или .xlsx</span>
+            <input id="schedule-file" name="schedule" type="file" accept=".xls,.xlsx" required aria-describedby="file-hint">
+          </div>
+          <fieldset class="week-picker">
+            <legend>Какая неделя?</legend>
+            <div class="week-options">
+              <input class="visually-hidden" id="week-upper" type="radio" name="week" value="upper" required><label for="week-upper">Верхняя</label>
+              <input class="visually-hidden" id="week-lower" type="radio" name="week" value="lower" required><label for="week-lower">Нижняя</label>
+              <input class="visually-hidden" id="week-both" type="radio" name="week" value="both" required checked><label for="week-both">Обе</label>
+            </div>
+          </fieldset>
+          <button class="button button-primary" type="submit">Скачать картинку <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+          <button class="button-reset" type="reset">Начать заново</button>
+          <p id="stage-note" class="stage-note">Пока показываем пример КИ-24. Недели в примере уже переключаются. Чтение Excel и PNG — на этапе JavaScript. Кнопка откроет пояснение.</p>
+        </form>
+<!-- example:form:end -->
+        <p class="privacy-note">Содержимое Excel не отправляется.<br>Деканат ничего не узнает.</p>
+      </section>
+      <section id="schedule" class="preview-panel" aria-labelledby="schedule-title">
+        <div class="preview-heading"><div><p class="eyebrow">Пример расписания</p><h2 id="schedule-title">КИ-24 <span>на связи</span></h2></div><span class="preview-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8" r="1"/><path d="m3 17 5-5 4 4 4-6 5 7"/></svg></span></div>
+        <div class="preview-meta"><span>Осень 2026–2027</span><span class="mode-label mode-both">Обе недели</span><span class="mode-label mode-upper">Верхняя неделя</span><span class="mode-label mode-lower">Нижняя неделя</span></div>
+        <p id="table-note" class="preview-caption">Предметы, аудитории и преподаватели — из расписания. Время звонков не выдумываем.</p>
+        <label class="compact-toggle"><input id="compact-view" type="checkbox" form="schedule-form"> Компактнее. Я с телефона.</label>
+<!-- example:cards:start -->
+        <div class="schedule-days">
+          <section class="day-card" id="weekday-0" aria-labelledby="day-0">
+            <header class="day-heading"><span class="day-number">01</span><h3 id="day-0">Понедельник</h3></header>
+            <ol class="pair-list" aria-label="Пары: Понедельник">
+              <li class="pair" value="2">
+                <span class="pair-number"><strong>02</strong><span>пара</span></span>
+                <div class="pair-lessons">
+                <div class="lesson" data-week="upper">
+                  <span class="week-badge">Верхняя</span>
+                  <p class="lesson-title">Психология</p>
+                  <p class="lesson-meta">лекция <span>9.413</span></p>
+                  <p class="lesson-teacher"><span class="visually-hidden">Преподаватель: </span>доц. Павлова Е.В.</p>
+                </div>
+                <div class="lesson" data-week="lower">
+                  <span class="week-badge">Нижняя</span>
+                  <p class="lesson-title">Веб-технологии</p>
+                  <p class="lesson-meta">лекция <span>4.014</span></p>
+                  <p class="lesson-teacher"><span class="visually-hidden">Преподаватель: </span>доц. Завадская Т.В.</p>
+                </div>
+                </div>
+              </li>
+              <li class="pair" value="3">
+                <span class="pair-number"><strong>03</strong><span>пара</span></span>
+                <div class="pair-lessons">
+                <div class="lesson" data-week="both">
+                  <span class="week-badge">Обе недели</span>
+                  <p class="lesson-title">Операционные системы</p>
+                  <p class="lesson-meta">лекция <span>2.234</span></p>
+                  <p class="lesson-teacher"><span class="visually-hidden">Преподаватель: </span>доц. Чередникова О.Ю.</p>
+                </div>
+                </div>
+              </li>
+              <li class="pair" value="4">
+                <span class="pair-number"><strong>04</strong><span>пара</span></span>
+                <div class="pair-lessons">
+                <div class="lesson" data-week="upper">
+                  <span class="week-badge">Верхняя</span>
+                  <p class="lesson-title">Программирование интерфейсов вычислительных систем</p>
+                  <p class="lesson-meta">лабораторная <span>4.023</span></p>
+                  <p class="lesson-teacher"><span class="visually-hidden">Преподаватель: </span>асс. Шарибченко Е.И.</p>
+                </div>
+                <div class="lesson" data-week="lower">
+                  <span class="week-badge">Нижняя</span>
+                  <p class="lesson-title">Программирование интерфейсов вычислительных систем</p>
+                  <p class="lesson-meta">практика <span>4.023</span></p>
+                  <p class="lesson-teacher"><span class="visually-hidden">Преподаватель: </span>асс. Шарибченко Е.И.</p>
+                </div>
+                </div>
+              </li>
+            </ol>
+          </section>
+          <section class="day-card" id="weekday-1" aria-labelledby="day-1">
+            <header class="day-heading"><span class="day-number">02</span><h3 id="day-1">Вторник</h3></header>
+            <ol class="pair-list" aria-label="Пары: Вторник">
+              <li class="pair" value="2">
+                <span class="pair-number"><strong>02</strong><span>пара</span></span>
+                <div class="pair-lessons">
+                <div class="lesson" data-week="both">
+                  <span class="week-badge">Обе недели</span>
+                  <p class="lesson-title">Компьютерные системы</p>
+                  <p class="lesson-meta">лабораторная <span>4.026</span></p>
+                  <p class="lesson-teacher"><span class="visually-hidden">Преподаватель: </span>ст.пр. Струнилин В.Н.</p>
+                </div>
+                </div>
+              </li>
+              <li class="pair" value="3">
+                <span class="pair-number"><strong>03</strong><span>пара</span></span>
+                <div class="pair-lessons">
+                <div class="lesson" data-week="both">
+                  <span class="week-badge">Обе недели</span>
+                  <p class="lesson-title">Операционные системы</p>
+                  <p class="lesson-meta">лабораторная <span>4.024</span></p>
+                  <p class="lesson-teacher"><span class="visually-hidden">Преподаватель: </span>асс. Личман А.А.</p>
+                </div>
+                </div>
+              </li>
+              <li class="pair" value="4">
+                <span class="pair-number"><strong>04</strong><span>пара</span></span>
+                <div class="pair-lessons">
+                <div class="lesson" data-week="both" data-empty="true">
+                  <span class="week-badge">Обе недели</span>
+                  <p class="lesson-title">Окно. Можно морально подготовиться к следующей паре.</p>
+
+                </div>
+                </div>
+              </li>
+              <li class="pair" value="5">
+                <span class="pair-number"><strong>05</strong><span>пара</span></span>
+                <div class="pair-lessons">
+                <div class="lesson" data-week="both">
+                  <span class="week-badge">Обе недели</span>
+                  <p class="lesson-title">Профессионально-прикладная физическая подготовка</p>
+                  <p class="lesson-meta">практика <span>аудитория не указана</span></p>
+                  <p class="lesson-teacher"><span class="visually-hidden">Преподаватель: </span>ст.пр. Гаврилин А.А.</p>
+                </div>
+                </div>
+              </li>
+            </ol>
+          </section>
+          <section class="day-card" id="weekday-2" aria-labelledby="day-2">
+            <header class="day-heading"><span class="day-number">03</span><h3 id="day-2">Среда</h3></header>
+            <ol class="pair-list" aria-label="Пары: Среда">
+              <li class="pair" value="2">
+                <span class="pair-number"><strong>02</strong><span>пара</span></span>
+                <div class="pair-lessons">
+                <div class="lesson" data-week="upper">
+                  <span class="week-badge">Верхняя</span>
+                  <p class="lesson-title">Специализированные компьютеры</p>
+                  <p class="lesson-meta">лекция <span>2.234</span></p>
+                  <p class="lesson-teacher"><span class="visually-hidden">Преподаватель: </span>доц. Краснокутский В.А.</p>
+                </div>
+                <div class="lesson" data-week="lower" data-empty="true">
+                  <span class="week-badge">Нижняя</span>
+                  <p class="lesson-title">Пары нет</p>
+
+                </div>
+                </div>
+              </li>
+              <li class="pair" value="3">
+                <span class="pair-number"><strong>03</strong><span>пара</span></span>
+                <div class="pair-lessons">
+                <div class="lesson" data-week="both">
+                  <span class="week-badge">Обе недели</span>
+                  <p class="lesson-title">Организация и функционирование процессорных устройств</p>
+                  <p class="lesson-meta">лекция <span>4.035</span></p>
+                  <p class="lesson-teacher"><span class="visually-hidden">Преподаватель: </span>доц. Мальчева Р.В.</p>
+                </div>
+                </div>
+              </li>
+              <li class="pair" value="4">
+                <span class="pair-number"><strong>04</strong><span>пара</span></span>
+                <div class="pair-lessons">
+                <div class="lesson" data-week="both">
+                  <span class="week-badge">Обе недели</span>
+                  <p class="lesson-title">Специализированные компьютеры</p>
+                  <p class="lesson-meta">лабораторная <span>4.040</span></p>
+                  <p class="lesson-teacher"><span class="visually-hidden">Преподаватель: </span>доц. Краснокутский В.А.</p>
+                </div>
+                </div>
+              </li>
+            </ol>
+          </section>
+          <section class="day-card" id="weekday-3" aria-labelledby="day-3">
+            <header class="day-heading"><span class="day-number">04</span><h3 id="day-3">Четверг</h3></header>
+            <ol class="pair-list" aria-label="Пары: Четверг">
+              <li class="pair" value="2">
+                <span class="pair-number"><strong>02</strong><span>пара</span></span>
+                <div class="pair-lessons">
+                <div class="lesson" data-week="both">
+                  <span class="week-badge">Обе недели</span>
+                  <p class="lesson-title">Компьютерные системы</p>
+                  <p class="lesson-meta">лекция <span>2.234</span></p>
+                  <p class="lesson-teacher"><span class="visually-hidden">Преподаватель: </span>ст.пр. Струнилин В.Н.</p>
+                </div>
+                </div>
+              </li>
+              <li class="pair" value="3">
+                <span class="pair-number"><strong>03</strong><span>пара</span></span>
+                <div class="pair-lessons">
+                <div class="lesson" data-week="upper">
+                  <span class="week-badge">Верхняя</span>
+                  <p class="lesson-title">Цифровая схемотехника специализированных устройств КС</p>
+                  <p class="lesson-meta">лекция <span>4.035</span></p>
+                  <p class="lesson-teacher"><span class="visually-hidden">Преподаватель: </span>ст.пр. Максименко Н.С.</p>
+                </div>
+                <div class="lesson" data-week="lower">
+                  <span class="week-badge">Нижняя</span>
+                  <p class="lesson-title">Веб-технологии</p>
+                  <p class="lesson-meta">лабораторная <span>4.019</span></p>
+                  <p class="lesson-teacher"><span class="visually-hidden">Преподаватель: </span>асс. Шубников В.С.</p>
+                </div>
+                </div>
+              </li>
+              <li class="pair" value="4">
+                <span class="pair-number"><strong>04</strong><span>пара</span></span>
+                <div class="pair-lessons">
+                <div class="lesson" data-week="upper">
+                  <span class="week-badge">Верхняя</span>
+                  <p class="lesson-title">Организация и функционирование процессорных устройств</p>
+                  <p class="lesson-meta">лабораторная <span>4.014</span></p>
+                  <p class="lesson-teacher"><span class="visually-hidden">Преподаватель: </span>ст.пр. Койбаш А.А.</p>
+                </div>
+                <div class="lesson" data-week="lower" data-empty="true">
+                  <span class="week-badge">Нижняя</span>
+                  <p class="lesson-title">Пары нет</p>
+
+                </div>
+                </div>
+              </li>
+              <li class="pair" value="5">
+                <span class="pair-number"><strong>05</strong><span>пара</span></span>
+                <div class="pair-lessons">
+                <div class="lesson" data-week="upper">
+                  <span class="week-badge">Верхняя</span>
+                  <p class="lesson-title">Веб-технологии</p>
+                  <p class="lesson-meta">лабораторная <span>4.019</span></p>
+                  <p class="lesson-teacher"><span class="visually-hidden">Преподаватель: </span>асс. Шубников В.С.</p>
+                </div>
+                <div class="lesson" data-week="lower" data-empty="true">
+                  <span class="week-badge">Нижняя</span>
+                  <p class="lesson-title">Пары нет</p>
+
+                </div>
+                </div>
+              </li>
+            </ol>
+          </section>
+          <section class="day-card" id="weekday-4" aria-labelledby="day-4">
+            <header class="day-heading"><span class="day-number">05</span><h3 id="day-4">Пятница</h3></header>
+            <ol class="pair-list" aria-label="Пары: Пятница">
+              <li class="pair" value="1">
+                <span class="pair-number"><strong>01</strong><span>пара</span></span>
+                <div class="pair-lessons">
+                <div class="lesson" data-week="both">
+                  <span class="week-badge">Обе недели</span>
+                  <p class="lesson-title">Программирование интерфейсов вычислительных систем</p>
+                  <p class="lesson-meta">лекция <span>4.014</span></p>
+                  <p class="lesson-teacher"><span class="visually-hidden">Преподаватель: </span>доц. Завадская Т.В.</p>
+                </div>
+                </div>
+              </li>
+              <li class="pair" value="2">
+                <span class="pair-number"><strong>02</strong><span>пара</span></span>
+                <div class="pair-lessons">
+                <div class="lesson" data-week="upper">
+                  <span class="week-badge">Верхняя</span>
+                  <p class="lesson-title">Веб-технологии</p>
+                  <p class="lesson-meta">лекция <span>4.014</span></p>
+                  <p class="lesson-teacher"><span class="visually-hidden">Преподаватель: </span>доц. Завадская Т.В.</p>
+                </div>
+                <div class="lesson" data-week="lower">
+                  <span class="week-badge">Нижняя</span>
+                  <p class="lesson-title">Психология</p>
+                  <p class="lesson-meta">практика <span>8.212</span></p>
+                  <p class="lesson-teacher"><span class="visually-hidden">Преподаватель: </span>доц. Павлова Е.В.</p>
+                </div>
+                </div>
+              </li>
+              <li class="pair" value="3">
+                <span class="pair-number"><strong>03</strong><span>пара</span></span>
+                <div class="pair-lessons">
+                <div class="lesson" data-week="both">
+                  <span class="week-badge">Обе недели</span>
+                  <p class="lesson-title">Цифровая схемотехника специализированных устройств КС</p>
+                  <p class="lesson-meta">лабораторная <span>4.031</span></p>
+                  <p class="lesson-teacher"><span class="visually-hidden">Преподаватель: </span>ст.пр. Максименко Н.С.</p>
+                </div>
+                </div>
+              </li>
+            </ol>
+          </section>
+        </div>
+<!-- example:cards:end -->
+        <p class="preview-footnote">Общие занятия показаны один раз. Окна между парами сохранены.<br>Красивое расписание не является уважительной причиной прогула.</p>
+      </section>
+    </div>
+    <details class="study-panel" id="css-lab">
+      <summary><span class="eyebrow">Под капотом · ЛР 06</span><span>Три способа расставить блоки</span></summary>
+      <div class="study-content"><p>Один Пароскоп — три компоновки. Содержание, преподаватели и переключение недель одинаковые.</p>
+      <ul><li><strong>Поток:</strong> форма и расписание идут друг за другом.</li><li><strong>Таблица:</strong> две ячейки удерживают колонки; на телефоне контейнер прокручивается.</li><li><strong>Grid:</strong> две колонки на широком экране, одна — на узком. Этот вариант продолжаем развивать.</li></ul>
+      <p class="study-note">Таблица компоновки имеет role="presentation". Она нужна для сравнения способов вёрстки, а не для данных расписания. Плоская вёрстка здесь — обычный последовательный поток документа.</p>
+      </div>
+    </details>
   </main>
-  <footer class="site-footer shell">
-    <p>StudHub · Сравнение видов вёрстки</p>
+  <footer class="site-footer container">
+    <span>Пароскоп <span aria-hidden="true">✳</span> Пары те же. Боли меньше.</span>
     <a href="#top">Наверх ↑</a>
   </footer>
 </body>

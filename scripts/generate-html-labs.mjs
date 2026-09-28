@@ -1,72 +1,66 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
-import { createDemoTasks, subjects } from "../src/data/planner.ts";
 
-// Explicit date keeps earlier lab snapshots reproducible and unchanged by builds.
-const snapshot = process.argv[2];
-if (!snapshot || !/^\d{4}-\d{2}-\d{2}$/.test(snapshot)) {
-  throw new Error("Укажите дату снимка: npm run labs:generate -- 2026-09-13");
-}
-const [year, month, day] = snapshot.split("-").map(Number);
-const today = new Date(year, month - 1, day, 12);
-if (today.getFullYear() !== year || today.getMonth() !== month - 1 || today.getDate() !== day) {
-  throw new Error("Несуществующая календарная дата");
-}
-const tasks = createDemoTasks(today);
+import { schedule } from "./data/schedule-example.mjs";
+
 const escape = (text) => String(text).replace(/[&<>"']/g, (character) => ({
   "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
 })[character]);
-const dateLabel = (date) => date.split("-").reverse().join(".");
-const subjectName = (id) => subjects.find((subject) => subject.id === id).name;
-const status = (task) => task.completed ? "Выполнена" : task.dueDate < snapshot ? "Просрочена" : "В работе";
-const time = (date) => `<time datetime="${date}">${dateLabel(date)}</time>`;
-const subjectsHtml = `<!-- example:subjects:start -->
-    <section id="subjects" aria-labelledby="subjects-title">
-      <h2 id="subjects-title">Предметы</h2>
-      <ul>
-${subjects.map((subject) => `        <li>${escape(subject.name)}</li>`).join("\n")}
-      </ul>
-    </section>
-<!-- example:subjects:end -->`;
 
-function documentStart(lab, extraLink = "") {
+function documentStart(lab) {
   return `<!-- example:document:start -->
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Планировщик студента — ЛР ${lab}</title>
+  <title>Пароскоп — ЛР ${lab}</title>
 </head>
 <body id="top">
   <header>
     <p>Учебный проект · лабораторная работа ${lab}</p>
-    <h1>Планировщик студента</h1>
-    <p>Предметы, задачи и сроки сдачи в одном месте.</p>
+    <h1>Пароскоп</h1>
+    <p><strong>Расписание прислали. Разбираться опять нам.</strong></p>
+    <p>Закинь Excel — получи картинку, которую можно прочитать без высшего образования.</p>
   </header>
-  <nav aria-label="Разделы планировщика">
+  <nav aria-label="Разделы Пароскопа">
     <ul>
-      <li><a href="#about">О планировщике</a></li>
-      <li><a href="#subjects">Предметы</a></li>
-      <li><a href="#tasks">Учебные задачи</a></li>${extraLink}
+      <li><a href="#about">Что это за зверь</a></li>
+      <li><a href="#how-it-works">Три шага до картинки</a></li>
+      <li><a href="#schedule">Пример расписания</a></li>${lab === 2 ? '\n      <li><a href="#upload">Загрузить Excel</a></li>' : ''}
     </ul>
   </nav>
 <!-- example:document:end -->
   <main>
     <section id="about" aria-labelledby="about-title">
-      <h2 id="about-title">О планировщике</h2>
-      <p>Планировщик помогает собрать учебные задания и увидеть сроки сдачи.
-        На этом этапе показан статический пример; изменение задач появится позже.</p>
-      <p>Снимок учебных данных на ${time(snapshot)}.
-        Все предметы и задачи в примере вымышлены.</p>
+      <h2 id="about-title">Что это за зверь</h2>
+      <p>Пароскоп превращает расписание из Excel в картинку для чата группы.
+        Выбираешь верхнюю, нижнюю или обе недели — и больше не объясняешь, где смотреть пары.</p>
+      <p>Здесь показана HTML-заготовка: пример расписания уже есть,
+        чтение файла и создание PNG появятся в лабораторных по JavaScript.</p>
     </section>
-${subjectsHtml}`;
+<!-- example:steps:start -->
+    <section id="how-it-works" aria-labelledby="steps-title">
+      <h2 id="steps-title">Три шага до картинки</h2>
+      <ol>
+        <li>Загрузить Excel с расписанием.</li>
+        <li>Выбрать верхнюю, нижнюю или обе недели.</li>
+        <li>Скачать картинку со всей неделей и отправить её в чат группы.</li>
+      </ol>
+      <p>Варианты недели:</p>
+      <ul>
+        <li><strong>Верхняя</strong> — занятия из верхних блоков и общие пары.</li>
+        <li><strong>Нижняя</strong> — занятия из нижних блоков и общие пары.</li>
+        <li><strong>Обе</strong> — различия видны рядом, общие занятия показаны один раз.</li>
+      </ul>
+    </section>
+<!-- example:steps:end -->`;
 }
 
 const end = `
   </main>
   <footer>
-    <p>Учебный проект по дисциплине «Web-технологии».</p>
+    <p>Пароскоп · расписание понятнее, пар меньше не стало.</p>
     <a href="#top">К началу страницы</a>
   </footer>
 </body>
@@ -74,80 +68,87 @@ const end = `
 `;
 
 const lab01 = `${documentStart(1)}
-    <section id="tasks" aria-labelledby="tasks-title">
-      <h2 id="tasks-title">Учебные задачи</h2>
-      <ol>
-${tasks.map((task) => `        <li>
-          <strong>${escape(task.title)}</strong> — ${escape(subjectName(task.subjectId))}.
-          Срок: ${time(task.dueDate)}. ${status(task)}.
+    <section id="schedule" aria-labelledby="schedule-title">
+      <h2 id="schedule-title">Пример: понедельник КИ-24</h2>
+      <p>Фрагмент расписания на осенний семестр 2026–2027 из файла КИ-24.xls.
+        В исходнике указаны номера пар, а не время звонков.</p>
+      <ul>
+${schedule[0].pairs.map((pair) => `        <li><strong>${pair.number}-я пара</strong>
+          <ul>
+${pair.both ? `            <li>Обе недели: ${escape(pair.both)}.</li>` : `            <li>Верхняя неделя: ${escape(pair.upper)}.</li>
+            <li>Нижняя неделя: ${escape(pair.lower)}.</li>`}
+          </ul>
         </li>`).join("\n")}
-      </ol>
+      </ul>
+      <p>Первая пара свободна. Будильник одобряет.</p>
     </section>${end}`;
 
-const tableRow = (task) => `          <tr>
-            <th scope="row">${escape(task.title)}<br><small>${escape(subjectName(task.subjectId))}</small></th>
-            <td>${time(task.dueDate)}</td>
-            <td>${status(task)}</td>
-          </tr>`;
+const tableDays = schedule.map(({ day, pairs }) => `        <tbody>
+${pairs.map((pair, index) => `          <tr>
+${index === 0 ? `            <th scope="rowgroup" rowspan="${pairs.length}">${escape(day)}</th>\n` : ''}            <th scope="row">${pair.number}</th>
+${pair.both ? `            <td colspan="2">${escape(pair.both)}</td>` : `            <td>${escape(pair.upper ?? "Пары нет")}</td>
+            <td>${escape(pair.lower ?? "Пары нет")}</td>`}
+          </tr>`).join("\n")}
+        </tbody>`).join("\n");
 
-const lab02 = `${documentStart(2, '\n      <li><a href="#new-task">Форма задачи</a></li>')}
-    <section id="tasks" aria-labelledby="tasks-title">
-      <h2 id="tasks-title">Учебные задачи</h2>
-<!-- example:table:start -->
-      <table>
-        <caption>Задачи и сроки на ${dateLabel(snapshot)}</caption>
-        <thead>
-          <tr>
-            <th scope="col">Задача и предмет</th>
-            <th scope="col">Срок</th>
-            <th scope="col">Состояние</th>
-          </tr>
-        </thead>
-        <tbody>
-${tableRow(tasks[0])}
-<!-- example:table:end -->
-${tasks.slice(1).map(tableRow).join("\n")}
-        </tbody>
-      </table>
-    </section>
-    <section id="new-task" aria-labelledby="form-title">
-      <h2 id="form-title">Форма учебной задачи</h2>
-      <p id="form-note">Это учебная форма. Браузер проверит обязательные поля
-        и откроет страницу результата. Задача не будет сохранена.</p>
+const lab02 = `${documentStart(2)}
+    <section id="upload" aria-labelledby="form-title">
+      <h2 id="form-title">Загрузить Excel</h2>
+      <p id="form-note">Это макет на HTML. Кнопка «Скачать картинку» пока открывает
+        пояснение: файл не читается и PNG не создаётся. При отправке передаются
+        только имя файла и выбранный вариант недели, содержимое Excel не загружается.</p>
 <!-- example:form:start -->
-      <form class="task-form" action="form-result.html" method="get" aria-describedby="form-note">
+      <form action="form-result.html" method="get" aria-describedby="form-note">
+        <p>
+          <label for="schedule-file">Файл расписания (обязательно)</label><br>
+          <input id="schedule-file" name="schedule" type="file" accept=".xls,.xlsx"
+            required aria-describedby="file-hint">
+          <br><small id="file-hint">Excel: .xls или .xlsx. Образец — расписание КИ-24.</small>
+        </p>
         <fieldset>
-          <legend>Новая задача</legend>
-          <p>
-            <label for="task-title">Название (обязательно)</label><br>
-            <input id="task-title" name="title" type="text" size="20"
-              required maxlength="100" aria-describedby="title-hint">
-            <br><small id="title-hint">Не более 100 символов.</small>
-          </p>
-          <p>
-            <label for="task-subject">Предмет (обязательно)</label><br>
-            <select id="task-subject" name="subjectId" required>
-              <option value="">Выберите предмет</option>
-${subjects.map((subject) => `              <option value="${subject.id}">${escape(subject.name)}</option>`).join("\n")}
-            </select>
-          </p>
-          <p>
-            <label for="task-date">Срок сдачи (обязательно)</label><br>
-            <input id="task-date" name="dueDate" type="date" required>
-          </p>
-          <button type="submit">Проверить форму</button>
-          <button type="reset">Очистить</button>
+          <legend>Какая неделя?</legend>
+          <p><input id="week-upper" type="radio" name="week" value="upper" required>
+            <label for="week-upper">Верхняя</label></p>
+          <p><input id="week-lower" type="radio" name="week" value="lower" required>
+            <label for="week-lower">Нижняя</label></p>
+          <p><input id="week-both" type="radio" name="week" value="both" required checked>
+            <label for="week-both">Обе</label></p>
         </fieldset>
+        <p>
+          <button type="submit">Скачать картинку</button>
+          <button type="reset">Начать заново</button>
+        </p>
       </form>
 <!-- example:form:end -->
     </section>
-    <section aria-labelledby="week-title">
-      <h2 id="week-title">Как распределить учебную неделю</h2>
+    <section id="schedule" aria-labelledby="schedule-title">
+      <h2 id="schedule-title">Пример расписания</h2>
+      <p id="table-note">Статический пример из КИ-24.xls, обе недели. Выбор в форме пока
+        не меняет таблицу. Общие занятия занимают две колонки; пустая половина означает,
+        что на этой неделе пары нет. Свободные пары в начале и конце дня опущены,
+        окно между занятиями сохранено. Времени звонков в исходном файле нет.</p>
+<!-- example:table:start -->
+      <table aria-describedby="table-note">
+        <caption>КИ-24 · осенний семестр 2026–2027 · верхняя и нижняя недели</caption>
+        <thead>
+          <tr>
+            <th scope="col">День</th>
+            <th scope="col">Пара</th>
+            <th scope="col">Верхняя неделя</th>
+            <th scope="col">Нижняя неделя</th>
+          </tr>
+        </thead>
+${tableDays}
+      </table>
+<!-- example:table:end -->
+    </section>
+    <section aria-labelledby="image-title">
+      <h2 id="image-title">Из Excel — в чат группы</h2>
 <!-- example:image:start -->
       <figure>
-        <img src="../../images/study-week.svg" width="220" height="132"
-          alt="Учебная неделя: понедельник — HTML, вторник — математика, среда — английский, четверг — алгоритмы, пятница — отчёт.">
-        <figcaption>Пример распределения занятий по пяти дням недели.</figcaption>
+        <img src="../../images/paroscope-flow.svg" width="280" height="180"
+          alt="Три шага: загрузить Excel, выбрать верхнюю, нижнюю или обе недели, скачать PNG для чата группы.">
+        <figcaption>Будущий сценарий Пароскопа. Пересылка в Telegram — уже на твоей совести.</figcaption>
       </figure>
 <!-- example:image:end -->
     </section>${end}`;
@@ -157,15 +158,17 @@ const result = `<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Результат учебной формы — ЛР 2</title>
+  <title>Пароскоп — результат учебной формы</title>
 </head>
 <body>
   <main>
-    <h1>Результат учебной формы</h1>
-    <p>Эта страница открывается после отправки формы с заполненными обязательными полями.</p>
-    <p><strong>Задача не сохранена.</strong> Добавление задач появится в лабораторных по JavaScript.</p>
-    <p><a href="index.html#new-task">Вернуться к форме</a></p>
-    <p><a href="index.html#tasks">Посмотреть учебные задачи</a></p>
+    <h1>Картинка пока на паре</h1>
+    <p>Браузер проверил, что файл выбран, и отправил имя файла и вариант недели.</p>
+    <p><strong>Excel не обработан, PNG не создан.</strong> Это HTML-этап проекта:
+      чтение расписания, переключение недель и скачивание появятся в лабораторных по JavaScript.</p>
+    <p>Содержимое файла не отправлялось. Расписание в примере осталось прежним.</p>
+    <p><a href="index.html#upload">Вернуться к форме</a></p>
+    <p><a href="index.html#schedule">Посмотреть пример расписания</a></p>
   </main>
 </body>
 </html>
@@ -177,5 +180,5 @@ for (const [file, content] of Object.entries({
   const target = new URL(`../public/labs/${file}`, import.meta.url);
   await mkdir(fileURLToPath(new URL(".", target)), { recursive: true });
   await writeFile(target, content, "utf8");
-  console.log(`Записан public/labs/${file} (снимок ${snapshot})`);
+  console.log(`Записан public/labs/${file} (Пароскоп)`);
 }

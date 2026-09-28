@@ -12,6 +12,7 @@
     "start": "next start",
     "lint": "eslint",
     "labs:generate": "node scripts/generate-html-labs.mjs",
+    "labs:generate:css": "node scripts/generate-css-labs.mjs",
     "test": "node --test tests/*.test.mjs"
   },
   "dependencies": {

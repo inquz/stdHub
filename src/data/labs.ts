@@ -1,16 +1,20 @@
 import type { Lab } from "./labs/types";
 import { lab01 } from "./labs/lab01";
 import { lab02 } from "./labs/lab02";
+import { lab03 } from "./labs/lab03";
+import { lab04 } from "./labs/lab04";
+import { lab05 } from "./labs/lab05";
+import { lab06 } from "./labs/lab06";
 
 export type { Lab } from "./labs/types";
 
 export const labs: Lab[] = [
   lab01,
   lab02,
-  { id: 3, title: "CSS. Способы применения каскадных таблиц к HTML-странице", topic: "CSS", status: "planned" },
-  { id: 4, title: "Особенности использования селекторов CSS. Псевдоклассы и псевдоэлементы. Блочная модель", topic: "CSS", status: "planned" },
-  { id: 5, title: "CSS. Создание динамического меню навигации", topic: "CSS", status: "planned" },
-  { id: 6, title: "Виды вёрстки: плоская, табличная, блочная. Изучение особенностей табличной и блочной вёрстки", topic: "Вёрстка", status: "planned" },
+  lab03,
+  lab04,
+  lab05,
+  lab06,
   { id: 7, title: "Типы JavaScript. Изучение синтаксиса языка. Работа с диалоговыми окнами", topic: "JavaScript", status: "planned" },
   { id: 8, title: "Объекты JavaScript. Дата-время. Работа с массивами", topic: "JavaScript", status: "planned" },
   { id: 9, title: "JavaScript. Объектная модель документа — Document Object Model (DOM) (4 ч.)", topic: "JavaScript", status: "planned" },

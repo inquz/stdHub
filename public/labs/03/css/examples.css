@@ -1,0 +1,9 @@
+/* example:cascade:start */
+.cascade-external, .cascade-internal { color: #245fce; }
+/* example:cascade:end */
+
+.sample-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-block: 20px; }
+.sample-grid > p { padding: 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+.sample-grid strong { display: block; margin-block: 14px 8px; }
+.sample-grid span { display: block; font-size: 11px; }
+@media (max-width: 600px) { .sample-grid { grid-template-columns: 1fr; } }

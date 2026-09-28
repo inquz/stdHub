@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Icon } from "@/components/Icon";
 import { labs } from "@/data/labs";
 import { subjects, createDemoTasks } from "@/data/planner";
@@ -16,34 +17,34 @@ export default function Home() {
   return (
     <div className="overview page-enter">
       <div className="page-heading">
-        <div><p className="eyebrow">Личное учебное пространство</p><h1>Всё идёт по плану<span className="accent-text">.</span></h1></div>
-        <span className="semester-label"><span className="status-dot" /> Web-технологии</span>
+        <div><p className="eyebrow">Шедевры Web-дева</p><h1>Лабохранилище<span className="accent-text"></span></h1></div>
+        <span className="semester-label"><span className="status-dot" />Web-технологии</span>
       </div>
       <section className="home-hero" aria-labelledby="hero-title">
         <div className="hero-copy">
-          <span className="hero-kicker"><Icon name="sparkles" size={15} /> От идеи до своего продукта</span>
-          <h2 id="hero-title">Меньше хаоса.<br /><span>Больше смысла.</span></h2>
-          <p>Предметы, задачи и дедлайны — в одном месте. Создаём свой планировщик и изучаем веб на практике.</p>
+          <span className="hero-kicker"><Icon name="sparkles" size={15} />Восьмое Чудо света</span>
+          <h2 id="hero-title">Чем ближе дедлайн...<br /><span>Тем ближе отчисление.</span></h2>
+          <p>В связи с тем, что я понятия не имею как задоджить бесконечные эвакуации и сдать хоть что-то, я принял волевое решение создать данный продукт.</p>
           <div className="hero-actions">
-            <Link className="button" href="/project">Открыть планировщик <Icon name="arrow-up-right" size={17} /></Link>
+            <Link className="button" href="/project">Открыть Пароскоп <Icon name="arrow-up-right" size={17} /></Link>
             <a className="text-link" href="#project-path">Как устроен проект <Icon name="arrow-right" size={16} /></a>
           </div>
         </div>
-        <div className="hero-art" aria-label="Учебный пример: предметы и задачи планировщика">
+        <div className="hero-art" aria-label="Готовность лаб по HTML, CSS и JS">
           <div className="orbit orbit-one" /><div className="orbit orbit-two" />
-          <div className="floating-note"><span className="note-star">✳</span> Шаг за шагом<br /><strong>к большим идеям</strong></div>
+          <Image className="floating-sun" src="/trump-sun.png" alt="Улыбающееся солнышко с лицом Трампа" width={104} height={104} sizes="(max-width: 680px) 88px, 104px" />
           <div className="preview-board">
-            <div className="preview-top"><span className="preview-mark"><Icon name="calendar" size={17} /></span><span>Мой планировщик<small>Учебный пример</small></span><span className="preview-dots">•••</span></div>
-            <div className="preview-subhead"><span>Немного фокуса на важном</span><span>03</span></div>
-            {tasks.slice(0, 3).map((task, index) => (
-              <div className={`preview-task ${task.completed ? "is-complete" : ""}`} key={task.id}>
-                <span className="preview-check"><Icon name={task.completed ? "check" : "close"} size={12} /><span className="sr-only">{task.completed ? "Выполнено" : "Не выполнено"}</span></span>
-                <div><span>{task.title}</span><small><i className={`subject-dot subject-${index}`} />{subjects.find((subject) => subject.id === task.subjectId)?.name}</small></div>
+            <div className="preview-top"><span className="preview-mark"><Icon name="calendar" size={17} /></span><span>Туду-лист<small>Тут будет весь предмет</small></span><span className="preview-dots">•••</span></div>
+            <div className="preview-subhead"><span>Чеклист</span><span>03</span></div>
+            {stages.map((stage, index) => (
+              <div className={`preview-task ${stage.done ? "is-complete" : ""}`} key={stage.technology}>
+                <span className="preview-check"><Icon name={stage.done ? "check" : "close"} size={12} /><span className="sr-only">{stage.done ? "Выполнено" : "Не выполнено"}</span></span>
+                <div><span>Лабы по {stage.technology === "JavaScript" ? "JS" : stage.technology}</span><small><i className={`subject-dot subject-${index}`} />{stage.completed} из {stage.total} · {stage.done ? "Можно выдохнуть" : "Сами себя не сдадут"}</small></div>
               </div>
             ))}
-            <div className="preview-bottom"><span>Есть план — есть начало</span><Icon name="arrow-up-right" size={15} /></div>
+            <div className="preview-bottom"><span>Вот такой проект, собачка...</span><Icon name="arrow-up-right" size={15} /></div>
           </div>
-          {latest && <div className="floating-progress"><span className="small-check"><Icon name="check" size={15} /></span><span><strong>Последний этап готов</strong><small>ЛР {latest.id} · {latest.topic}</small></span></div>}
+          {latest && <div className="floating-progress"><span className="small-check"><Icon name="check" size={15} /></span><span><strong>Чекпоинт</strong><small>ЛР {latest.id} · {latest.topic}</small></span></div>}
         </div>
       </section>
       <dl className="stat-grid">

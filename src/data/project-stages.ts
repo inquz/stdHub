@@ -3,7 +3,7 @@ import type { Lab } from "./labs/types";
 const stages = [
   { title: "Структура", technology: "HTML", from: 1, to: 2, description: "Разделы страницы, списки, форма и таблица" },
   { title: "Оформление", technology: "CSS", from: 3, to: 6, description: "Стили, состояния, меню и адаптивная вёрстка" },
-  { title: "Взаимодействие", technology: "JavaScript", from: 7, to: 10, description: "Данные, список задач и сохранение" },
+  { title: "Взаимодействие", technology: "JavaScript", from: 7, to: 10, description: "Чтение Excel, выбор недели и экспорт PNG" },
 ];
 
 export function getProjectStages(labs: Pick<Lab, "id" | "status">[]) {

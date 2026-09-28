@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="280" height="180" viewBox="0 0 280 180" role="img" aria-labelledby="title desc">
+  <title id="title">Как работает Пароскоп</title>
+  <desc id="desc">Excel, выбор недели, PNG для чата группы.</desc>
+  <rect width="280" height="180" rx="12" fill="#f5f7fb"/>
+  <g fill="#e3ebff" stroke="#4062b5">
+    <rect x="15" y="10" width="250" height="42" rx="8"/>
+    <rect x="15" y="69" width="250" height="42" rx="8"/>
+    <rect x="15" y="128" width="250" height="42" rx="8"/>
+  </g>
+  <path d="M140 53v13m-4-4 4 4 4-4m-4 50v13m-4-4 4 4 4-4" fill="none" stroke="#4062b5" stroke-width="2"/>
+  <g fill="#182c54" font-family="sans-serif" font-size="13" text-anchor="middle">
+    <text x="140" y="36">1. Загрузить Excel</text>
+    <text x="140" y="95">2. Верхняя / Нижняя / Обе</text>
+    <text x="140" y="154">3. Скачать PNG</text>
+  </g>
+</svg>

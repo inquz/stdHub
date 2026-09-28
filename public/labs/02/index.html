@@ -4,156 +4,200 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Планировщик студента — ЛР 2</title>
+  <title>Пароскоп — ЛР 2</title>
 </head>
 <body id="top">
   <header>
     <p>Учебный проект · лабораторная работа 2</p>
-    <h1>Планировщик студента</h1>
-    <p>Предметы, задачи и сроки сдачи в одном месте.</p>
+    <h1>Пароскоп</h1>
+    <p><strong>Расписание прислали. Разбираться опять нам.</strong></p>
+    <p>Закинь Excel — получи картинку, которую можно прочитать без высшего образования.</p>
   </header>
-  <nav aria-label="Разделы планировщика">
+  <nav aria-label="Разделы Пароскопа">
     <ul>
-      <li><a href="#about">О планировщике</a></li>
-      <li><a href="#subjects">Предметы</a></li>
-      <li><a href="#tasks">Учебные задачи</a></li>
-      <li><a href="#new-task">Форма задачи</a></li>
+      <li><a href="#about">Что это за зверь</a></li>
+      <li><a href="#how-it-works">Три шага до картинки</a></li>
+      <li><a href="#schedule">Пример расписания</a></li>
+      <li><a href="#upload">Загрузить Excel</a></li>
     </ul>
   </nav>
 <!-- example:document:end -->
   <main>
     <section id="about" aria-labelledby="about-title">
-      <h2 id="about-title">О планировщике</h2>
-      <p>Планировщик помогает собрать учебные задания и увидеть сроки сдачи.
-        На этом этапе показан статический пример; изменение задач появится позже.</p>
-      <p>Снимок учебных данных на <time datetime="2026-09-13">13.09.2026</time>.
-        Все предметы и задачи в примере вымышлены.</p>
+      <h2 id="about-title">Что это за зверь</h2>
+      <p>Пароскоп превращает расписание из Excel в картинку для чата группы.
+        Выбираешь верхнюю, нижнюю или обе недели — и больше не объясняешь, где смотреть пары.</p>
+      <p>Здесь показана HTML-заготовка: пример расписания уже есть,
+        чтение файла и создание PNG появятся в лабораторных по JavaScript.</p>
     </section>
-<!-- example:subjects:start -->
-    <section id="subjects" aria-labelledby="subjects-title">
-      <h2 id="subjects-title">Предметы</h2>
+<!-- example:steps:start -->
+    <section id="how-it-works" aria-labelledby="steps-title">
+      <h2 id="steps-title">Три шага до картинки</h2>
+      <ol>
+        <li>Загрузить Excel с расписанием.</li>
+        <li>Выбрать верхнюю, нижнюю или обе недели.</li>
+        <li>Скачать картинку со всей неделей и отправить её в чат группы.</li>
+      </ol>
+      <p>Варианты недели:</p>
       <ul>
-        <li>Web-технологии</li>
-        <li>Математика</li>
-        <li>Английский язык</li>
-        <li>Алгоритмы</li>
+        <li><strong>Верхняя</strong> — занятия из верхних блоков и общие пары.</li>
+        <li><strong>Нижняя</strong> — занятия из нижних блоков и общие пары.</li>
+        <li><strong>Обе</strong> — различия видны рядом, общие занятия показаны один раз.</li>
       </ul>
     </section>
-<!-- example:subjects:end -->
-    <section id="tasks" aria-labelledby="tasks-title">
-      <h2 id="tasks-title">Учебные задачи</h2>
+<!-- example:steps:end -->
+    <section id="upload" aria-labelledby="form-title">
+      <h2 id="form-title">Загрузить Excel</h2>
+      <p id="form-note">Это макет на HTML. Кнопка «Скачать картинку» пока открывает
+        пояснение: файл не читается и PNG не создаётся. При отправке передаются
+        только имя файла и выбранный вариант недели, содержимое Excel не загружается.</p>
+<!-- example:form:start -->
+      <form action="form-result.html" method="get" aria-describedby="form-note">
+        <p>
+          <label for="schedule-file">Файл расписания (обязательно)</label><br>
+          <input id="schedule-file" name="schedule" type="file" accept=".xls,.xlsx"
+            required aria-describedby="file-hint">
+          <br><small id="file-hint">Excel: .xls или .xlsx. Образец — расписание КИ-24.</small>
+        </p>
+        <fieldset>
+          <legend>Какая неделя?</legend>
+          <p><input id="week-upper" type="radio" name="week" value="upper" required>
+            <label for="week-upper">Верхняя</label></p>
+          <p><input id="week-lower" type="radio" name="week" value="lower" required>
+            <label for="week-lower">Нижняя</label></p>
+          <p><input id="week-both" type="radio" name="week" value="both" required checked>
+            <label for="week-both">Обе</label></p>
+        </fieldset>
+        <p>
+          <button type="submit">Скачать картинку</button>
+          <button type="reset">Начать заново</button>
+        </p>
+      </form>
+<!-- example:form:end -->
+    </section>
+    <section id="schedule" aria-labelledby="schedule-title">
+      <h2 id="schedule-title">Пример расписания</h2>
+      <p id="table-note">Статический пример из КИ-24.xls, обе недели. Выбор в форме пока
+        не меняет таблицу. Общие занятия занимают две колонки; пустая половина означает,
+        что на этой неделе пары нет. Свободные пары в начале и конце дня опущены,
+        окно между занятиями сохранено. Времени звонков в исходном файле нет.</p>
 <!-- example:table:start -->
-      <table>
-        <caption>Задачи и сроки на 13.09.2026</caption>
+      <table aria-describedby="table-note">
+        <caption>КИ-24 · осенний семестр 2026–2027 · верхняя и нижняя недели</caption>
         <thead>
           <tr>
-            <th scope="col">Задача и предмет</th>
-            <th scope="col">Срок</th>
-            <th scope="col">Состояние</th>
+            <th scope="col">День</th>
+            <th scope="col">Пара</th>
+            <th scope="col">Верхняя неделя</th>
+            <th scope="col">Нижняя неделя</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <th scope="row">Разметить страницу планировщика<br><small>Web-технологии</small></th>
-            <td><time datetime="2026-09-11">11.09.2026</time></td>
-            <td>Выполнена</td>
-          </tr>
-<!-- example:table:end -->
-          <tr>
-            <th scope="row">Решить задачи по матрицам<br><small>Математика</small></th>
-            <td><time datetime="2026-09-12">12.09.2026</time></td>
-            <td>Просрочена</td>
+            <th scope="rowgroup" rowspan="3">Понедельник</th>
+            <th scope="row">2</th>
+            <td>Психология · лекция · 9.413</td>
+            <td>Веб-технологии · лекция · 4.014</td>
           </tr>
           <tr>
-            <th scope="row">Добавить форму учебной задачи<br><small>Web-технологии</small></th>
-            <td><time datetime="2026-09-13">13.09.2026</time></td>
-            <td>В работе</td>
+            <th scope="row">3</th>
+            <td colspan="2">Операционные системы · лекция · 2.234</td>
           </tr>
           <tr>
-            <th scope="row">Прочитать текст о технологиях<br><small>Английский язык</small></th>
-            <td><time datetime="2026-09-14">14.09.2026</time></td>
-            <td>В работе</td>
+            <th scope="row">4</th>
+            <td>Программирование интерфейсов вычислительных систем · лабораторная · 4.023</td>
+            <td>Программирование интерфейсов вычислительных систем · практика · 4.023</td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <th scope="rowgroup" rowspan="4">Вторник</th>
+            <th scope="row">2</th>
+            <td colspan="2">Компьютерные системы · лабораторная · 4.026</td>
           </tr>
           <tr>
-            <th scope="row">Разобрать линейный поиск<br><small>Алгоритмы</small></th>
-            <td><time datetime="2026-09-15">15.09.2026</time></td>
-            <td>В работе</td>
+            <th scope="row">3</th>
+            <td colspan="2">Операционные системы · лабораторная · 4.024</td>
           </tr>
           <tr>
-            <th scope="row">Подготовить примеры производных<br><small>Математика</small></th>
-            <td><time datetime="2026-09-16">16.09.2026</time></td>
-            <td>В работе</td>
+            <th scope="row">4</th>
+            <td colspan="2">Окно. Можно морально подготовиться к следующей паре.</td>
           </tr>
           <tr>
-            <th scope="row">Оформить карточки задач<br><small>Web-технологии</small></th>
-            <td><time datetime="2026-09-17">17.09.2026</time></td>
-            <td>В работе</td>
+            <th scope="row">5</th>
+            <td colspan="2">Профессионально-прикладная физическая подготовка · практика · аудитория не указана</td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <th scope="rowgroup" rowspan="3">Среда</th>
+            <th scope="row">2</th>
+            <td>Специализированные компьютеры · лекция · 2.234</td>
+            <td>Пары нет</td>
           </tr>
           <tr>
-            <th scope="row">Повторить технические термины<br><small>Английский язык</small></th>
-            <td><time datetime="2026-09-10">10.09.2026</time></td>
-            <td>Выполнена</td>
+            <th scope="row">3</th>
+            <td colspan="2">Организация и функционирование процессорных устройств · лекция · 4.035</td>
           </tr>
           <tr>
-            <th scope="row">Сравнить способы сортировки<br><small>Алгоритмы</small></th>
-            <td><time datetime="2026-09-19">19.09.2026</time></td>
-            <td>В работе</td>
+            <th scope="row">4</th>
+            <td colspan="2">Специализированные компьютеры · лабораторная · 4.040</td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <th scope="rowgroup" rowspan="4">Четверг</th>
+            <th scope="row">2</th>
+            <td colspan="2">Компьютерные системы · лекция · 2.234</td>
           </tr>
           <tr>
-            <th scope="row">Собрать отчёт по HTML<br><small>Web-технологии</small></th>
-            <td><time datetime="2026-09-20">20.09.2026</time></td>
-            <td>В работе</td>
+            <th scope="row">3</th>
+            <td>Цифровая схемотехника специализированных устройств КС · лекция · 4.035</td>
+            <td>Веб-технологии · лабораторная · 4.019</td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td>Организация и функционирование процессорных устройств · лабораторная · 4.014</td>
+            <td>Пары нет</td>
+          </tr>
+          <tr>
+            <th scope="row">5</th>
+            <td>Веб-технологии · лабораторная · 4.019</td>
+            <td>Пары нет</td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <th scope="rowgroup" rowspan="3">Пятница</th>
+            <th scope="row">1</th>
+            <td colspan="2">Программирование интерфейсов вычислительных систем · лекция · 4.014</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Веб-технологии · лекция · 4.014</td>
+            <td>Психология · практика · 8.212</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Цифровая схемотехника специализированных устройств КС · лабораторная · 4.031</td>
           </tr>
         </tbody>
       </table>
+<!-- example:table:end -->
     </section>
-    <section id="new-task" aria-labelledby="form-title">
-      <h2 id="form-title">Форма учебной задачи</h2>
-      <p id="form-note">Это учебная форма. Браузер проверит обязательные поля
-        и откроет страницу результата. Задача не будет сохранена.</p>
-<!-- example:form:start -->
-      <form class="task-form" action="form-result.html" method="get" aria-describedby="form-note">
-        <fieldset>
-          <legend>Новая задача</legend>
-          <p>
-            <label for="task-title">Название (обязательно)</label><br>
-            <input id="task-title" name="title" type="text" size="20"
-              required maxlength="100" aria-describedby="title-hint">
-            <br><small id="title-hint">Не более 100 символов.</small>
-          </p>
-          <p>
-            <label for="task-subject">Предмет (обязательно)</label><br>
-            <select id="task-subject" name="subjectId" required>
-              <option value="">Выберите предмет</option>
-              <option value="web">Web-технологии</option>
-              <option value="math">Математика</option>
-              <option value="english">Английский язык</option>
-              <option value="algorithms">Алгоритмы</option>
-            </select>
-          </p>
-          <p>
-            <label for="task-date">Срок сдачи (обязательно)</label><br>
-            <input id="task-date" name="dueDate" type="date" required>
-          </p>
-          <button type="submit">Проверить форму</button>
-          <button type="reset">Очистить</button>
-        </fieldset>
-      </form>
-<!-- example:form:end -->
-    </section>
-    <section aria-labelledby="week-title">
-      <h2 id="week-title">Как распределить учебную неделю</h2>
+    <section aria-labelledby="image-title">
+      <h2 id="image-title">Из Excel — в чат группы</h2>
 <!-- example:image:start -->
       <figure>
-        <img src="../../images/study-week.svg" width="220" height="132"
-          alt="Учебная неделя: понедельник — HTML, вторник — математика, среда — английский, четверг — алгоритмы, пятница — отчёт.">
-        <figcaption>Пример распределения занятий по пяти дням недели.</figcaption>
+        <img src="../../images/paroscope-flow.svg" width="280" height="180"
+          alt="Три шага: загрузить Excel, выбрать верхнюю, нижнюю или обе недели, скачать PNG для чата группы.">
+        <figcaption>Будущий сценарий Пароскопа. Пересылка в Telegram — уже на твоей совести.</figcaption>
       </figure>
 <!-- example:image:end -->
     </section>
   </main>
   <footer>
-    <p>Учебный проект по дисциплине «Web-технологии».</p>
+    <p>Пароскоп · расписание понятнее, пар меньше не стало.</p>
     <a href="#top">К началу страницы</a>
   </footer>
 </body>

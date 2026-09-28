@@ -14,16 +14,16 @@ function documentStart(lab) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Пароскоп — ЛР ${lab}</title>
+  <title>Экспарс — ЛР ${lab}</title>
 </head>
 <body id="top">
   <header>
     <p>Учебный проект · лабораторная работа ${lab}</p>
-    <h1>Пароскоп</h1>
+    <h1>Экспарс</h1>
     <p><strong>Расписание прислали. Разбираться опять нам.</strong></p>
     <p>Закинь Excel — получи картинку, которую можно прочитать без высшего образования.</p>
   </header>
-  <nav aria-label="Разделы Пароскопа">
+  <nav aria-label="Разделы Экспарса">
     <ul>
       <li><a href="#about">Что это за зверь</a></li>
       <li><a href="#how-it-works">Три шага до картинки</a></li>
@@ -34,7 +34,7 @@ function documentStart(lab) {
   <main>
     <section id="about" aria-labelledby="about-title">
       <h2 id="about-title">Что это за зверь</h2>
-      <p>Пароскоп превращает расписание из Excel в картинку для чата группы.
+      <p>Экспарс превращает расписание из Excel в картинку для чата группы.
         Выбираешь верхнюю, нижнюю или обе недели — и больше не объясняешь, где смотреть пары.</p>
       <p>Здесь показана HTML-заготовка: пример расписания уже есть,
         чтение файла и создание PNG появятся в лабораторных по JavaScript.</p>
@@ -60,7 +60,7 @@ function documentStart(lab) {
 const end = `
   </main>
   <footer>
-    <p>Пароскоп · расписание понятнее, пар меньше не стало.</p>
+    <p>Экспарс · расписание понятнее, пар меньше не стало.</p>
     <a href="#top">К началу страницы</a>
   </footer>
 </body>
@@ -148,7 +148,7 @@ ${tableDays}
       <figure>
         <img src="../../images/paroscope-flow.svg" width="280" height="180"
           alt="Три шага: загрузить Excel, выбрать верхнюю, нижнюю или обе недели, скачать PNG для чата группы.">
-        <figcaption>Будущий сценарий Пароскопа. Пересылка в Telegram — уже на твоей совести.</figcaption>
+        <figcaption>Будущий сценарий Экспарса. Пересылка в Telegram — уже на твоей совести.</figcaption>
       </figure>
 <!-- example:image:end -->
     </section>${end}`;
@@ -158,7 +158,7 @@ const result = `<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Пароскоп — результат учебной формы</title>
+  <title>Экспарс — результат учебной формы</title>
 </head>
 <body>
   <main>
@@ -180,5 +180,5 @@ for (const [file, content] of Object.entries({
   const target = new URL(`../public/labs/${file}`, import.meta.url);
   await mkdir(fileURLToPath(new URL(".", target)), { recursive: true });
   await writeFile(target, content, "utf8");
-  console.log(`Записан public/labs/${file} (Пароскоп)`);
+  console.log(`Записан public/labs/${file} (Экспарс)`);
 }

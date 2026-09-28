@@ -13,7 +13,7 @@ export type SidebarItem = {
 
 export const mainNavigation: { href: string; title: string; icon: IconName }[] = [
   { href: "/", title: "Обзор", icon: "grid" },
-  { href: "/project", title: "Пароскоп", icon: "calendar" },
+  { href: "/project", title: "Экспарс", icon: "calendar" },
   { href: "/labs", title: "Лабораторные", icon: "code" },
   { href: "/report", title: "Отчёт", icon: "file" },
 ];

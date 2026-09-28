@@ -6,7 +6,7 @@ import { labs } from "@/data/labs";
 import { labPresentation } from "@/data/lab-presentation";
 import { getProjectStages } from "@/data/project-stages";
 
-export const metadata: Metadata = { title: "Пароскоп" };
+export const metadata: Metadata = { title: "Экспарс" };
 
 export default function ProjectPage() {
   const available = labs.filter((lab) => lab.status === "done" && lab.demo);
@@ -16,9 +16,9 @@ export default function ProjectPage() {
 
   return (
     <div className="page-enter">
-      <div className="page-heading"><div><p className="eyebrow">StudHub / наш проект</p><h1>Пароскоп</h1></div>{current && <span className="version-label">ЛР {String(current.id).padStart(2, "0")} / {labs.length}</span>}</div>
+      <div className="page-heading"><div><p className="eyebrow">StudHub / наш проект</p><h1>Экспарс</h1></div>{current && <span className="version-label">ЛР {String(current.id).padStart(2, "0")} / {labs.length}</span>}</div>
       <p className="lead">Из Excel — в картинку для чата группы. Пары те же, боли меньше. Здесь последняя готовая версия; предыдущие этапы и исходники — в лабораторных.</p>
-      <ol className="project-stages" aria-label="Этапы Пароскопа">
+      <ol className="project-stages" aria-label="Этапы Экспарса">
         {stages.map((stage, index) => <li className={stage.done ? "is-ready" : undefined} key={stage.technology}>
           <span>{stage.done ? <Icon name="check" size={15} /> : String(index + 1).padStart(2, "0")}</span>
           <div><strong>{stage.title}</strong><small>{stage.done ? "Готово" : `${stage.completed} из ${stage.total}`} · ЛР {stage.from}–{stage.to}</small></div>

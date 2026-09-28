@@ -26,7 +26,7 @@ export default function Home() {
           <h2 id="hero-title">Чем ближе дедлайн...<br /><span>Тем ближе отчисление.</span></h2>
           <p>В связи с тем, что я понятия не имею как задоджить бесконечные эвакуации и сдать хоть что-то, я принял волевое решение создать данный продукт.</p>
           <div className="hero-actions">
-            <Link className="button" href="/project">Открыть Пароскоп <Icon name="arrow-up-right" size={17} /></Link>
+            <Link className="button" href="/project">Открыть Экспарс <Icon name="arrow-up-right" size={17} /></Link>
             <a className="text-link" href="#project-path">Как устроен проект <Icon name="arrow-right" size={16} /></a>
           </div>
         </div>
@@ -54,7 +54,7 @@ export default function Home() {
       </dl>
       <div className="dashboard-columns">
         <section className="next-section">
-          <div className="section-heading"><h2>Продолжим создавать</h2><span className="subtle-label">Следующий шаг</span></div>
+          <div className="section-heading"><h2>Продолжаем...</h2><span className="subtle-label">Что дальше?</span></div>
           {nextLab && <Link className="next-card" href={`/labs/${nextLab.id}`}>
             <div className="next-card-top"><span className="next-label">Лабораторная {String(nextLab.id).padStart(2, "0")}</span><Icon name="arrow-up-right" size={23} /></div>
             <h3>{labPresentation[nextLab.id].title}</h3>
@@ -64,7 +64,7 @@ export default function Home() {
           </Link>}
         </section>
         <section id="project-path" className="path-section">
-          <div className="section-heading"><h2>От идеи к результату</h2><span className="subtle-label">3 технологии</span></div>
+          <div className="section-heading"><h2>Подробная роадмапа</h2><span className="subtle-label">3 шага</span></div>
           <ol className="learning-path">
             {stages.map((stage, index) => <li className={stage.done ? "path-done" : stage.current ? "path-current" : undefined} key={stage.technology}>
               <span className="path-node">{stage.done ? <Icon name="check" size={17} /> : String(index + 1).padStart(2, "0")}</span>
@@ -79,7 +79,7 @@ export default function Home() {
           <span className="completed-number">{String(lab.id).padStart(2, "0")}</span><div><span className="eyebrow">{lab.topic} · Лабораторная работа</span><h3>{labPresentation[lab.id].title}</h3><span className="completed-caption"><Icon name="check" size={13} /> Работа и отчёт готовы</span></div><Icon name="arrow-up-right" size={20} />
         </Link>)}</div>
       </section>
-      <div className="overview-note"><Icon name="code" size={18} /><p>Один проект, десять лабораторных и понятный путь от HTML до JavaScript.</p><Link href="/report">К отчёту <Icon name="arrow-right" size={15} /></Link></div>
+      <div className="overview-note"><Icon name="code" size={18} /><p>Один проект из десяти лаб и понятный путь от HTML до JavaScript.</p><Link href="/report">К отчёту <Icon name="arrow-right" size={15} /></Link></div>
     </div>
   );
 }

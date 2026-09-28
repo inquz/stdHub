@@ -26,7 +26,7 @@ function head(lab, result = false) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
-  <title>Пароскоп · ${result ? "Результат формы" : `ЛР ${lab}`}</title>
+  <title>Экспарс · ${result ? "Результат формы" : `ЛР ${lab}`}</title>
 <!-- example:connections:start -->
   <link rel="stylesheet" href="styles.css">${lab === 3 && !result ? `
   <style>
@@ -38,7 +38,7 @@ function head(lab, result = false) {
 }
 
 const footer = `  <footer class="site-footer container">
-    <span>Пароскоп <span aria-hidden="true">✳</span> Пары те же. Боли меньше.</span>
+    <span>Экспарс <span aria-hidden="true">✳</span> Пары те же. Боли меньше.</span>
     <a href="#top">Наверх ↑</a>
   </footer>
 </body>
@@ -92,7 +92,7 @@ const boxModel = `
       <div class="state-demo"><button class="button" type="button" disabled>Автопилот старосты</button><span>Недоступная кнопка: пример :disabled. Староста пока работает вручную.</span></div>`;
 
 const dropdownMenu = `<!-- example:menu:start -->
-    <nav class="dropdown-nav" aria-label="Навигация по Пароскопу">
+    <nav class="dropdown-nav" aria-label="Навигация по Экспарсу">
       <details class="nav-dropdown" name="site-menu">
         <summary>Разделы <span class="menu-plus" aria-hidden="true">+</span></summary>
         <ul class="dropdown-list">
@@ -113,7 +113,7 @@ ${schedule.map(({day},index)=>`          <li><a href="#weekday-${index}">${escap
 
 const menuStudy = `<p>Меню открывается через details/summary — мышью, касанием, Enter или пробелом. Tab ведёт к ссылкам. Одинаковый атрибут name оставляет открытым одно меню.</p>
       <p class="study-note">На узком экране список входит в поток страницы, на широком выпадает под заголовком. Выбранный день отмечается через :target. Чтобы закрыть меню, нажми на его заголовок ещё раз: автоматического закрытия по ссылке или клику снаружи пока нет.</p>`;
-const layoutStudy = `<p>Один Пароскоп — три компоновки. Содержание, преподаватели и переключение недель одинаковые.</p>
+const layoutStudy = `<p>Один Экспарс — три компоновки. Содержание, преподаватели и переключение недель одинаковые.</p>
       <ul><li><strong>Поток:</strong> форма и расписание идут друг за другом.</li><li><strong>Таблица:</strong> две ячейки удерживают колонки; на телефоне контейнер прокручивается.</li><li><strong>Grid:</strong> две колонки на широком экране, одна — на узком. Этот вариант продолжаем развивать.</li></ul>
       <p class="study-note">Таблица компоновки имеет role="presentation". Она нужна для сравнения способов вёрстки, а не для данных расписания. Плоская вёрстка здесь — обычный последовательный поток документа.</p>`;
 
@@ -132,7 +132,7 @@ for (const lab of [3,4,5,6]) {
 <body id="top">
   <a class="skip-link" href="#main">К содержимому</a>
   <header class="site-header container">
-    <a class="brand" href="#top" aria-label="Пароскоп — наверх"><span class="brand-mark">${icon("calendar")}</span>пароскоп<span class="brand-dot">.</span></a>
+    <a class="brand" href="#top" aria-label="Экспарс — наверх"><span class="brand-mark">${icon("calendar")}</span>Экспарс<span class="brand-dot">.</span></a>
     ${lab >= 5 ? dropdownMenu : '<nav aria-label="Навигация"><a href="#how-it-works">Как это работает</a><a href="#schedule">Расписание</a></nav>'}
     <span class="version-chip">ЛР 0${lab} <span aria-hidden="true">/</span> CSS</span>
   </header>
@@ -203,7 +203,7 @@ ${footer}`;
   const result = `${head(lab,true)}
 <body id="top">
   <main class="result-page container">
-    <a class="brand" href="index.html"><span class="brand-mark">${icon("calendar")}</span>пароскоп.</a>
+    <a class="brand" href="index.html"><span class="brand-mark">${icon("calendar")}</span>Экспарс.</a>
     <section class="result-card">
       <p class="eyebrow">Форма дошла. Картинка задерживается.</p>
       <h1>PNG пока<br><span>на другой паре.</span></h1>

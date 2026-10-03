@@ -4,28 +4,28 @@
 .schedule-days > .day-card { min-width: 0; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
 .day-card .day-heading { display: flex; align-items: center; gap: 10px; padding: 15px; background: #f2f5ec; border-bottom: 1px solid var(--line); }
 .day-card:nth-child(even) .day-heading { background: #edf3f0; }
-.day-number { color: var(--muted); font-size: 10px; font-weight: 700; }
-.day-heading h3 { font-size: 15px; }
+.day-number { color: var(--muted); font-size: 0.875rem; font-weight: 700; }
+.day-heading h3 { font-size: 1.0625rem; }
 .pair-list { list-style: none; padding: 0; margin: 0; }
 .pair { display: flex; gap: 10px; padding: 16px 12px; }
 .pair + .pair { border-top: 1px solid var(--line); }
-.pair-number { display: flex; flex-direction: column; flex-shrink: 0; width: 25px; color: var(--muted); line-height: 1.4; }
-.pair-number strong { font-size: 15px; font-weight: 500; }
-.pair-number > span { font-size: 9px; }
+.pair-number { display: flex; flex-direction: column; flex-shrink: 0; width: 34px; color: var(--muted); line-height: 1.4; }
+.pair-number strong { font-size: 1.0625rem; font-weight: 500; }
+.pair-number > span { font-size: 0.875rem; }
 .pair-lessons { flex: 1; min-width: 0; }
 .lesson { padding: 10px; border: 1px solid var(--line); border-radius: 8px; background: #f6f8f1; }
 .lesson + .lesson { margin-top: 8px; }
 .lesson[data-week="upper"] { background: var(--upper); border-color: #dce2f6; }
 .lesson[data-week="lower"] { background: var(--lower); border-color: #efdfd0; }
 .lesson[data-empty="true"] { background: #fafbf8; border-style: dashed; color: var(--muted); }
-.week-badge { display: inline-flex; align-items: center; gap: 5px; color: #4d5f55; font-size: 9px; }
+.week-badge { display: inline-flex; align-items: center; gap: 5px; color: #4d5f55; font-size: 0.875rem; }
 .week-badge::before { content: ""; width: 5px; height: 5px; background: currentColor; border-radius: 50%; }
-.lesson-title { margin-top: 5px; font-size: 12px; font-weight: 600; line-height: 1.5; }
-.lesson-meta { display: flex; flex-wrap: wrap; gap: 4px 10px; margin-top: 7px; font-size: 10px; color: #53635a; }
+.lesson-title { margin-top: 5px; font-size: 1rem; font-weight: 600; line-height: 1.5; }
+.lesson-meta { display: flex; flex-wrap: wrap; gap: 4px 10px; margin-top: 7px; font-size: 0.875rem; color: #53635a; }
 .lesson-meta > span { font-weight: 600; }
 /* example:selectors:end */
 .mode-upper, .mode-lower { display: none; }
-.compact-toggle { display: flex; align-items: center; gap: 8px; margin-bottom: 18px; font-size: 11px; color: var(--muted); }
+.compact-toggle { display: flex; align-items: center; gap: 8px; margin-bottom: 18px; font-size: 0.875rem; color: var(--muted); }
 .compact-toggle input { width: 16px; height: 16px; margin: 0; accent-color: var(--green); }
 @media (min-width: 761px) and (max-width: 1100px), (max-width: 560px) {
   .schedule-days { grid-template-columns: minmax(0, 1fr); }

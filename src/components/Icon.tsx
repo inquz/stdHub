@@ -4,7 +4,7 @@ export type IconName =
   | "arrow-up-right" | "arrow-right" | "arrow-left" | "arrow-down" | "check" | "book"
   | "grid" | "calendar" | "file" | "code" | "layers" | "sun" | "moon"
   | "menu" | "close" | "chevron-down" | "external" | "clock" | "sparkles"
-  | "plus" | "copy" | "download";
+  | "plus" | "copy" | "download" | "github";
 
 const paths: Record<IconName, ReactNode> = {
   "arrow-up-right": <path d="M6 18 18 6M6 6h12v12" />,
@@ -29,6 +29,7 @@ const paths: Record<IconName, ReactNode> = {
   plus: <path d="M12 5v14M5 12h14" />,
   copy: <><rect x="8" y="8" width="13" height="13" rx="2" /><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3" /></>,
   download: <path d="M12 3v12m-5-5 5 5 5-5M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3" />,
+  github: <path d="M9 19c-4.3 1.3-4.3-2.5-6-3m12 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3-.3 6.2-1.5 6.2-6.9a5.4 5.4 0 0 0-1.5-3.7 5 5 0 0 0-.1-3.7s-1.2-.4-3.8 1.4a12.8 12.8 0 0 0-6.8 0C5.5.8 4.3 1.2 4.3 1.2a5 5 0 0 0-.1 3.7 5.4 5.4 0 0 0-1.5 3.7c0 5.4 3.2 6.6 6.2 6.9a3.4 3.4 0 0 0-.9 2.6V22" />,
 };
 
 export function Icon({ name, size = 20, ...props }: SVGProps<SVGSVGElement> & { name: IconName; size?: number }) {

@@ -1,7 +1,7 @@
 /* example:menu:start */
 .site-header .dropdown-nav { gap: 10px; align-items: start; }
 .nav-dropdown { position: relative; }
-.nav-dropdown summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 9px; list-style: none; font-size: 12px; cursor: pointer; }
+.nav-dropdown summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 9px; list-style: none; font-size: 1rem; cursor: pointer; }
 .nav-dropdown summary::-webkit-details-marker { display: none; }
 .nav-dropdown summary:hover, .nav-dropdown[open] > summary { background: #e5eddc; border-color: #94ad87; }
 .menu-plus { transition: transform .15s; font-size: 18px; line-height: 1; }

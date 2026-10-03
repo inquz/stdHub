@@ -7,6 +7,8 @@ import { lab05 } from "./labs/lab05";
 import { lab06 } from "./labs/lab06";
 import { lab07 } from "./labs/lab07";
 import { lab08 } from "./labs/lab08";
+import { lab09 } from "./labs/lab09";
+import { lab10 } from "./labs/lab10";
 
 export type { Lab } from "./labs/types";
 
@@ -19,8 +21,8 @@ export const labs: Lab[] = [
   lab06,
   lab07,
   lab08,
-  { id: 9, title: "JavaScript. Объектная модель документа — Document Object Model (DOM) (4 ч.)", topic: "JavaScript", status: "planned" },
-  { id: 10, title: "Динамический HTML. События. Программирование обработки событий", topic: "JavaScript", status: "planned" },
+  lab09,
+  lab10,
 ];
 
 export function getLab(id: string) {

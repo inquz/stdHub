@@ -1,4 +1,4 @@
-.layout-switch { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 24px; font-size: 12px; }
+.layout-switch { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 24px; font-size: 1rem; }
 .layout-switch > span { margin-right: 8px; color: var(--muted); }
 .layout-switch a { padding: 9px 14px; border: 1px solid var(--line); border-radius: 8px; text-decoration: none; }
 .layout-switch a[aria-current="page"] { background: var(--green); color: white; border-color: var(--green); }

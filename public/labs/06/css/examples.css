@@ -6,7 +6,7 @@
   margin: 8px;
   background: var(--lime);
   color: var(--ink);
-  font: 12px Consolas, monospace;
+  font: 0.9375rem Consolas, monospace;
 }
 .content-box { box-sizing: content-box; }
 .border-box { box-sizing: border-box; }
@@ -14,7 +14,7 @@
 
 .box-comparison { display: flex; flex-wrap: wrap; gap: 20px; margin-block: 20px; }
 .box-comparison figure { margin: 0; }
-.box-comparison figcaption { margin: 12px 8px; color: var(--muted); font-size: 12px; }
+.box-comparison figcaption { margin: 12px 8px; color: var(--muted); font-size: 1rem; }
 .state-demo { display: flex; flex-wrap: wrap; align-items: center; gap: 15px; margin-top: 24px; }
-.state-demo > span { flex-basis: 300px; color: var(--muted); font-size: 12px; }
+.state-demo > span { flex-basis: 300px; color: var(--muted); font-size: 1rem; }
 @media (max-width: 400px) { .study-content { padding-inline: 14px; } }

@@ -1,9 +1,9 @@
 .variants { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
-.variants a { display: inline-flex; align-items: center; gap: 9px; min-height: 44px; padding: 9px 13px; border: 1px solid var(--border); border-radius: 7px; font-size: .85rem; }
+.variants a { display: inline-flex; align-items: center; gap: 9px; min-height: 44px; padding: 9px 13px; border: 1px solid var(--border); border-radius: 7px; font-size: var(--font-ui); }
 .variants a:hover { border-color: var(--violet); color: var(--violet); }
 .comparison { overflow-x: auto; margin-top: 26px; }
-.comparison table { width: 100%; border-collapse: collapse; text-align: left; font-size: .85rem; line-height: 1.65; }
-.comparison caption { text-align: left; margin-bottom: 12px; font-size: .95rem; font-weight: 650; }
+.comparison table { width: 100%; border-collapse: collapse; text-align: left; font-size: 1rem; line-height: 1.65; }
+.comparison caption { text-align: left; margin-bottom: 12px; font-size: 1.125rem; font-weight: 650; }
 .comparison th, .comparison td { padding: 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
 .comparison thead { color: var(--muted); background: var(--surface); }
 .comparison tbody th { font-weight: 600; }
@@ -11,7 +11,7 @@
 .figures figure { margin: 0; min-width: 0; }
 .figures a { display: block; }
 .figures img { display: block; width: 100%; height: auto; border: 1px solid var(--border); border-radius: 7px; }
-.figures figcaption { margin-top: 9px; color: var(--muted); font-size: .8rem; line-height: 1.65; }
+.figures figcaption { margin-top: 9px; color: var(--muted); font-size: var(--font-caption); line-height: 1.65; }
 @media (max-width: 600px) {
   .comparison th, .comparison td { padding: 9px 8px; min-width: 110px; }
 }

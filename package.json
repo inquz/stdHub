@@ -15,6 +15,7 @@
     "labs:generate": "node scripts/generate-html-labs.mjs",
     "labs:generate:css": "node scripts/generate-css-labs.mjs",
     "labs:generate:js": "node scripts/generate-js-labs.mjs",
+    "labs:generate:final": "node scripts/generate-final-labs.mjs",
     "test": "node --test tests/*.test.mjs"
   },
   "dependencies": {

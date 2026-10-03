@@ -11,6 +11,7 @@ import "@/styles/report.css";
 const manrope = localFont({
   src: "./fonts/Manrope-Variable.ttf",
   variable: "--font-manrope",
+  weight: "200 800",
   display: "swap",
 });
 

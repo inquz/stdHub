@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Экспарс · ЛР 10</title>
+<!-- example:connections:start -->
+  <link rel="stylesheet" href="styles.css">
+<!-- example:connections:end -->
+  <script type="module" src="js/app.js"></script>
+  <link rel="stylesheet" href="workspace.css">
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">К содержимому</a>
+  <header class="site-header container">
+    <a class="brand" href="#top" aria-label="Экспарс — наверх"><span class="brand-mark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 3v4m10-4v4M3 11h18m-13 4h2m4 0h2"/></svg></span>Экспарс<span class="brand-dot">.</span></a>
+    <!-- example:menu:start -->
+    <nav class="dropdown-nav" aria-label="Навигация по Экспарсу">
+      <details class="nav-dropdown" name="site-menu">
+        <summary>Разделы <span class="menu-plus" aria-hidden="true">+</span></summary>
+        <ul class="dropdown-list">
+          <li><a href="#how-it-works">Как это работает</a></li>
+          <li><a href="#upload-title">Загрузить Excel</a></li>
+          <li><a href="#schedule">Расписание</a></li>
+          <li><a href="#css-lab">Под капотом</a></li>
+        </ul>
+      </details>
+      <details class="nav-dropdown" name="site-menu">
+        <summary>Дни недели <span class="menu-plus" aria-hidden="true">+</span></summary>
+        <ul class="dropdown-list" id="day-links">
+          <li><a href="#weekday-0">Понедельник</a></li>
+          <li><a href="#weekday-1">Вторник</a></li>
+          <li><a href="#weekday-2">Среда</a></li>
+          <li><a href="#weekday-3">Четверг</a></li>
+          <li><a href="#weekday-4">Пятница</a></li>
+        </ul>
+      </details>
+    </nav>
+<!-- example:menu:end -->
+    <span class="version-chip">ЛР 10 <span aria-hidden="true">/</span> JavaScript</span>
+  </header>
+  <main id="main" class="container">
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span>Для тех, кому снова прислали Excel</p>
+        <h1 id="hero-title">Расписание прислали.<br><span>Разбираться опять нам.</span></h1>
+        <p class="hero-description">Превратим клетчатый хаос в понятную картинку.<br>В чат группы — с заботой. В деканат — с вопросами.</p>
+      </div>
+      <aside class="hero-note"><span aria-hidden="true">✳</span><p>Увеличивает<br><strong>читаемость.</strong><br>Не посещаемость.</p></aside>
+    </section>
+    <ol id="how-it-works" class="steps" aria-label="Как это работает">
+      <li><span>01</span><div><strong>Загрузи Excel</strong><small>Тот самый. Из чата.</small></div></li>
+      <li><span>02</span><div><strong>Выбери неделю</strong><small>Верхняя, нижняя или обе.</small></div></li>
+      <li><span>03</span><div><strong>Скачай картинку</strong><small>И стань легендой группы.</small></div></li>
+    </ol>
+
+    <div class="workspace layout-grid">
+      <section class="upload-panel" aria-labelledby="upload-title">
+        <p class="eyebrow">Из таблицы в люди</p>
+        <h2 id="upload-title">Разберём твой Excel.</h2>
+        <p class="panel-description">Один файл. Одна неделя.<br>Ноль приближений двумя пальцами.</p>
+<!-- example:form:start -->
+        <form id="schedule-form" action="#schedule" method="get" aria-describedby="stage-note">
+          <div class="file-field">
+            <span class="upload-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V3m-5 5 5-5 5 5M4 15v5a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5"/></svg></span>
+            <label for="schedule-file">Выбери расписание</label>
+            <span class="file-hint" id="file-hint">Excel · .xls или .xlsx</span>
+            <input id="schedule-file" name="schedule" type="file" accept=".xls,.xlsx" required aria-describedby="file-hint">
+          </div>
+          <fieldset class="week-picker">
+            <legend>Какая неделя?</legend>
+            <div class="week-options">
+              <input class="visually-hidden" id="week-upper" type="radio" name="week" value="upper" required><label for="week-upper">Верхняя</label>
+              <input class="visually-hidden" id="week-lower" type="radio" name="week" value="lower" required><label for="week-lower">Нижняя</label>
+              <input class="visually-hidden" id="week-both" type="radio" name="week" value="both" required checked><label for="week-both">Обе</label>
+            </div>
+          </fieldset>
+          <button class="button button-primary" type="submit">Прочитать Excel</button>
+          <button class="button-reset" type="reset">Восстановить пример</button>
+          <p id="stage-note" class="stage-note">Поддерживается структура как в КИ-23.xls, КИ-24.xls и КИ-25.xls. Файл до 5 МБ. Выбери неделю и скачай PNG всего расписания.</p>
+          <p id="feedback" class="stage-note" role="status" aria-live="polite">Выбери файл — расписание обновится автоматически.</p>
+        </form>
+<!-- example:form:end -->
+        <noscript><p>Включи JavaScript для импорта и просмотра расписания.</p></noscript>
+        <p id="storage-status" class="stage-note" role="status"></p>
+        <p class="privacy-note">Файл отправляется на сервер для разбора.<br>Исходный файл на диск не сохраняется.<br>Расписание и настройки остаются в этом браузере.</p>
+      </section>
+      <section id="schedule" class="preview-panel" aria-labelledby="schedule-title">
+        <div class="preview-heading"><div><p class="eyebrow">Твоё расписание</p><h2 id="schedule-title">КИ-24 <span>на связи</span></h2></div><span class="preview-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8" r="1"/><path d="m3 17 5-5 4 4 4-6 5 7"/></svg></span></div>
+        <div class="import-info"><p id="source-label">Источник: учебный пример КИ-24</p><time id="imported-at" hidden></time><p id="schedule-stats" role="status"></p><p id="import-warnings"></p><div id="sheet-field" hidden><label for="sheet-select">Лист с расписанием</label><select id="sheet-select"></select></div></div>
+        <div class="preview-meta"><span>Расписание на неделю</span><span class="mode-label mode-both">Обе недели</span><span class="mode-label mode-upper">Верхняя неделя</span><span class="mode-label mode-lower">Нижняя неделя</span></div>
+        <div class="export-tools"><button id="export-png" class="button button-primary" type="button" aria-describedby="export-note">Скачать PNG</button><p id="export-note">В картинку попадёт вся выбранная неделя. Поиск, выбор дня и свёрнутые карточки на PNG не влияют.</p><p id="export-status" role="status" aria-live="polite"></p></div>
+        <p id="table-note" class="preview-caption">Предметы, аудитории и преподаватели — из расписания. Время звонков не выдумываем.</p>
+        <label class="compact-toggle"><input id="compact-view" type="checkbox" form="schedule-form"> Компактнее. Я с телефона.</label>
+<!-- example:workspace:start -->
+        <div class="schedule-filters" role="search" aria-label="Найти занятие">
+          <div><label for="lesson-search">Поиск по расписанию</label><input id="lesson-search" type="search" maxlength="100" placeholder="Предмет, преподаватель, аудитория"></div>
+          <div><label for="day-filter">День недели</label><select id="day-filter"><option value="all">Все дни</option></select></div>
+          <button id="clear-filters" type="button" class="filter-reset">Сбросить поиск</button>
+        </div>
+        <p id="filter-summary" class="preview-caption" role="status" aria-live="polite"></p>
+        <div id="empty-state" class="empty-state" hidden><strong>Ничего не найдено</strong><p>Попробуй другую неделю, день или поисковый запрос.</p></div>
+        <div class="schedule-days"></div>
+<!-- example:workspace:end -->
+        <p class="preview-footnote">Общие занятия показаны один раз. Окна между парами сохранены.<br>Красивое расписание не является уважительной причиной прогула.</p>
+      </section>
+    </div>
+    <details class="study-panel" id="css-lab"><summary>Под капотом · ЛР 10</summary><div class="study-content"><p>submit, input, change и делегированный click управляют интерфейсом. Расписание и настройки восстанавливаются из localStorage. Canvas формирует PNG всей выбранной недели, включая преподавателей и подгруппы.</p></div></details>
+  </main>
+  <footer class="site-footer container">
+    <span>Экспарс <span aria-hidden="true">✳</span> Пары те же. Боли меньше.</span>
+    <a href="#top">Наверх ↑</a>
+  </footer>
+</body>
+</html>

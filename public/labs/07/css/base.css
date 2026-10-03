@@ -4,7 +4,7 @@
   --paper: #f6f7f2;
   --surface: #ffffff;
   --ink: #203b35;
-  --muted: #66766e;
+  --muted: #53635b;
   --line: #dfe5dc;
   --green: #235d48;
   --lime: #d9ef9d;
@@ -22,7 +22,7 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: "Segoe UI", Arial, sans-serif;
-  font-size: 15px;
+  font-size: 1.125rem;
   line-height: 1.6;
   overflow-wrap: break-word;
 }
@@ -56,7 +56,7 @@ code { font-family: Consolas, monospace; font-size: .9em; }
 }
 .skip-link { position: fixed; top: 8px; left: 8px; z-index: 10; padding: 10px 16px; background: var(--surface); transform: translateY(-150%); }
 .skip-link:focus { transform: none; }
-.eyebrow { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; }
+.eyebrow { font-size: 0.875rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; }

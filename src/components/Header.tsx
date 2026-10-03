@@ -7,6 +7,7 @@ import { BrandMark, Icon } from "./Icon";
 import { CourseProgress, isNavigationActive, mainNavigation, type SidebarItem } from "./Sidebar";
 import { ProfileAvatar } from "./ProfileAvatar";
 import { ThemeToggle } from "./ThemeToggle";
+import { author } from "@/data/author";
 
 export function Header({ items = [] }: { items?: SidebarItem[] }) {
   const pathname = usePathname();
@@ -71,7 +72,7 @@ export function Header({ items = [] }: { items?: SidebarItem[] }) {
       </div>
 
       <div className="header-actions">
-        <span className="header-course"><span aria-hidden="true" />Учимся. Создаём. Растём.</span>
+        <a className="header-repository" href={author.repository} target="_blank" rel="noopener noreferrer" aria-label="Исходники проекта на GitHub"><Icon name="github" size={17} /><span>Исходники</span><Icon name="arrow-up-right" size={13} /></a>
         <ThemeToggle />
         <ProfileAvatar />
       </div>

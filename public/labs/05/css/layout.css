@@ -5,21 +5,21 @@
 .hero { display: flex; justify-content: space-between; align-items: center; gap: 32px; padding-block: 56px 36px; }
 .hero h1 { margin-top: 20px; }
 .hero h1 span { color: var(--green); }
-.hero-description { margin-top: 20px; color: var(--muted); font-size: 15px; }
+.hero-description { margin-top: 20px; color: var(--muted); font-size: 1.0625rem; }
 .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; list-style: none; margin: 0 0 36px; padding: 24px 0; border-block: 1px solid var(--line); }
 .workspace { display: grid; grid-template-columns: 310px minmax(0, 1fr); gap: 24px; align-items: start; }
 .upload-panel, .preview-panel { min-width: 0; border-radius: var(--radius); }
 .upload-panel { padding: 28px; background: var(--ink); color: #fff; }
 .preview-panel { padding: 28px; border: 1px solid var(--line); background: var(--surface); box-shadow: var(--shadow); }
 .preview-heading { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
-.site-footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-block: 28px; margin-top: 36px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+.site-footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-block: 28px; margin-top: 36px; border-top: 1px solid var(--line); color: var(--muted); font-size: 1rem; }
 .result-page { min-height: 78vh; padding-block: 40px; }
 .result-card { max-width: 650px; padding: clamp(24px, 5vw, 52px); margin: 48px auto 0; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
 .result-card h1 { margin-block: 20px 28px; }
 .result-card h1 span { color: var(--green); }
 .result-card > p + p { margin-top: 16px; }
 .result-card .button { margin-top: 28px; background: var(--green); color: white; }
-.result-link { display: block; margin-top: 16px; font-size: 13px; }
+.result-link { display: block; margin-top: 16px; font-size: 1rem; }
 /* example:layout:end */
 
 @media (max-width: 1000px) {

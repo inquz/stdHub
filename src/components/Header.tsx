@@ -65,7 +65,7 @@ export function Header({ items = [] }: { items?: SidebarItem[] }) {
         </details>
 
         <nav className="header-breadcrumb" aria-label="Навигационная цепочка">
-          <Link className="breadcrumb-home" href="/">Моё пространство</Link>
+          <Link className="breadcrumb-home" href="/">Моё детище</Link>
           <span className="breadcrumb-separator" aria-hidden="true">/</span>
           {activeLab ? <><Link href="/labs">Лабораторные</Link><span className="breadcrumb-separator" aria-hidden="true">/</span><span aria-current="page">№ {String(activeLab.id).padStart(2, "0")}</span></> : <span aria-current="page">{activePage?.title ?? "Страница"}</span>}
         </nav>

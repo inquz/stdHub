@@ -25,7 +25,7 @@ function refresh() {
   renderSchedule(view);
   const stats = scheduleStats(view, "both");
   $("#schedule-stats").textContent = `Занятий: ${stats.lessons} · Предметов: ${stats.subjects} · Преподавателей: ${stats.teachers}`;
-  $("#filter-summary").textContent = `Показано дней: ${view.days.length} из ${current.days.length}. Занятий: ${stats.lessons}.`;
+  $("#filter-summary").textContent = `Показано дней: ${view.days.length} из ${current.days.length} · Занятий: ${stats.lessons}`;
 }
 
 function show(schedule) {
@@ -43,7 +43,7 @@ async function importFile() {
   submit.disabled = false;
   form.removeAttribute("aria-busy");
   const error = validateFile(file);
-  if (error) { feedback.textContent = `${error} Прежнее расписание сохранено.`; return; }
+  if (error) { feedback.textContent = `${error} Прежнее расписание сохранено`; return; }
   feedback.textContent = "Читаем Excel…";
   submit.disabled = true;
   form.setAttribute("aria-busy", "true");
@@ -62,7 +62,7 @@ async function importFile() {
     $("#imported-at").hidden = false;
     feedback.textContent = `Расписание прочитано.${parsed.skipped.length ? ` Пропущены листы: ${parsed.skipped.join("; ")}` : ""}`;
   } catch (error) {
-    if (ticket === requestId) feedback.textContent = `${error.message} Прежнее расписание сохранено.`;
+    if (ticket === requestId) feedback.textContent = `${error.message} Прежнее расписание сохранено`;
   } finally {
     if (ticket === requestId) { submit.disabled = false; form.removeAttribute("aria-busy"); }
   }
@@ -93,7 +93,7 @@ form.addEventListener("reset", () => {
   $("#sheet-field").hidden = true;
   $("#imported-at").hidden = true;
   $("#source-label").textContent = "Источник: учебный пример КИ-24";
-  feedback.textContent = "Пример восстановлен. Можно выбрать новый Excel.";
+  feedback.textContent = "Пример восстановлен. Можно выбрать новый Excel";
   queueMicrotask(() => show(demo));
 });
 show(demo);

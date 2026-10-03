@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     default: "XlsParse — учебные задачи по порядку",
     template: "%s | XlsParse",
   },
-  description: "Планировщик студента: учебные задачи, десять этапов разработки и единый отчёт по Web-технологиям.",
+  description: "Планировщик студента: учебные задачи, десять этапов разработки и единый отчёт по Web-технологиям",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -38,7 +38,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <Header items={navigationLabs} />
             <main id="content" className="content" tabIndex={-1}>{children}</main>
             <footer className="site-footer no-print">
-              <span>XlsParse <span className="footer-dot">·</span> Учиться. Создавать. Расти.</span>
+              <span>XlsParse <span className="footer-dot">·</span> Учиться, создавать, расти</span>
               <span>Учебный проект по Web-технологиям</span>
             </footer>
           </div>

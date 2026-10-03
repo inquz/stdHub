@@ -38,7 +38,7 @@ function head(lab, result = false) {
 }
 
 const footer = `  <footer class="site-footer container">
-    <span>Экспарс <span aria-hidden="true">✳</span> Пары те же. Боли меньше.</span>
+    <span>Экспарс <span aria-hidden="true">✳</span> Пары те же, боли меньше</span>
     <a href="#top">Наверх ↑</a>
   </footer>
 </body>
@@ -68,12 +68,12 @@ ${pairs.map(pair => `              <li class="pair" value="${pair.number}">
           </section>`).join("\n");
 
 const cascade = `
-      <p>Три способа задать цвет. Каскад решает, кто тут главный.</p>
+      <p>Три способа задать цвет — каскад решает, кто тут главный</p>
 <!-- example:samples:start -->
       <div class="sample-grid">
-        <p class="cascade-external"><code>Внешний CSS</code><strong>Я из файла.</strong><span>#245fce</span></p>
-        <p class="cascade-internal"><code>Блок &lt;style&gt;</code><strong>А я пришёл позже.</strong><span>#9b411e</span></p>
-        <p class="cascade-internal" style="color: #157052"><code>Атрибут style</code><strong>У меня VIP-пропуск.</strong><span>#157052</span></p>
+        <p class="cascade-external"><code>Внешний CSS</code><strong>Я из файла</strong><span>#245fce</span></p>
+        <p class="cascade-internal"><code>Блок &lt;style&gt;</code><strong>А я пришёл позже</strong><span>#9b411e</span></p>
+        <p class="cascade-internal" style="color: #157052"><code>Атрибут style</code><strong>У меня VIP-пропуск</strong><span>#157052</span></p>
       </div>
 <!-- example:samples:end -->
       <p class="study-note">Внешнее правило и блок style имеют одинаковую специфичность.
@@ -132,7 +132,7 @@ for (const lab of [3,4,5,6]) {
 <body id="top">
   <a class="skip-link" href="#main">К содержимому</a>
   <header class="site-header container">
-    <a class="brand" href="#top" aria-label="Экспарс — наверх"><span class="brand-mark">${icon("calendar")}</span>Экспарс<span class="brand-dot">.</span></a>
+    <a class="brand" href="#top" aria-label="Экспарс — наверх"><span class="brand-mark">${icon("calendar")}</span>Экспарс</a>
     ${lab >= 5 ? dropdownMenu : '<nav aria-label="Навигация"><a href="#how-it-works">Как это работает</a><a href="#schedule">Расписание</a></nav>'}
     <span class="version-chip">ЛР 0${lab} <span aria-hidden="true">/</span> CSS</span>
   </header>
@@ -140,21 +140,21 @@ for (const lab of [3,4,5,6]) {
     <section class="hero" aria-labelledby="hero-title">
       <div>
         <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span>Для тех, кому снова прислали Excel</p>
-        <h1 id="hero-title">Расписание прислали.<br><span>Разбираться опять нам.</span></h1>
-        <p class="hero-description">Превратим клетчатый хаос в понятную картинку.<br>В чат группы — с заботой. В деканат — с вопросами.</p>
+        <h1 id="hero-title">Расписание прислали —<br><span>разбираться опять нам</span></h1>
+        <p class="hero-description">Превратим клетчатый хаос в понятную картинку<br>В чат группы — с заботой, в деканат — с вопросами</p>
       </div>
-      <aside class="hero-note"><span aria-hidden="true">✳</span><p>Увеличивает<br><strong>читаемость.</strong><br>Не посещаемость.</p></aside>
+      <aside class="hero-note"><span aria-hidden="true">✳</span><p>Увеличивает<br><strong>читаемость,</strong><br>не посещаемость</p></aside>
     </section>
     <ol id="how-it-works" class="steps" aria-label="Как это работает">
-      <li><span>01</span><div><strong>Загрузи Excel</strong><small>Тот самый. Из чата.</small></div></li>
-      <li><span>02</span><div><strong>Выбери неделю</strong><small>Верхняя, нижняя или обе.</small></div></li>
-      <li><span>03</span><div><strong>Скачай картинку</strong><small>И стань легендой группы.</small></div></li>
+      <li><span>01</span><div><strong>Загрузи Excel</strong><small>Тот самый, из чата</small></div></li>
+      <li><span>02</span><div><strong>Выбери неделю</strong><small>Верхняя, нижняя или обе</small></div></li>
+      <li><span>03</span><div><strong>Скачай картинку</strong><small>И стань легендой группы</small></div></li>
     </ol>
     ${lab === 6 ? layoutLinks("grid") + '\n    ' : ''}<div class="workspace${lab === 6 ? ' layout-grid' : ''}">
       <section class="upload-panel" aria-labelledby="upload-title">
         <p class="eyebrow">Из таблицы в люди</p>
-        <h2 id="upload-title">Разберём твой Excel.</h2>
-        <p class="panel-description">Один файл. Одна неделя.<br>Ноль приближений двумя пальцами.</p>
+        <h2 id="upload-title">Разберём твой Excel</h2>
+        <p class="panel-description">Один файл, одна неделя<br>Без приближения двумя пальцами</p>
 <!-- example:form:start -->
         <form id="schedule-form" action="form-result.html" method="get" aria-describedby="stage-note">
           <div class="file-field">
@@ -181,8 +181,8 @@ for (const lab of [3,4,5,6]) {
       <section id="schedule" class="preview-panel" aria-labelledby="schedule-title">
         <div class="preview-heading"><div><p class="eyebrow">Пример расписания</p><h2 id="schedule-title">КИ-24 <span>на связи</span></h2></div><span class="preview-icon">${icon("image")}</span></div>
         <div class="preview-meta"><span>Осень 2026–2027</span><span class="mode-label mode-both">Обе недели</span>${isCards ? '<span class="mode-label mode-upper">Верхняя неделя</span><span class="mode-label mode-lower">Нижняя неделя</span>' : ''}</div>
-        <p id="table-note" class="preview-caption">${lab >= 5 ? "Предметы, аудитории и преподаватели — из расписания." : "Номера пар и аудитории — из расписания."} Время звонков не выдумываем.</p>
-        ${isCards ? `<label class="compact-toggle"><input id="compact-view" type="checkbox" form="schedule-form"> Компактнее. Я с телефона.</label>
+        <p id="table-note" class="preview-caption">${lab >= 5 ? "Предметы, аудитории и преподаватели" : "Номера пар и аудитории"} — из расписания, время звонков не выдумываем</p>
+        ${isCards ? `<label class="compact-toggle"><input id="compact-view" type="checkbox" form="schedule-form"> Компактный вид для телефона</label>
 <!-- example:cards:start -->
         <div class="schedule-days">
 ${renderCards(lab >= 5)}
@@ -190,11 +190,11 @@ ${renderCards(lab >= 5)}
 <!-- example:cards:end -->` : `<div class="table-scroll" role="region" aria-label="Расписание КИ-24, прокручиваемая таблица" tabindex="0">
 ${table}
         </div>`}
-        <p class="preview-footnote">${isCards ? "Общие занятия показаны один раз. Окна между парами сохранены." : "Общие пары занимают обе колонки. Разные недели стоят рядом."}<br>Красивое расписание не является уважительной причиной прогула.</p>
+        <p class="preview-footnote">${isCards ? "Общие занятия показаны один раз, окна между парами сохранены" : "Общие пары занимают обе колонки, разные недели стоят рядом"}<br>Красивое расписание не является уважительной причиной прогула</p>
       </section>
     </div>
     <details class="study-panel" id="css-lab">
-      <summary><span class="eyebrow">Под капотом · ЛР 0${lab}</span><span>${lab === 6 ? "Три способа расставить блоки" : lab === 5 ? "Меню открылось. Скрипт не понадобился." : isCards ? "Почему блок внезапно толще?" : "Кто покрасил этот текст?"}</span></summary>
+      <summary><span class="eyebrow">Под капотом · ЛР 0${lab}</span><span>${lab === 6 ? "Три способа расставить блоки" : lab === 5 ? "Меню открывается без JavaScript" : isCards ? "Почему блок внезапно толще?" : "Кто покрасил этот текст?"}</span></summary>
       <div class="study-content">${lab === 6 ? layoutStudy : lab === 5 ? menuStudy : isCards ? boxModel : cascade}
       </div>
     </details>
@@ -203,10 +203,10 @@ ${footer}`;
   const result = `${head(lab,true)}
 <body id="top">
   <main class="result-page container">
-    <a class="brand" href="index.html"><span class="brand-mark">${icon("calendar")}</span>Экспарс.</a>
+    <a class="brand" href="index.html"><span class="brand-mark">${icon("calendar")}</span>Экспарс</a>
     <section class="result-card">
-      <p class="eyebrow">Форма дошла. Картинка задерживается.</p>
-      <h1>PNG пока<br><span>на другой паре.</span></h1>
+      <p class="eyebrow">Форма дошла, картинка задерживается</p>
+      <h1>PNG пока<br><span>на другой паре</span></h1>
       <p>Это этап HTML и CSS. Браузер проверил выбор файла и передал его имя и вариант недели.</p>
       <p><strong>Excel не обработан, PNG не создан.</strong> Содержимое файла не отправлялось. Настоящее скачивание добавим в лабораторных по JavaScript.</p>
       <a class="button button-primary" href="index.html#upload-title">Вернуться к форме ${icon("arrow")}</a>

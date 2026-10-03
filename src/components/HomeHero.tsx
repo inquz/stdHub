@@ -16,18 +16,18 @@ export function HomeHero() {
     <section className={styles.hero} aria-labelledby="hero-title">
       <div className={styles.copy}>
         <span className={styles.kicker}><Icon name="sparkles" size={15} />Восьмое чудо света</span>
-        <h2 id="hero-title">Чем ближе дедлайн…<span>Тем ближе отчисление.</span></h2>
-        <p>В связи с тем, что я понятия не имею как задоджить бесконечные эвакуации и сдать хоть что-то, я принял волевое решение создать данный продукт.</p>
+        <h2 id="hero-title">Чем ближе дедлайн…<span>Тем ближе отчисление</span></h2>
+        <p>В связи с тем, что я понятия не имею как задоджить бесконечные эвакуации и сдать хоть что-то, я принял волевое решение создать данный продукт</p>
         <div className={styles.actions}>
           <Link className="button" href="/project">Открыть Экспарс <Icon name="arrow-up-right" size={17} /></Link>
           <a className={styles.pathLink} href="#project-path">Как устроен проект <Icon name="arrow-right" size={16} /></a>
         </div>
-        <div className={styles.postscript}><span aria-hidden="true">*</span>Паника временная. Лабы — навсегда.</div>
+        <div className={styles.postscript}><span aria-hidden="true">*</span>Копирайт фри, можно использовать как учебный проект</div>
       </div>
 
       <section className={styles.panel} aria-labelledby="semester-progress-title">
         <div className={styles.panelHeading}>
-          <h3 id="semester-progress-title">Семестр под контролем</h3>
+          <h3 id="semester-progress-title">Ровно вооот столько:</h3>
           <span className={styles.status} data-complete={allDone}><span />{allDone ? "Всё собрано" : "В процессе"}</span>
         </div>
 
@@ -40,7 +40,7 @@ export function HomeHero() {
           </div>
           <div className={styles.stamp} data-complete={allDone} aria-hidden="true">
             <Icon name={allDone ? "check" : "code"} size={31} />
-            <span>{allDone ? "СОБРАНО" : "В РАБОТЕ"}</span>
+            <span>{allDone ? "ПОБЕДА" : "В РАБОТЕ"}</span>
           </div>
         </div>
 

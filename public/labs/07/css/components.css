@@ -1,6 +1,5 @@
 .brand { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; font-size: 25px; font-weight: 750; letter-spacing: -.05em; }
 .brand-mark { display: grid; place-items: center; width: 38px; height: 38px; background: var(--green); color: var(--lime); border-radius: 12px; }
-.brand-dot { color: var(--green); margin-left: -8px; }
 .site-header nav a { font-size: 1rem; text-decoration: none; color: var(--muted); }
 .site-header nav a:hover { color: var(--green); text-decoration: underline; }
 .version-chip { padding: 6px 10px; border: 1px solid var(--line); border-radius: 7px; font-size: 0.875rem; white-space: nowrap; }

@@ -55,7 +55,7 @@ export function renderSchedule(schedule) {
       list.append(row);
     }
     section.append(header, list);
-    if (!day.pairs.length) section.append(element("p", "preview-caption", "Пар нет. Можно выдохнуть."));
+    if (!day.pairs.length) section.append(element("p", "preview-caption", "Пар нет. Можно выдохнуть"));
     days.append(section);
     const item = element("li");
     const link = element("a", "", day.day);

@@ -65,7 +65,7 @@ export async function LabReport({ lab, combined = false }: { lab: Lab; combined?
           <Icon name="clock" size={23} />
           <div className="upcoming-copy">
             {combined ? <h3>Работа ещё не выполнена</h3> : <h2>Работа ещё не выполнена</h2>}
-            <p>{presentation?.description ?? "Задание и материалы пока не добавлены."}</p>
+            <p>{presentation?.description ?? "Задание и материалы пока не добавлены"}</p>
           </div>
         </section>
       ) : (
@@ -78,12 +78,12 @@ export async function LabReport({ lab, combined = false }: { lab: Lab; combined?
             </nav>
           )}
           <ReportSection id={sectionId("task")} number="01" title="Задание" combined={combined}>
-            <p className={lab.task ? "text-content" : "placeholder"}>{lab.task ?? "Условие работы пока не добавлено."}</p>
+            <p className={lab.task ? "text-content" : "placeholder"}>{lab.task ?? "Условие работы пока не добавлено"}</p>
           </ReportSection>
           <ReportSection id={sectionId("steps")} number="02" title="Ход работы" combined={combined}>
             {lab.steps?.length ? (
               <ol className="report-steps">{lab.steps.map((step) => <li key={step}>{step}</li>)}</ol>
-            ) : <p className="placeholder">Шаги работы пока не описаны.</p>}
+            ) : <p className="placeholder">Шаги работы пока не описаны</p>}
           </ReportSection>
           <ReportSection id={sectionId("code")} number="03" title="Исходный код" combined={combined}>
             {codeExamples.length ? (
@@ -93,7 +93,7 @@ export async function LabReport({ lab, combined = false }: { lab: Lab; combined?
                   <CodeBlock {...code} />
                 </details>
               ))}</div>
-            ) : <p className="placeholder">Исходный код пока не добавлен.</p>}
+            ) : <p className="placeholder">Исходный код пока не добавлен</p>}
           </ReportSection>
           <ReportSection id={sectionId("result")} number="04" title="Демо и результат" combined={combined}>
             <Demo demo={lab.demo} result={lab.result} />

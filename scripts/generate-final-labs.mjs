@@ -24,10 +24,10 @@ for (const lab of [9, 10]) {
           <button id="clear-filters" type="button" class="filter-reset">Сбросить поиск</button>
         </div>
         <p id="filter-summary" class="preview-caption" role="status" aria-live="polite"></p>
-        <div id="empty-state" class="empty-state" hidden><strong>Ничего не найдено</strong><p>Попробуй другую неделю, день или поисковый запрос.</p></div>
+        <div id="empty-state" class="empty-state" hidden><strong>Ничего не найдено</strong><p>Попробуй другую неделю, день или поисковый запрос</p></div>
         <div class="schedule-days"></div>
 <!-- example:workspace:end -->`)
-    .replace(/<noscript>[\s\S]*?<\/noscript>/, '<noscript><p>Включи JavaScript для импорта и просмотра расписания.</p></noscript>')
+    .replace(/<noscript>[\s\S]*?<\/noscript>/, '<noscript><p>Включи JavaScript для импорта и просмотра расписания</p></noscript>')
     .replace(/<div class="study-content"><p>[\s\S]*?<\/p><\/div>/, `<div class="study-content"><p>${lab === 9 ? 'Карточки строятся из объектов через createElement, textContent и DocumentFragment. Поиск, день и неделя применяются вместе; replaceChildren заменяет результат без дубликатов.' : 'submit, input, change и делегированный click управляют интерфейсом. Расписание и настройки восстанавливаются из localStorage. Canvas формирует PNG всей выбранной недели, включая преподавателей и подгруппы.'}</p></div>`);
   if (lab === 10) {
     html = html.replace('<p class="privacy-note">', '<p id="storage-status" class="stage-note" role="status"></p>\n        <p class="privacy-note">')

@@ -11,7 +11,6 @@ export function ProfileAvatar() {
   const rootRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const pointerInside = useRef(false);
-  const dismissed = useRef(false);
   const panelId = useId();
 
   useEffect(() => {
@@ -21,7 +20,6 @@ export function ProfileAvatar() {
     };
     const onEscape = (event: KeyboardEvent) => {
       if (event.key !== "Escape") return;
-      dismissed.current = true;
       setOpen(false);
       if (rootRef.current?.contains(document.activeElement)) triggerRef.current?.focus();
     };
@@ -40,7 +38,6 @@ export function ProfileAvatar() {
       onPointerEnter={(event) => {
         if (event.pointerType === "touch") return;
         pointerInside.current = true;
-        dismissed.current = false;
         setOpen(true);
       }}
       onPointerLeave={(event) => {
@@ -53,7 +50,6 @@ export function ProfileAvatar() {
       }}
       onBlur={(event) => {
         if (!event.currentTarget.contains(event.relatedTarget)) {
-          dismissed.current = false;
           if (!pointerInside.current) setOpen(false);
         }
       }}
@@ -65,9 +61,9 @@ export function ProfileAvatar() {
         aria-label={`GitHub автора ${author.username}`}
         aria-expanded={open}
         aria-controls={panelId}
-        onClick={() => { dismissed.current = false; setOpen((value) => !value); }}
+        onClick={() => setOpen((value) => !value)}
         onFocus={(event) => {
-          if (!dismissed.current && event.currentTarget.matches(":focus-visible")) setOpen(true);
+          if (!rootRef.current?.contains(event.relatedTarget) && event.currentTarget.matches(":focus-visible")) setOpen(true);
         }}
       >
         <Image src={author.avatar} alt="" width={44} height={44} sizes="44px" />
@@ -82,7 +78,7 @@ export function ProfileAvatar() {
           </div>
           <a className={styles.link} href={author.github} target="_blank" rel="noopener noreferrer">
             <Icon name="github" size={19} />
-            <span><strong>Перейти на GitHub пользователя</strong><small>@{author.username}</small></span>
+            <span><strong>Ссылка на GitHub автора</strong><small>@{author.username}</small></span>
             <Icon name="arrow-up-right" size={16} />
           </a>
           <a className={styles.link} href={author.repository} target="_blank" rel="noopener noreferrer">

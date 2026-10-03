@@ -28,7 +28,7 @@ export function exportFilename(group, week) {
 export function createScheduleCanvas(schedule, { week = "both", compact = false } = {}) {
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d");
-  if (!ctx) throw new Error("Браузер не поддерживает создание изображения.");
+  if (!ctx) throw new Error("Браузер не поддерживает создание изображения");
   const width = 1440;
   const margin = 40;
   const gap = 24;
@@ -79,10 +79,10 @@ export function createScheduleCanvas(schedule, { week = "both", compact = false 
     const right = days[i + 1] ? dayCard(days[i + 1], margin + column + gap, top) : top;
     top = Math.max(left, right) + gap;
   }
-  if (!days.length) top = text("На этой неделе занятий нет.", margin, top, width - margin * 2);
-  top = text("Предметы, аудитории, преподаватели и подгруппы — из расписания.", margin, top + 8, width - margin * 2, 17);
+  if (!days.length) top = text("На этой неделе занятий нет", margin, top, width - margin * 2);
+  top = text("Предметы, аудитории, преподаватели и подгруппы — из расписания", margin, top + 8, width - margin * 2, 17);
   const height = Math.ceil(top + 30);
-  if (height > 16000) throw new Error("Расписание слишком большое для одной картинки. Выбери верхнюю или нижнюю неделю отдельно.");
+  if (height > 16000) throw new Error("Расписание слишком большое для одной картинки. Выбери верхнюю или нижнюю неделю отдельно");
   canvas.width = width;
   canvas.height = height;
   ctx.fillStyle = "#f6f7f2";
@@ -104,7 +104,7 @@ export async function downloadSchedule(schedule, options) {
   const canvas = createScheduleCanvas(schedule, options);
   const blob = await new Promise((resolve, reject) => canvas.toBlob((result) => {
     if (result) resolve(result);
-    else reject(new Error("Не удалось создать PNG. Попробуй ещё раз."));
+    else reject(new Error("Не удалось создать PNG. Попробуй ещё раз"));
   }, "image/png"));
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");

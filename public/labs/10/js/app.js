@@ -34,7 +34,7 @@ function refresh(save = true) {
   renderSchedule(view, { collapsible: true, collapsed });
   const stats = scheduleStats(view, "both");
   $("#schedule-stats").textContent = `Занятий: ${stats.lessons} · Предметов: ${stats.subjects} · Преподавателей: ${stats.teachers}`;
-  $("#filter-summary").textContent = `Показано дней: ${view.days.length} из ${current().days.length}. Занятий: ${stats.lessons}.`;
+  $("#filter-summary").textContent = `Показано дней: ${view.days.length} из ${current().days.length} · Занятий: ${stats.lessons}`;
   $("#export-status").textContent = "";
   if (save) persist();
 }
@@ -72,7 +72,7 @@ async function importFile() {
   setBusy(false);
   const error = validateFile(file);
   if (error) {
-    feedback.textContent = `${error} Прежнее расписание сохранено.`;
+    feedback.textContent = `${error} Прежнее расписание сохранено`;
     fileInput.setAttribute("aria-invalid", "true");
     fileInput.focus();
     return;
@@ -90,7 +90,7 @@ async function importFile() {
     persist();
     feedback.textContent = `Расписание прочитано.${parsed.skipped.length ? ` Пропущены листы: ${parsed.skipped.join("; ")}` : ""}`;
   } catch (error) {
-    if (ticket === requestId) feedback.textContent = `${error.message} Прежнее расписание сохранено.`;
+    if (ticket === requestId) feedback.textContent = `${error.message} Прежнее расписание сохранено`;
   } finally {
     if (ticket === requestId) setBusy(false);
   }
@@ -103,7 +103,7 @@ form.addEventListener("submit", (event) => {
 });
 fileInput.addEventListener("change", importFile);
 fileInput.addEventListener("invalid", () => {
-  feedback.textContent = "Сначала выбери файл .xls или .xlsx.";
+  feedback.textContent = "Сначала выбери файл .xls или .xlsx";
 });
 form.addEventListener("change", (event) => {
   if (event.target.name === "week") { collapsed.clear(); refresh(); }
@@ -146,7 +146,7 @@ $(".dropdown-nav").addEventListener("click", (event) => {
 
 form.addEventListener("reset", (event) => {
   event.preventDefault();
-  if (!window.confirm("Восстановить учебный пример? Загруженное расписание и настройки в этом браузере будут заменены.")) return;
+  if (!window.confirm("Восстановить учебный пример? Загруженное расписание и настройки в этом браузере будут заменены")) return;
   requestId++;
   importController?.abort();
   setBusy(false);
@@ -156,7 +156,7 @@ form.addEventListener("reset", (event) => {
   collapsed.clear();
   syncControls();
   persist();
-  feedback.textContent = "Пример восстановлен. Можно выбрать новый Excel.";
+  feedback.textContent = "Пример восстановлен. Можно выбрать новый Excel";
 });
 
 exportButton.addEventListener("click", async () => {
@@ -164,12 +164,12 @@ exportButton.addEventListener("click", async () => {
   $("#export-status").textContent = "Готовим картинку всей недели…";
   try {
     await downloadSchedule(current(), { ...state.options });
-    $("#export-status").textContent = "PNG готов и передан браузеру для скачивания.";
+    $("#export-status").textContent = "PNG готов и передан браузеру для скачивания";
   } catch (error) {
-    $("#export-status").textContent = error.message || "Не удалось создать PNG. Попробуй ещё раз.";
+    $("#export-status").textContent = error.message || "Не удалось создать PNG. Попробуй ещё раз";
   } finally { exportButton.disabled = form.getAttribute("aria-busy") === "true"; }
 });
 
 syncControls();
 $("#storage-status").textContent = restored.message;
-if (restored.state) feedback.textContent = "Сохранённое расписание готово. Можно скачать PNG или выбрать новый Excel.";
+if (restored.state) feedback.textContent = "Сохранённое расписание готово. Можно скачать PNG или выбрать новый Excel";

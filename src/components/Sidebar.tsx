@@ -62,7 +62,7 @@ export function Sidebar({ items }: { items: SidebarItem[] }) {
 
       <div className="sidebar-profile">
         <span className="profile-icon"><Icon name="book" size={19} /></span>
-        <div><strong>Учебный проект</strong><span>Веб-технологии · 2026</span></div>
+        <div><strong>Учебный проект</strong><span>ДонНТУ · 2026</span></div>
         <span className="profile-dot" aria-hidden="true" />
       </div>
     </div>

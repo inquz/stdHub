@@ -14,9 +14,9 @@ export function Demo({ demo, result }: { demo?: Lab["demo"]; result?: string }) 
           <iframe className="demo-frame" src={demo.src} title={demo.title} loading="lazy" />
           <div className="demo-footnote"><Icon name="code" size={14} /><span>Самостоятельная HTML-страница · исходный вид лабораторной</span></div>
         </div>
-      ) : <p className="placeholder no-print">Демонстрация ещё не добавлена.</p>}
+      ) : <p className="placeholder no-print">Демонстрация ещё не добавлена</p>}
       <p className="print-only">
-        {demo ? <>Веб-демонстрация: <a href={demo.src}>{demo.src}</a>.</> : "Демонстрация ещё не добавлена."}
+        {demo ? <>Веб-демонстрация: <a href={demo.src}>{demo.src}</a>.</> : "Демонстрация ещё не добавлена"}
       </p>
       {result && <div className="demo-result"><span className="eyebrow">Результат работы</span><p className="text-content">{result}</p></div>}
     </>

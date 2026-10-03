@@ -61,7 +61,7 @@ export function renderSchedule(schedule, { collapsible = false, collapsed = new 
       list.append(row);
     }
     body.append(list);
-    if (!day.pairs.length) body.append(element("p", "preview-caption", "Пар нет. Можно выдохнуть."));
+    if (!day.pairs.length) body.append(element("p", "preview-caption", "Пар нет. Можно выдохнуть"));
     section.append(header, body);
     days.append(section);
     const item = element("li");

@@ -38,10 +38,10 @@ async function importFile() {
   submit.disabled = false;
   const error = validateFile(file);
   if (error) {
-    feedback.textContent = `${error} На экране остаётся прежнее расписание.`;
+    feedback.textContent = `${error} На экране остаётся прежнее расписание`;
     return;
   }
-  feedback.textContent = "Читаем Excel. Сейчас узнаем, кто ведёт первую пару.";
+  feedback.textContent = "Читаем Excel. Сейчас узнаем, кто ведёт первую пару";
   submit.disabled = true;
   try {
     const parsed = await requestSchedule(file, importController.signal);
@@ -58,7 +58,7 @@ async function importFile() {
     time.hidden = false;
     feedback.textContent = `Расписание прочитано. Файл обработан без сохранения.${parsed.skipped.length ? ` Пропущены листы: ${parsed.skipped.join("; ")}` : ""}`;
   } catch (error) {
-    if (ticket === requestId) feedback.textContent = `${error.message} На экране остаётся прежнее расписание; новый файл не применён.`;
+    if (ticket === requestId) feedback.textContent = `${error.message} На экране остаётся прежнее расписание; новый файл не применён`;
   } finally {
     if (ticket === requestId) submit.disabled = false;
   }
@@ -79,7 +79,7 @@ form.addEventListener("reset", () => {
   document.querySelector("#sheet-field").hidden = true;
   document.querySelector("#imported-at").hidden = true;
   source.textContent = "Источник: учебный пример КИ-24";
-  feedback.textContent = "Пример восстановлен. Можно выбрать новый Excel.";
+  feedback.textContent = "Пример восстановлен. Можно выбрать новый Excel";
   // Native reset applies the radio defaults after the event handlers return.
   queueMicrotask(() => show(demo));
 });

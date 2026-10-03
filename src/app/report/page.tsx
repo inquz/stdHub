@@ -18,8 +18,8 @@ export default function ReportPage() {
         <div className="report-cover-main">
           <p className="eyebrow">Документация проекта <span aria-hidden="true">/</span> Web-технологии</p>
           <h1>Отчёт по<br /><span>лабораторным</span></h1>
-          <p className="lead">{report.title}. Задания, исходный код и результаты работ по HTML, CSS и JavaScript.</p>
-          <div className="report-cover-actions no-print"><PrintButton /><span>Откроется окно печати.<br />Выберите «Сохранить как PDF».</span></div>
+          <p className="lead">{report.title}. Задания, исходный код и результаты работ по HTML, CSS и JavaScript</p>
+          <div className="report-cover-actions no-print"><PrintButton /><span>Откроется окно печати<br />Выберите «Сохранить как PDF»</span></div>
         </div>
         <div className="report-cover-document">
           <div className="report-document-top"><Icon name="file" size={26} /><span>XlsParse / ОТЧЁТ</span></div>
@@ -38,7 +38,7 @@ export default function ReportPage() {
           <div><dt>Проверил</dt><dd>{report.teacher}</dd></div>
           <div><dt>Дисциплина</dt><dd>Web-технологии</dd></div>
         </dl>
-        <p className="report-draft-note"><Icon name="file" size={15} /><span>Заполнено {completed} из {labs.length} работ. Реквизиты и требования методички нужно уточнить перед сдачей.</span></p>
+        <p className="report-draft-note"><Icon name="file" size={15} /><span>Заполнено {completed} из {labs.length} работ. Реквизиты и требования методички нужно уточнить перед сдачей</span></p>
       </div>
 
       <nav className="report-toc" aria-label="Оглавление отчёта">

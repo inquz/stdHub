@@ -20,8 +20,8 @@ function documentStart(lab) {
   <header>
     <p>Учебный проект · лабораторная работа ${lab}</p>
     <h1>Экспарс</h1>
-    <p><strong>Расписание прислали. Разбираться опять нам.</strong></p>
-    <p>Закинь Excel — получи картинку, которую можно прочитать без высшего образования.</p>
+    <p><strong>Расписание прислали — разбираться опять нам</strong></p>
+    <p>Закинь Excel — получи картинку, которую можно прочитать без высшего образования</p>
   </header>
   <nav aria-label="Разделы Экспарса">
     <ul>
@@ -43,15 +43,15 @@ function documentStart(lab) {
     <section id="how-it-works" aria-labelledby="steps-title">
       <h2 id="steps-title">Три шага до картинки</h2>
       <ol>
-        <li>Загрузить Excel с расписанием.</li>
-        <li>Выбрать верхнюю, нижнюю или обе недели.</li>
-        <li>Скачать картинку со всей неделей и отправить её в чат группы.</li>
+        <li>Загрузить Excel с расписанием</li>
+        <li>Выбрать верхнюю, нижнюю или обе недели</li>
+        <li>Скачать картинку со всей неделей и отправить её в чат группы</li>
       </ol>
       <p>Варианты недели:</p>
       <ul>
-        <li><strong>Верхняя</strong> — занятия из верхних блоков и общие пары.</li>
-        <li><strong>Нижняя</strong> — занятия из нижних блоков и общие пары.</li>
-        <li><strong>Обе</strong> — различия видны рядом, общие занятия показаны один раз.</li>
+        <li><strong>Верхняя</strong> — занятия из верхних блоков и общие пары</li>
+        <li><strong>Нижняя</strong> — занятия из нижних блоков и общие пары</li>
+        <li><strong>Обе</strong> — различия видны рядом, общие занятия показаны один раз</li>
       </ul>
     </section>
 <!-- example:steps:end -->`;
@@ -60,7 +60,7 @@ function documentStart(lab) {
 const end = `
   </main>
   <footer>
-    <p>Экспарс · расписание понятнее, пар меньше не стало.</p>
+    <p>Экспарс · расписание понятнее, пар меньше не стало</p>
     <a href="#top">К началу страницы</a>
   </footer>
 </body>
@@ -75,12 +75,12 @@ const lab01 = `${documentStart(1)}
       <ul>
 ${schedule[0].pairs.map((pair) => `        <li><strong>${pair.number}-я пара</strong>
           <ul>
-${pair.both ? `            <li>Обе недели: ${escape(pair.both)}.</li>` : `            <li>Верхняя неделя: ${escape(pair.upper)}.</li>
-            <li>Нижняя неделя: ${escape(pair.lower)}.</li>`}
+${pair.both ? `            <li>Обе недели: ${escape(pair.both)}</li>` : `            <li>Верхняя неделя: ${escape(pair.upper)}</li>
+            <li>Нижняя неделя: ${escape(pair.lower)}</li>`}
           </ul>
         </li>`).join("\n")}
       </ul>
-      <p>Первая пара свободна. Будильник одобряет.</p>
+      <p>Первая пара свободна — будильник одобряет</p>
     </section>${end}`;
 
 const tableDays = schedule.map(({ day, pairs }) => `        <tbody>
@@ -103,7 +103,7 @@ const lab02 = `${documentStart(2)}
           <label for="schedule-file">Файл расписания (обязательно)</label><br>
           <input id="schedule-file" name="schedule" type="file" accept=".xls,.xlsx"
             required aria-describedby="file-hint">
-          <br><small id="file-hint">Excel: .xls или .xlsx. Образец — расписание КИ-24.</small>
+          <br><small id="file-hint">Excel: .xls или .xlsx · Образец — расписание КИ-24</small>
         </p>
         <fieldset>
           <legend>Какая неделя?</legend>
@@ -148,7 +148,7 @@ ${tableDays}
       <figure>
         <img src="../../images/paroscope-flow.svg" width="280" height="180"
           alt="Три шага: загрузить Excel, выбрать верхнюю, нижнюю или обе недели, скачать PNG для чата группы.">
-        <figcaption>Будущий сценарий Экспарса. Пересылка в Telegram — уже на твоей совести.</figcaption>
+        <figcaption>Будущий сценарий Экспарса; пересылка в Telegram — уже на твоей совести</figcaption>
       </figure>
 <!-- example:image:end -->
     </section>${end}`;

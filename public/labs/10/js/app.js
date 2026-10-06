@@ -15,10 +15,11 @@ const sheetSelect = $("#sheet-select");
 const daySelect = $("#day-filter");
 const search = $("#lesson-search");
 const compact = $("#compact-view");
+const showTeachers = $("#show-teachers");
 const exportButton = $("#export-png");
 const collapsed = new Set();
 const initialState = () => ({ version: 1, schedules: [demo], selected: 0, source: "учебный пример КИ-24", importedAt: null,
-  options: { week: "both", query: "", day: "all", compact: false } });
+  options: { week: "both", query: "", day: "all", compact: false, showTeachers: false } });
 const restored = loadState();
 let state = restored.state ?? initialState();
 let requestId = 0;
@@ -33,9 +34,11 @@ function setFeedback(message, status = "idle") {
 }
 
 function refresh(save = true) {
-  state.options = { week: new FormData(form).get("week"), query: search.value, day: daySelect.value, compact: compact.checked };
+  state.options = { week: new FormData(form).get("week"), query: search.value, day: daySelect.value, compact: compact.checked, showTeachers: showTeachers.checked };
   const view = selectSchedule(current(), state.options);
-  renderSchedule(view, { collapsible: true, collapsed });
+  renderSchedule(view, { ...state.options, collapsible: true, collapsed });
+  $("#teachers-option").hidden = !compact.checked;
+  $("#compact-note").hidden = !compact.checked;
   const stats = scheduleStats(view, "both");
   $("#schedule-stats").textContent = `Занятий: ${stats.lessons} · Предметов: ${stats.subjects} · Преподавателей: ${stats.teachers}`;
   $("#filter-summary").textContent = `Показано дней: ${view.days.length} из ${current().days.length} · Занятий: ${stats.lessons}`;
@@ -51,6 +54,7 @@ function syncControls() {
   daySelect.value = state.options.day;
   search.value = state.options.query;
   compact.checked = state.options.compact;
+  showTeachers.checked = state.options.showTeachers ?? false;
   $(`#week-${state.options.week}`).checked = true;
   $("#source-label").textContent = `Источник: ${state.source}`;
   $("#import-warnings").textContent = current().warnings.join(" ");
@@ -114,6 +118,7 @@ form.addEventListener("change", (event) => {
 search.addEventListener("input", () => { collapsed.clear(); refresh(); });
 daySelect.addEventListener("change", () => refresh());
 compact.addEventListener("change", () => refresh());
+showTeachers.addEventListener("change", () => refresh());
 sheetSelect.addEventListener("change", () => {
   state.selected = Number(sheetSelect.value);
   state.options.day = "all";

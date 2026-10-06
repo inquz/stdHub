@@ -21,6 +21,7 @@ export function validState(state) {
     integer(state.selected, 0, state.schedules.length - 1) && text(state.source) &&
     (state.importedAt === null || (text(state.importedAt) && Number.isFinite(Date.parse(state.importedAt)))) &&
     state.options && week(state.options.week) && typeof state.options.compact === "boolean" &&
+    (state.options.showTeachers === undefined || typeof state.options.showTeachers === "boolean") &&
     typeof state.options.query === "string" && state.options.query.length <= 100 &&
     (state.options.day === "all" || state.schedules[state.selected].days.some((day) => String(day.dayIndex) === state.options.day)));
 }

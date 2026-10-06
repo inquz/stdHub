@@ -37,6 +37,12 @@ for (const lab of [9, 10]) {
       .replace(/    <span class="version-chip">[\s\S]*?<\/span> JavaScript<\/span>\r?\n/, '')
       .replace('          <button class="button button-primary" type="submit">Прочитать Excel</button>', '          <p id="feedback" class="stage-note" data-state="success" role="status" aria-live="polite">Учебный пример готов. Можно выбрать свой Excel</p>')
       .replace(/          <p id="feedback" class="stage-note" role="status"[^\n]*\n/, '')
+      .replace('        <label class="compact-toggle"><input id="compact-view" type="checkbox" form="schedule-form"> Компактный вид для телефона</label>', `        <div class="view-tools">
+          <label class="chat-view-switch"><input id="compact-view" class="visually-hidden" type="checkbox" role="switch" form="schedule-form" aria-describedby="compact-note"><span class="switch-track" aria-hidden="true"></span><span>Вид для чата</span></label>
+          <label id="teachers-option" class="compact-toggle" hidden><input id="show-teachers" type="checkbox" form="schedule-form"> Показывать преподавателей</label>
+          <p id="compact-note" class="view-note" hidden>Пн–Вт–Ср сверху, Чт–Пт–звонки снизу — на экране и в PNG. На узком экране расписание можно прокрутить вбок.</p>
+        </div>`)
+      .replace('Предметы, аудитории и преподаватели — из расписания, время звонков не выдумываем', 'Предметы, аудитории и преподаватели — из расписания. Звонки указаны для понедельника — пятницы.')
       .replace('<p class="privacy-note">', '<p id="storage-status" class="stage-note" role="status"></p>\n        <p class="privacy-note">')
       .replace('На диск не сохраняется.', 'Исходный файл на диск не сохраняется.<br>Расписание и настройки остаются в этом браузере.')
       .replace('<p id="table-note"', `<div class="export-tools"><button id="export-png" class="button button-primary" type="button" aria-describedby="export-note">Скачать PNG</button><p id="export-note">В картинку попадёт вся выбранная неделя. Поиск, выбор дня и свёрнутые карточки на PNG не влияют.</p><p id="export-status" role="status" aria-live="polite"></p></div>\n        <p id="table-note"`);

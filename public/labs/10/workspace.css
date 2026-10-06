@@ -41,4 +41,41 @@
 .export-tools { margin-top: 20px; padding: 16px; border-radius: 12px; background: var(--paper); }
 .export-tools p { margin-top: 10px; font-size: 1rem; color: var(--muted); }
 #export-status:empty { display: none; }
+.view-tools { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 20px; margin-block: 18px; }
+.chat-view-switch { position: relative; display: inline-flex; align-items: center; gap: 12px; min-height: 48px; padding: 10px 14px; border: 1px solid #a5b6ac; border-radius: 12px; background: var(--surface); color: var(--ink); font-size: 1rem; font-weight: 650; cursor: pointer; transition: background-color .18s ease, border-color .18s ease; }
+.chat-view-switch:hover { border-color: #047857; background: #f0f8f3; }
+.chat-view-switch:has(input:checked) { border-color: #047857; background: #e4f5ec; }
+.switch-track { position: relative; flex-shrink: 0; width: 48px; height: 28px; border-radius: 20px; background: #76877d; transition: background-color .18s ease; }
+.switch-track::before { position: absolute; top: 4px; left: 4px; width: 20px; height: 20px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px #0003; content: ""; transition: transform .18s ease; }
+.chat-view-switch input:checked + .switch-track { background: #047857; }
+.chat-view-switch input:checked + .switch-track::before { transform: translateX(20px); }
+.chat-view-switch:has(input:focus-visible) { outline: 3px solid #047857; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .chat-view-switch, .switch-track, .switch-track::before { transition: none; } }
+.view-tools .compact-toggle { min-height: 32px; margin: 0; color: var(--ink); }
+.view-note { flex-basis: 100%; color: var(--muted); font-size: .8125rem; line-height: 1.5; }
+.schedule-days[data-compact="true"] { grid-template-columns: repeat(var(--chat-columns), minmax(290px, 1fr)); align-items: stretch; gap: 12px; overflow-x: auto; padding-bottom: 8px; }
+.schedule-days[data-compact="true"] .day-card { border-radius: 8px; background: var(--surface); }
+.schedule-days[data-compact="true"] .day-heading { padding: 4px 12px; background: var(--surface-soft); }
+.schedule-days[data-compact="true"] .day-number { display: none; }
+.schedule-days[data-compact="true"] .day-heading h3 { font-size: .9375rem; }
+.schedule-days[data-compact="true"] .day-toggle { padding-block: 7px; }
+.schedule-days[data-compact="true"] .pair { gap: 10px; padding: 10px 12px; }
+.schedule-days[data-compact="true"] .pair-number { width: 24px; padding-top: 1px; }
+.schedule-days[data-compact="true"] .pair-number > span { display: none; }
+.schedule-days[data-compact="true"] .lesson { display: grid; grid-template-columns: minmax(0, 1fr) 3.25rem; gap: 3px 8px; padding: 0; border: 0; border-radius: 0; background: transparent; }
+.schedule-days[data-compact="true"] .lesson + .lesson { margin-top: 9px; padding-top: 9px; border-top: 1px dashed var(--line); }
+.schedule-days[data-compact="true"] .week-badge { grid-column: 1 / -1; margin-bottom: 3px; font-size: .75rem; }
+.schedule-days[data-compact="true"] .lesson-title { margin: 0; font-size: .9375rem; line-height: 1.4; }
+.schedule-days[data-compact="true"] .lesson-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; margin: 0; font-size: .8125rem; line-height: 1.4; text-align: right; overflow-wrap: anywhere; }
+.schedule-days[data-compact="true"] .lesson-meta .compact-room { color: var(--ink); }
+.schedule-days[data-compact="true"] .lesson-meta .compact-kind { font-size: .75rem; font-weight: 400; }
+.schedule-days[data-compact="true"] .lesson-teacher, .schedule-days[data-compact="true"] .lesson-notes { grid-column: 1 / -1; margin: 0; padding: 0; border: 0; font-size: .8125rem; font-weight: 400; line-height: 1.5; }
+.schedule-days[data-compact="true"] .empty-pair { grid-column: 1 / -1; padding: 0; font-size: .875rem; }
+.bell-card .day-heading h3 { padding-block: 7px; }
+.bell-weekdays { margin: 12px 14px 4px; color: var(--muted); font-size: .8125rem; }
+.bell-times { margin: 0; padding: 0 14px 12px; }
+.bell-times > div { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding-block: 10px; border-bottom: 1px solid var(--line); }
+.bell-times > div:last-child { border-bottom: 0; }
+.bell-times dt { color: var(--muted); font-size: .875rem; }
+.bell-times dd { margin: 0; color: var(--ink); font-size: 1rem; font-weight: 650; font-variant-numeric: tabular-nums; white-space: nowrap; }
 @media (max-width: 1100px) { .schedule-filters { grid-template-columns: minmax(0, 1fr); } }

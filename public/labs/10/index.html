@@ -72,8 +72,12 @@
         <div class="import-info"><p id="source-label">Источник: учебный пример КИ-24</p><time id="imported-at" hidden></time><p id="schedule-stats" role="status"></p><p id="import-warnings"></p><div id="sheet-field" hidden><label for="sheet-select">Лист с расписанием</label><select id="sheet-select"></select></div></div>
         <div class="preview-meta"><span>Расписание на неделю</span><span class="mode-label mode-both">Обе недели</span><span class="mode-label mode-upper">Верхняя неделя</span><span class="mode-label mode-lower">Нижняя неделя</span></div>
         <div class="export-tools"><button id="export-png" class="button button-primary" type="button" aria-describedby="export-note">Скачать PNG</button><p id="export-note">В картинку попадёт вся выбранная неделя. Поиск, выбор дня и свёрнутые карточки на PNG не влияют.</p><p id="export-status" role="status" aria-live="polite"></p></div>
-        <p id="table-note" class="preview-caption">Предметы, аудитории и преподаватели — из расписания, время звонков не выдумываем</p>
-        <label class="compact-toggle"><input id="compact-view" type="checkbox" form="schedule-form"> Компактный вид для телефона</label>
+        <p id="table-note" class="preview-caption">Предметы, аудитории и преподаватели — из расписания. Звонки указаны для понедельника — пятницы.</p>
+        <div class="view-tools">
+          <label class="chat-view-switch"><input id="compact-view" class="visually-hidden" type="checkbox" role="switch" form="schedule-form" aria-describedby="compact-note"><span class="switch-track" aria-hidden="true"></span><span>Вид для чата</span></label>
+          <label id="teachers-option" class="compact-toggle" hidden><input id="show-teachers" type="checkbox" form="schedule-form"> Показывать преподавателей</label>
+          <p id="compact-note" class="view-note" hidden>Пн–Вт–Ср сверху, Чт–Пт–звонки снизу — на экране и в PNG. На узком экране расписание можно прокрутить вбок.</p>
+        </div>
 <!-- example:workspace:start -->
         <div class="schedule-filters" role="search" aria-label="Найти занятие">
           <div><label for="lesson-search">Поиск по расписанию</label><input id="lesson-search" type="search" maxlength="100" placeholder="Предмет, преподаватель, аудитория"></div>

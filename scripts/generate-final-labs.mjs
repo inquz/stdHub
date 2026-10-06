@@ -1,7 +1,7 @@
 import { readFile, writeFile, mkdir, cp, access } from "node:fs/promises";
 
 // HTML is reproducible. Existing CSS/JS snapshots are never overwritten.
-const base = await readFile(new URL("../public/labs/08/index.html", import.meta.url), "utf8");
+const base = (await readFile(new URL("../public/labs/08/index.html", import.meta.url), "utf8")).replaceAll("\r\n", "\n");
 for (const lab of [9, 10]) {
   const number = String(lab).padStart(2, "0");
   const dir = new URL(`../public/labs/${number}/`, import.meta.url);
@@ -30,7 +30,12 @@ for (const lab of [9, 10]) {
     .replace(/<noscript>[\s\S]*?<\/noscript>/, '<noscript><p>Включи JavaScript для импорта и просмотра расписания</p></noscript>')
     .replace(/<div class="study-content"><p>[\s\S]*?<\/p><\/div>/, `<div class="study-content"><p>${lab === 9 ? 'Карточки строятся из объектов через createElement, textContent и DocumentFragment. Поиск, день и неделя применяются вместе; replaceChildren заменяет результат без дубликатов.' : 'submit, input, change и делегированный click управляют интерфейсом. Расписание и настройки восстанавливаются из localStorage. Canvas формирует PNG всей выбранной недели, включая преподавателей и подгруппы.'}</p></div>`);
   if (lab === 10) {
-    html = html.replace('<p class="privacy-note">', '<p id="storage-status" class="stage-note" role="status"></p>\n        <p class="privacy-note">')
+    html = html.replace(/<nav class="dropdown-nav"[\s\S]*?<\/nav>/, `<nav class="workspace-nav" aria-label="Навигация по Экспарсу">
+      <a href="#upload-title">Загрузить Excel</a>
+      <a href="#schedule">Расписание</a>
+    </nav>`)
+      .replace(/    <span class="version-chip">[\s\S]*?<\/span> JavaScript<\/span>\r?\n/, '')
+      .replace('<p class="privacy-note">', '<p id="storage-status" class="stage-note" role="status"></p>\n        <p class="privacy-note">')
       .replace('На диск не сохраняется.', 'Исходный файл на диск не сохраняется.<br>Расписание и настройки остаются в этом браузере.')
       .replace('<p id="table-note"', `<div class="export-tools"><button id="export-png" class="button button-primary" type="button" aria-describedby="export-note">Скачать PNG</button><p id="export-note">В картинку попадёт вся выбранная неделя. Поиск, выбор дня и свёрнутые карточки на PNG не влияют.</p><p id="export-status" role="status" aria-live="polite"></p></div>\n        <p id="table-note"`);
   }

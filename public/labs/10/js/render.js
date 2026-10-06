@@ -25,7 +25,6 @@ function lessonCard(lesson) {
 /* example:render:start */
 export function renderSchedule(schedule, { collapsible = false, collapsed = new Set() } = {}) {
   const days = document.createDocumentFragment();
-  const links = document.createDocumentFragment();
   for (const day of schedule.days) {
     const section = element("section", "day-card");
     section.id = `weekday-${day.dayIndex}`;
@@ -64,14 +63,8 @@ export function renderSchedule(schedule, { collapsible = false, collapsed = new 
     if (!day.pairs.length) body.append(element("p", "preview-caption", "Пар нет. Можно выдохнуть"));
     section.append(header, body);
     days.append(section);
-    const item = element("li");
-    const link = element("a", "", day.day);
-    link.href = `#${section.id}`;
-    item.append(link);
-    links.append(item);
   }
   document.querySelector(".schedule-days").replaceChildren(days);
-  document.querySelector("#day-links").replaceChildren(links);
   document.querySelector("#schedule-title").textContent = schedule.group;
   document.querySelector("#empty-state").hidden = schedule.days.length > 0;
 }

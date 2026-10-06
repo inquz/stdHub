@@ -138,10 +138,6 @@ $(".schedule-days").addEventListener("click", (event) => {
   button.querySelector(".toggle-symbol").textContent = closing ? "+" : "−";
   document.getElementById(button.getAttribute("aria-controls")).hidden = closing;
 });
-// One handler also works for navigation links recreated after an import.
-$(".dropdown-nav").addEventListener("click", (event) => {
-  if (event.target.closest("a")) event.target.closest("details")?.removeAttribute("open");
-});
 /* example:delegation:end */
 
 form.addEventListener("reset", (event) => {

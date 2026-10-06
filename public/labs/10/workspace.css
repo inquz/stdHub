@@ -1,4 +1,7 @@
 [hidden] { display: none !important; }
+.site-header .workspace-nav { gap: 8px; }
+.site-header .workspace-nav a { display: inline-flex; align-items: center; min-height: 44px; padding: 8px 12px; border-radius: 8px; transition: color .16s ease, background-color .16s ease; }
+.site-header .workspace-nav a:hover { color: var(--ink); background: var(--surface-soft); text-decoration: none; }
 .schedule-filters { display: grid; grid-template-columns: minmax(0, 2fr) minmax(120px, 1fr); gap: 12px; margin-block: 20px; }
 .schedule-filters > div { min-width: 0; }
 .schedule-filters label { display: block; margin-bottom: 6px; font-size: 1rem; font-weight: 600; }

@@ -2,6 +2,29 @@
 .site-header .workspace-nav { gap: 8px; }
 .site-header .workspace-nav a { display: inline-flex; align-items: center; min-height: 44px; padding: 8px 12px; border-radius: 8px; transition: color .16s ease, background-color .16s ease; }
 .site-header .workspace-nav a:hover { color: var(--ink); background: var(--surface-soft); text-decoration: none; }
+
+.upload-panel { --on-forest: #f3f4f6; --on-forest-muted: #bec8c3; color: var(--on-forest); font-size: 1rem; }
+.upload-panel > .eyebrow { color: var(--on-forest-muted); font-size: .6875rem; letter-spacing: .08em; }
+.upload-panel h2 { margin-top: 10px; font-size: 1.5rem; line-height: 1.25; }
+.upload-panel .panel-description { margin-top: 10px; font-size: .875rem; line-height: 1.6; }
+.upload-panel .upload-icon { color: var(--on-forest); }
+.upload-panel .file-hint { font-size: .75rem; }
+.upload-panel .file-field { margin-block: 22px; border-color: #ffffff40; }
+.upload-panel .file-field input[required] { border-left: 0; padding-left: 0; }
+.upload-panel .file-field input::file-selector-button { background: #e5e7eb; color: #18392b; }
+.upload-panel .file-field input::file-selector-button:hover { background: #fff; }
+.upload-panel .file-field:focus-within { border-color: var(--on-forest); }
+.upload-panel .week-options { border-color: #ffffff40; }
+.upload-panel .week-options input:checked + label { background: #e5e7eb; color: #18392b; }
+.upload-panel .button-reset { margin-top: 8px; color: var(--on-forest-muted); font-size: .8125rem; }
+.upload-panel .button-reset:hover { color: var(--on-forest); }
+.upload-panel .stage-note, .upload-panel .privacy-note { margin-top: 12px; padding-top: 0; border-top: 0; color: var(--on-forest-muted); font-size: .75rem; line-height: 1.6; }
+.upload-panel #feedback { margin-top: 18px; color: var(--on-forest-muted); font-size: .875rem; line-height: 1.55; }
+.upload-panel #feedback[data-state="success"] { color: #8de2b2; }
+.upload-panel #feedback[data-state="error"] { color: #ffb4b4; }
+.upload-panel #stage-note { padding-top: 14px; border-top: 1px solid #ffffff26; }
+.upload-panel #storage-status:empty { display: none; }
+
 .schedule-filters { display: grid; grid-template-columns: minmax(0, 2fr) minmax(120px, 1fr); gap: 12px; margin-block: 20px; }
 .schedule-filters > div { min-width: 0; }
 .schedule-filters label { display: block; margin-bottom: 6px; font-size: 1rem; font-weight: 600; }

@@ -15,7 +15,6 @@ const sheetSelect = $("#sheet-select");
 const daySelect = $("#day-filter");
 const search = $("#lesson-search");
 const compact = $("#compact-view");
-const submit = form.querySelector("[type=submit]");
 const exportButton = $("#export-png");
 const collapsed = new Set();
 const initialState = () => ({ version: 1, schedules: [demo], selected: 0, source: "учебный пример КИ-24", importedAt: null,
@@ -27,6 +26,11 @@ let importController;
 const current = () => state.schedules[state.selected];
 
 function persist() { $("#storage-status").textContent = saveState(state); }
+
+function setFeedback(message, status = "idle") {
+  feedback.textContent = message;
+  feedback.dataset.state = status;
+}
 
 function refresh(save = true) {
   state.options = { week: new FormData(form).get("week"), query: search.value, day: daySelect.value, compact: compact.checked };
@@ -59,7 +63,6 @@ function syncControls() {
 }
 
 function setBusy(busy) {
-  submit.disabled = busy;
   exportButton.disabled = busy;
   form.setAttribute("aria-busy", String(busy));
 }
@@ -72,13 +75,13 @@ async function importFile() {
   setBusy(false);
   const error = validateFile(file);
   if (error) {
-    feedback.textContent = `${error} Прежнее расписание сохранено`;
+    setFeedback(`${error} Прежнее расписание сохранено`, "error");
     fileInput.setAttribute("aria-invalid", "true");
     fileInput.focus();
     return;
   }
   fileInput.removeAttribute("aria-invalid");
-  feedback.textContent = "Читаем Excel…";
+  setFeedback("Читаем Excel…", "loading");
   setBusy(true);
   try {
     const parsed = await requestSchedule(file, importController.signal);
@@ -88,9 +91,9 @@ async function importFile() {
     collapsed.clear();
     syncControls();
     persist();
-    feedback.textContent = `Расписание прочитано.${parsed.skipped.length ? ` Пропущены листы: ${parsed.skipped.join("; ")}` : ""}`;
+    setFeedback(`Расписание прочитано.${parsed.skipped.length ? ` Пропущены листы: ${parsed.skipped.join("; ")}` : ""}`, "success");
   } catch (error) {
-    if (ticket === requestId) feedback.textContent = `${error.message} Прежнее расписание сохранено`;
+    if (ticket === requestId) setFeedback(`${error.message} Прежнее расписание сохранено`, "error");
   } finally {
     if (ticket === requestId) setBusy(false);
   }
@@ -103,7 +106,7 @@ form.addEventListener("submit", (event) => {
 });
 fileInput.addEventListener("change", importFile);
 fileInput.addEventListener("invalid", () => {
-  feedback.textContent = "Сначала выбери файл .xls или .xlsx";
+  setFeedback("Сначала выбери файл .xls или .xlsx", "error");
 });
 form.addEventListener("change", (event) => {
   if (event.target.name === "week") { collapsed.clear(); refresh(); }
@@ -152,7 +155,7 @@ form.addEventListener("reset", (event) => {
   collapsed.clear();
   syncControls();
   persist();
-  feedback.textContent = "Пример восстановлен. Можно выбрать новый Excel";
+  setFeedback("Пример восстановлен. Можно выбрать новый Excel", "success");
 });
 
 exportButton.addEventListener("click", async () => {
@@ -168,4 +171,4 @@ exportButton.addEventListener("click", async () => {
 
 syncControls();
 $("#storage-status").textContent = restored.message;
-if (restored.state) feedback.textContent = "Сохранённое расписание готово. Можно скачать PNG или выбрать новый Excel";
+if (restored.state) setFeedback("Сохранённое расписание готово. Можно скачать PNG или выбрать новый Excel", "success");

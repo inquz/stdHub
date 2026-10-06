@@ -35,6 +35,8 @@ for (const lab of [9, 10]) {
       <a href="#schedule">Расписание</a>
     </nav>`)
       .replace(/    <span class="version-chip">[\s\S]*?<\/span> JavaScript<\/span>\r?\n/, '')
+      .replace('          <button class="button button-primary" type="submit">Прочитать Excel</button>', '          <p id="feedback" class="stage-note" data-state="success" role="status" aria-live="polite">Учебный пример готов. Можно выбрать свой Excel</p>')
+      .replace(/          <p id="feedback" class="stage-note" role="status"[^\n]*\n/, '')
       .replace('<p class="privacy-note">', '<p id="storage-status" class="stage-note" role="status"></p>\n        <p class="privacy-note">')
       .replace('На диск не сохраняется.', 'Исходный файл на диск не сохраняется.<br>Расписание и настройки остаются в этом браузере.')
       .replace('<p id="table-note"', `<div class="export-tools"><button id="export-png" class="button button-primary" type="button" aria-describedby="export-note">Скачать PNG</button><p id="export-note">В картинку попадёт вся выбранная неделя. Поиск, выбор дня и свёрнутые карточки на PNG не влияют.</p><p id="export-status" role="status" aria-live="polite"></p></div>\n        <p id="table-note"`);

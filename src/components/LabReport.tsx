@@ -43,7 +43,7 @@ export async function LabReport({ lab, combined = false }: { lab: Lab; combined?
     <article className={`lab-report${upcoming ? " upcoming-report" : ""}`} id={`lab-${lab.id}`}>
       <header className="lab-report-header">
         <div className="lab-report-topline">
-          <p className="report-kicker">Лабораторная {String(lab.id).padStart(2, "0")} <span aria-hidden="true">/</span> {lab.topic}</p>
+          <p className="report-kicker">Лабораторная {String(lab.id).padStart(2, "0")} <span aria-hidden="true">/</span> <span className="technology-label" data-technology={lab.topic}>{lab.topic}</span></p>
           <span className={`status-badge status-${lab.status}`}>
             <Icon name={lab.status === "done" ? "check" : "clock"} size={14} />
             {labStatusLabels[lab.status]}

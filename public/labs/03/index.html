@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="styles.css">
   <style>
     /* Same specificity as the external rule: the later declaration wins. */
-    .cascade-internal { color: #9b411e; }
+    .cascade-internal { color: #595f61; }
   </style>
 <!-- example:connections:end -->
 </head>
@@ -178,9 +178,9 @@
       <p>Три способа задать цвет — каскад решает, кто тут главный</p>
 <!-- example:samples:start -->
       <div class="sample-grid">
-        <p class="cascade-external"><code>Внешний CSS</code><strong>Я из файла</strong><span>#245fce</span></p>
-        <p class="cascade-internal"><code>Блок &lt;style&gt;</code><strong>А я пришёл позже</strong><span>#9b411e</span></p>
-        <p class="cascade-internal" style="color: #157052"><code>Атрибут style</code><strong>У меня VIP-пропуск</strong><span>#157052</span></p>
+        <p class="cascade-external"><code>Внешний CSS</code><strong>Я из файла</strong><span>#5c74a3</span></p>
+        <p class="cascade-internal"><code>Блок &lt;style&gt;</code><strong>А я пришёл позже</strong><span>#595f61</span></p>
+        <p class="cascade-internal" style="color: #2d5f49"><code>Атрибут style</code><strong>У меня VIP-пропуск</strong><span>#2d5f49</span></p>
       </div>
 <!-- example:samples:end -->
       <p class="study-note">Внешнее правило и блок style имеют одинаковую специфичность.

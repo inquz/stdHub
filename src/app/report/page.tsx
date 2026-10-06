@@ -54,7 +54,7 @@ export default function ReportPage() {
         ))}</ol>
       </nav>
 
-      <section className="report-introduction" aria-labelledby="report-introduction-title">
+      <section id="about-project" className="report-introduction" aria-labelledby="report-introduction-title">
         <div className="report-introduction-icon" aria-hidden="true"><Icon name="book" size={22} /></div>
         <div><p className="eyebrow">О проекте</p><h2 id="report-introduction-title">Один проект — десять этапов</h2><p>{report.introduction}</p></div>
       </section>

@@ -1,5 +1,5 @@
 /* example:cascade:start */
-.cascade-external, .cascade-internal { color: #245fce; }
+.cascade-external, .cascade-internal { color: #5c74a3; }
 /* example:cascade:end */
 
 .sample-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-block: 20px; }

@@ -22,7 +22,7 @@ export function LabsExplorer({ items }: { items: LabSummary[] }) {
   return (
     <section className="labs-explorer" aria-label="Каталог лабораторных">
       <div className="catalog-toolbar">
-        <div className="filter-tabs" role="group" aria-label="Технология">{categories.map((item) => <button type="button" key={item} aria-pressed={item === category} onClick={() => setCategory(item)}>{item}<span>{items.filter((lab) => matchesCategory(lab, item)).length}</span></button>)}</div>
+        <div className="filter-tabs" role="group" aria-label="Технология">{categories.map((item) => <button type="button" key={item} aria-pressed={item === category} onClick={() => setCategory(item)}><span className="technology-label" data-technology={item === "CSS и вёрстка" ? "CSS" : item}>{item}</span><span>{items.filter((lab) => matchesCategory(lab, item)).length}</span></button>)}</div>
         <label className="search-field"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" /><path d="m16 16 4 4" /></svg><input type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Найти работу…" aria-label="Поиск лабораторной" /></label>
       </div>
       <p className="catalog-count" aria-live="polite">{search || category !== "Все работы" ? `Найдено: ${filtered.length} из ${items.length}` : `Всего работ: ${items.length}`}</p>

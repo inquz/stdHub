@@ -1,12 +1,12 @@
 /* example:states:start */
 .day-card { transition: border-color .15s, box-shadow .15s; }
-.day-card:hover { border-color: #74957e; box-shadow: 0 3px 12px #23443310; }
+.day-card:hover { border-color: var(--green-brand); box-shadow: 0 3px 12px #06160f10; }
 .file-field:focus-within { border-color: var(--lime); background: #ffffff0c; }
 .file-field input[required] { border-left: 2px solid var(--lime); padding-left: 6px; }
 .file-field input::file-selector-button:hover { background: var(--lime); }
 .week-options input:checked + label { box-shadow: 0 1px 4px #0002; }
 .week-options input:focus-visible + label { outline: 3px solid white; outline-offset: 2px; }
-.button:disabled { background: #dfe4da; color: #65715e; border-color: #cbd3c3; cursor: not-allowed; }
+.button:disabled { background: #edeff0; color: #595f61; border-color: #c2c9cc; cursor: not-allowed; }
 .preview-panel:has(#compact-view:checked) .pair { padding-block: 8px; }
 .preview-panel:has(#compact-view:checked) .lesson { padding: 7px 10px; }
 /* example:states:end */

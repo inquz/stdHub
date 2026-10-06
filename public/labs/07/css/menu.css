@@ -3,19 +3,19 @@
 .nav-dropdown { position: relative; }
 .nav-dropdown summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 9px; list-style: none; font-size: 1rem; cursor: pointer; }
 .nav-dropdown summary::-webkit-details-marker { display: none; }
-.nav-dropdown summary:hover, .nav-dropdown[open] > summary { background: #e5eddc; border-color: #94ad87; }
+.nav-dropdown summary:hover, .nav-dropdown[open] > summary { background: var(--surface-soft); border-color: var(--green-soft); }
 .menu-plus { transition: transform .15s; font-size: 18px; line-height: 1; }
 .nav-dropdown[open] .menu-plus { transform: rotate(45deg); }
 .dropdown-list { position: absolute; top: calc(100% + 8px); right: 0; z-index: 5; width: 230px; margin: 0; padding: 8px; list-style: none; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); }
 .site-header .dropdown-list a { display: block; min-height: 42px; padding: 10px 12px; border-radius: 6px; color: var(--ink); }
-.site-header .dropdown-list a:hover, .site-header .dropdown-list a:focus-visible { background: #edf2e7; text-decoration: none; }
-.nav-dropdown summary:focus-visible { outline: 3px solid #8b53b6; outline-offset: 3px; }
-.day-card:target { outline: 3px solid #74957e; outline-offset: 3px; }
+.site-header .dropdown-list a:hover, .site-header .dropdown-list a:focus-visible { background: var(--surface-soft); text-decoration: none; }
+.nav-dropdown summary:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; }
+.day-card:target { outline: 3px solid var(--green-brand); outline-offset: 3px; }
 body:has(#weekday-0:target) a[href="#weekday-0"],
 body:has(#weekday-1:target) a[href="#weekday-1"],
 body:has(#weekday-2:target) a[href="#weekday-2"],
 body:has(#weekday-3:target) a[href="#weekday-3"],
-body:has(#weekday-4:target) a[href="#weekday-4"] { background: #e5eddc; font-weight: 700; }
+body:has(#weekday-4:target) a[href="#weekday-4"] { background: var(--surface-soft); font-weight: 700; }
 /* example:menu:end */
 
 /* example:menu-mobile:start */

@@ -2,7 +2,7 @@
 .lab-report-header { margin-bottom: 30px; }
 .lab-report-topline { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 22px; }
 .report-kicker { color: var(--muted); font-size: var(--font-caption); font-weight: 550; }
-.report-kicker > span, .report-cover .eyebrow > span { padding: 0 9px; opacity: .45; }
+.report-kicker > span[aria-hidden="true"], .report-cover .eyebrow > span { padding: 0 9px; opacity: .45; }
 .lab-report-topline .status-badge { display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0; font-size: var(--font-caption); }
 .lab-report-header > h1 { margin: 0; font-size: clamp(1.9rem, 3.2vw, 2.75rem); font-weight: 650; line-height: 1.18; letter-spacing: -.045em; text-wrap: balance; }
 .report-course-title { max-width: 75ch; margin-top: 12px; color: var(--muted); font-size: var(--font-caption); line-height: 1.65; }
@@ -208,8 +208,8 @@
 }
 
 @media print {
-  :root, :root[data-theme="light"], :root[data-theme="dark"] { --success: #247449; --success-soft: #fff; --danger: #b43d4d; --danger-soft: #fff; --violet: #44315e; --violet-soft: #fff; }
-  :root, :root[data-theme="light"], :root[data-theme="dark"] { color-scheme: light; --background: #fff; --surface: #fff; --surface-soft: #fff; --text: #111; --muted: #444; --border: #ccc; --accent: #24354d; --accent-soft: #fff; --on-accent: #fff; --shadow: none; }
+  :root, :root[data-theme="light"], :root[data-theme="dark"] { --success: #2d5f49; --success-soft: #fff; --danger: #b43d4d; --danger-soft: #fff; --violet: #3d527b; --violet-soft: #fff; }
+  :root, :root[data-theme="light"], :root[data-theme="dark"] { color-scheme: light; --background: #fff; --surface: #fff; --surface-soft: #fff; --text: #111; --muted: #444; --border: #ccc; --accent: #22304b; --accent-soft: #fff; --on-accent: #fff; --shadow: none; }
   body { background: #fff !important; color: #111 !important; font-size: 10pt; line-height: 1.5; }
   .site-header, .sidebar, .skip-link, .no-print, .back-link, .demo-screen, .lab-pagination { display: none !important; }
   .app-shell { display: block !important; max-width: none !important; }

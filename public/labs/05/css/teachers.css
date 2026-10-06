@@ -1,5 +1,5 @@
 /* example:teachers:start */
-.lesson-teacher { margin-top: 7px; padding-top: 7px; border-top: 1px solid #203b3518; color: #53635a; font-size: 0.875rem; line-height: 1.5; }
+.lesson-teacher { margin-top: 7px; padding-top: 7px; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.875rem; line-height: 1.5; }
 /* Names stay visible in compact mode and follow the lesson's week filter. */
 .preview-panel:has(#compact-view:checked) .lesson-teacher { margin-top: 4px; padding-top: 4px; }
 /* example:teachers:end */

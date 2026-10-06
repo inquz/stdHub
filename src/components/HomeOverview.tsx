@@ -68,15 +68,15 @@ export function HomeOverview() {
           <p className={styles.eyebrow}>Внутри проекта</p>
           <h2 id="project-guide-title">Научись так же</h2>
           <p>Каждая возможность выросла из лабораторной. Здесь короткий путь к её реализации</p>
-          <Link className={styles.catalogLink} href="/labs">Все лабораторные <Icon name="arrow-right" size={16} /></Link>
+          <Link className={styles.catalogLink} href="/labs" data-nav-cue="labs">Все лабораторные <Icon name="arrow-right" size={16} /></Link>
         </div>
         <ul className={styles.features}>
           {features.map((feature) => (
             <li key={feature.lab}>
-              <Link className={styles.feature} href={`/labs/${feature.lab}#lab-${feature.lab}-code`}>
+              <Link className={styles.feature} href={`/labs/${feature.lab}#lab-${feature.lab}-code`} data-nav-cue="labs">
                 <span className={styles.featureIcon}><Icon name={feature.icon} size={21} /></span>
                 <div className={styles.featureCopy}>
-                  <span className={styles.featureMeta}>ЛР {String(feature.lab).padStart(2, "0")}<span aria-hidden="true">/</span>{feature.technology}</span>
+                  <span className={styles.featureMeta}>ЛР {String(feature.lab).padStart(2, "0")}<span aria-hidden="true">/</span><span className="technology-label" data-technology={feature.technology.split(" / ")[0]}>{feature.technology}</span></span>
                   <h3>{feature.title}</h3>
                   <p>{feature.description}</p>
                 </div>
@@ -89,7 +89,7 @@ export function HomeOverview() {
 
       <div className={styles.start}>
         <span><Icon name="code" size={18} />Хочешь пройти весь путь с нуля?</span>
-        <Link href="/labs/1">Начать с первой страницы <Icon name="arrow-right" size={16} /></Link>
+        <Link href="/labs/1" data-nav-cue="labs">Начать с первой страницы <Icon name="arrow-right" size={16} /></Link>
       </div>
     </div>
   );

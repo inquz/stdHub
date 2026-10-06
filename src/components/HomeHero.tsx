@@ -19,8 +19,8 @@ export function HomeHero() {
         <h2 id="hero-title">Чем ближе дедлайн…<span>Тем ближе отчисление</span></h2>
         <p>В связи с тем, что я понятия не имею как задоджить бесконечные эвакуации и сдать хоть что-то, я принял волевое решение создать данный продукт</p>
         <div className={styles.actions}>
-          <Link className="button" href="/project">Открыть Экспарс <Icon name="arrow-up-right" size={17} /></Link>
-          <a className={styles.pathLink} href="#project-path">Как устроен проект <Icon name="arrow-right" size={16} /></a>
+          <Link className={`button ${styles.primaryAction}`} href="/project" data-nav-cue="project">Открыть Экспарс <Icon name="arrow-up-right" size={17} /></Link>
+          <Link className={styles.pathLink} href="/report#about-project" data-nav-cue="report">Как устроен проект <Icon name="arrow-right" size={16} /></Link>
         </div>
         <div className={styles.postscript}><span aria-hidden="true">*</span>Копирайт фри, можно использовать как учебный проект</div>
       </div>
@@ -56,7 +56,7 @@ export function HomeHero() {
               >
                 <span className={styles.labNumber}>{String(lab.id).padStart(2, "0")}</span>
                 <Icon name={lab.status === "done" ? "check" : lab.status === "in-progress" ? "clock" : "arrow-up-right"} size={12} />
-                <span className={styles.labTopic}>{lab.topic === "JavaScript" ? "JS" : lab.topic === "Вёрстка" ? "CSS" : lab.topic}</span>
+                <span className={`${styles.labTopic} technology-label`} data-technology={lab.topic}>{lab.topic === "JavaScript" ? "JS" : lab.topic === "Вёрстка" ? "CSS" : lab.topic}</span>
               </Link>
             </li>
           ))}
@@ -66,7 +66,7 @@ export function HomeHero() {
           {stages.map((stage) => (
             <li key={stage.technology} data-complete={stage.done}>
               <span className={styles.stageDot} />
-              {stage.technology === "JavaScript" ? "JS" : stage.technology}
+              <span className="technology-label" data-technology={stage.technology}>{stage.technology === "JavaScript" ? "JS" : stage.technology}</span>
               <span className={styles.stageCount}>{stage.completed}/{stage.total}</span>
             </li>
           ))}

@@ -1,17 +1,27 @@
 /* example:palette:start */
 :root {
   color-scheme: light;
-  --paper: #f6f7f2;
+  --paper: #eefcf5;
   --surface: #ffffff;
-  --ink: #203b35;
-  --muted: #53635b;
-  --line: #dfe5dc;
-  --green: #235d48;
-  --lime: #d9ef9d;
-  --upper: #edf1ff;
-  --lower: #fff0e3;
+  --ink: #14251e;
+  --muted: #2d5f49;
+  --green: #2d5f49;
+  --green-brand: #55aa85;
+  --green-soft: #77bb9d;
+  --lime: #a8f7d1;
+  --forest: #18392b;
+  --on-forest: #eefcf5;
+  --on-forest-muted: #93e5c0;
+  --surface-soft: color-mix(in srgb, var(--green-soft) 20%, var(--surface));
+  --surface-tint: color-mix(in srgb, var(--green-soft) 12%, var(--surface));
+  --line: color-mix(in srgb, var(--green-soft) 45%, var(--paper));
+  --upper: #dce1eb;
+  --upper-border: #afbbd1;
+  --lower: #a8f7d1;
+  --lower-border: #77bb9d;
+  --button-hover: #6bd4a6;
   --radius: 20px;
-  --shadow: 0 10px 35px #263c3010;
+  --shadow: 0 10px 35px #06160f10;
 }
 /* example:palette:end */
 
@@ -42,7 +52,7 @@ svg { flex-shrink: 0; }
 fieldset { min-width: 0; margin: 0; padding: 0; border: 0; }
 legend { padding: 0; }
 code { font-family: Consolas, monospace; font-size: .9em; }
-:focus-visible { outline: 3px solid #8b53b6; outline-offset: 4px; }
+:focus-visible { outline: 3px solid var(--green); outline-offset: 4px; }
 .visually-hidden {
   position: absolute;
   width: 1px;

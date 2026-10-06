@@ -35,7 +35,7 @@ export function createScheduleCanvas(schedule, { week = "both", compact = false 
   const column = (width - margin * 2 - gap) / 2;
   const commands = [];
   const font = (size, bold) => `${bold ? 600 : 400} ${size}px "Segoe UI", Arial, sans-serif`;
-  function text(value, x, y, w, size = 20, bold = false, fill = "#203b35") {
+  function text(value, x, y, w, size = 20, bold = false, fill = "#14251e") {
     ctx.font = font(size, bold);
     const lines = wrapText(value, w, (line) => ctx.measureText(line).width);
     const lineHeight = Math.ceil(size * 1.4);
@@ -56,12 +56,12 @@ export function createScheduleCanvas(schedule, { week = "both", compact = false 
       if (!pair.lessons.length) cursor = text("Пары нет", x + 20, cursor, column - 40, 18) + 12;
       for (const lesson of pair.lessons) {
         const block = { type: "rect", x: x + 12, y: cursor, w: column - 24, h: 0,
-          fill: { upper: "#edf1ff", lower: "#fff0e3", both: "#f2f5ec" }[lesson.week] };
+          fill: { upper: "#dce1eb", lower: "#a8f7d1", both: "#eefcf5" }[lesson.week] };
         commands.push(block);
         let line = cursor + (compact ? 8 : 14);
         const tx = x + 24;
         const tw = column - 48;
-        line = text(weekLabels[lesson.week], tx, line, tw, 16, false, "#52645b");
+        line = text(weekLabels[lesson.week], tx, line, tw, 16, false, "#2d5f49");
         line = text(lesson.subject, tx, line + 4, tw, 22, true);
         line = text([lesson.kind, lesson.room || "Аудитория не указана"].filter(Boolean).join(" · "), tx, line + 4, tw, 18);
         if (lesson.notes) line = text(lesson.notes, tx, line + 4, tw, 18);
@@ -85,7 +85,7 @@ export function createScheduleCanvas(schedule, { week = "both", compact = false 
   if (height > 16000) throw new Error("Расписание слишком большое для одной картинки. Выбери верхнюю или нижнюю неделю отдельно");
   canvas.width = width;
   canvas.height = height;
-  ctx.fillStyle = "#f6f7f2";
+  ctx.fillStyle = "#eefcf5";
   ctx.fillRect(0, 0, width, height);
   ctx.textBaseline = "top";
   for (const command of commands) {

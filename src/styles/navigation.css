@@ -1,4 +1,5 @@
 .sidebar {
+  --project-highlight: #34d399;
   position: sticky;
   top: 0;
   height: 100svh;
@@ -47,6 +48,29 @@
 .primary-navigation > a:hover { color: var(--text); background: var(--surface-soft); text-decoration: none; }
 .primary-navigation > a[aria-current="page"] { background: var(--accent-soft); color: var(--accent); font-weight: 650; }
 .primary-navigation > a > svg { flex-shrink: 0; }
+
+:root[data-theme="light"] .sidebar { --project-highlight: #047857; }
+.sidebar .primary-navigation > a[href="/project"] { --nav-cue-color: var(--project-highlight); }
+
+@media (min-width: 901px) {
+  .app-shell:has([data-nav-cue="project"]:is(:hover, :focus-visible)) > .sidebar .primary-navigation > a[href="/project"],
+  .app-shell:has([data-nav-cue="report"]:is(:hover, :focus-visible)) > .sidebar .primary-navigation > a[href="/report"],
+  .app-shell:has([data-nav-cue="labs"]:is(:hover, :focus-visible)) > .sidebar .primary-navigation > a[href="/labs"] {
+    color: var(--nav-cue-color, var(--text));
+    background: color-mix(in srgb, var(--nav-cue-color, var(--text)) 12%, var(--surface));
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--nav-cue-color, var(--text)) 30%, transparent);
+    animation: sidebar-nav-nudge 1.6s ease-in-out infinite;
+  }
+}
+
+@keyframes sidebar-nav-nudge {
+  0%, 40%, 100% { transform: translateX(0) rotate(0); }
+  8% { transform: translateX(-2px) rotate(-.6deg); }
+  16% { transform: translateX(2px) rotate(.6deg); }
+  24% { transform: translateX(-1px) rotate(-.35deg); }
+  32% { transform: translateX(1px) rotate(.35deg); }
+}
+
 .nav-count { margin-left: auto; min-width: 24px; padding: 2px 5px; border: 1px solid var(--border); border-radius: 5px; font-size: var(--font-label); text-align: center; font-variant-numeric: tabular-nums; }
 .sidebar-progress { margin: 29px 0 0; padding: 17px 14px; border: 1px solid color-mix(in srgb, var(--success) 18%, var(--border)); border-radius: 12px; background: var(--success-soft); }
 .sidebar-progress > div { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: var(--text); font-size: var(--font-caption); }

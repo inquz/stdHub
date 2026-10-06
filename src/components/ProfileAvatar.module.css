@@ -6,7 +6,7 @@
 .badge { position: absolute; right: -3px; bottom: -2px; display: grid; place-items: center; width: 19px; height: 19px; border: 2px solid var(--background); border-radius: 50%; background: var(--text); color: var(--background); }
 .popover { position: absolute; top: 100%; right: -2px; z-index: 45; width: min(310px, calc(100vw - 32px)); padding-top: 13px; }
 .popover[hidden] { display: none; }
-.card { padding: 9px; border: 1px solid var(--border); border-radius: 15px; background: var(--surface); box-shadow: 0 16px 48px #080e1826; animation: profile-appear .16s ease both; }
+.card { padding: 9px; border: 1px solid var(--border); border-radius: 15px; background: var(--surface); box-shadow: 0 16px 48px #060c1d26; animation: profile-appear .16s ease both; }
 .identity { display: flex; align-items: center; gap: 11px; margin: 0 5px 5px; padding: 12px 6px 17px; border-bottom: 1px solid var(--border); }
 .identity > img { flex-shrink: 0; border: 1px solid var(--border); border-radius: 50%; object-fit: cover; }
 .identity > div { flex: 1; }

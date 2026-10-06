@@ -9,7 +9,7 @@
 .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; list-style: none; margin: 0 0 36px; padding: 24px 0; border-block: 1px solid var(--line); }
 .workspace { display: grid; grid-template-columns: 310px minmax(0, 1fr); gap: 24px; align-items: start; }
 .upload-panel, .preview-panel { min-width: 0; border-radius: var(--radius); }
-.upload-panel { padding: 28px; background: var(--ink); color: #fff; }
+.upload-panel { padding: 28px; background: var(--forest); color: var(--on-forest); }
 .preview-panel { padding: 28px; border: 1px solid var(--line); background: var(--surface); box-shadow: var(--shadow); }
 .preview-heading { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
 .site-footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-block: 28px; margin-top: 36px; border-top: 1px solid var(--line); color: var(--muted); font-size: 1rem; }

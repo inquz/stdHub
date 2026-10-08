@@ -45,7 +45,7 @@ export function createScheduleCanvas(schedule, { week = "both", compact = false,
   if (compact) return createChatCanvas(schedule, { week, showTeachers });
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d");
-  if (!ctx) throw new Error("Браузер не поддерживает создание изображения");
+  if (!ctx) throw new Error("Этот браузер не умеет собрать картинку. Попробуй открыть Экспарс в другом браузере");
   const width = 1440;
   const margin = 40;
   const gap = 24;
@@ -109,7 +109,7 @@ export function createScheduleCanvas(schedule, { week = "both", compact = false,
   if (!days.length) top = text("На этой неделе занятий нет", margin, top, width - margin * 2);
   top = text("Предметы, аудитории, преподаватели и подгруппы — из расписания", margin, top + 8, width - margin * 2, 17);
   const height = Math.ceil(top + 30);
-  if (height > 16000) throw new Error("Расписание слишком большое для одной картинки. Выбери верхнюю или нижнюю неделю отдельно");
+  if (height > 16000) throw new Error("Расписание не влезает в одну картинку — вот это нагрузка. Выбери верхнюю или нижнюю неделю отдельно");
   canvas.width = width;
   canvas.height = height;
   ctx.fillStyle = "#eefcf5";
@@ -129,7 +129,7 @@ export function createScheduleCanvas(schedule, { week = "both", compact = false,
 function createChatCanvas(schedule, { week, showTeachers }) {
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d");
-  if (!ctx) throw new Error("Браузер не поддерживает создание изображения");
+  if (!ctx) throw new Error("Этот браузер не умеет собрать картинку. Попробуй открыть Экспарс в другом браузере");
   const days = selectSchedule(schedule, { week }).days;
   const items = scheduleCards(days);
   const { columns } = chatGrid(items.length);
@@ -213,7 +213,7 @@ function createChatCanvas(schedule, { week, showTeachers }) {
   if (!days.length) top = text("На этой неделе занятий нет", margin, top, contentWidth);
   top = text("Экспарс · расписание на неделю", margin, top + 4, contentWidth, 22);
   const height = Math.ceil(top + 24);
-  if (height > 16000) throw new Error("Расписание слишком большое для одной картинки. Выбери верхнюю или нижнюю неделю отдельно");
+  if (height > 16000) throw new Error("Расписание не влезает в одну картинку — вот это нагрузка. Выбери верхнюю или нижнюю неделю отдельно");
   canvas.width = width;
   canvas.height = height;
   ctx.fillStyle = "#f4f7f5";
@@ -240,7 +240,7 @@ export async function downloadSchedule(schedule, options) {
   const canvas = createScheduleCanvas(schedule, options);
   const blob = await new Promise((resolve, reject) => canvas.toBlob((result) => {
     if (result) resolve(result);
-    else reject(new Error("Не удалось создать PNG. Попробуй ещё раз"));
+    else reject(new Error("PNG не собрался с первого раза. Попробуй ещё раз — расписание на месте"));
   }, "image/png"));
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");

@@ -85,7 +85,7 @@ async function importFile() {
     return;
   }
   fileInput.removeAttribute("aria-invalid");
-  setFeedback("Читаем Excel…", "loading");
+  setFeedback("Читаем Excel… Ячейки, по местам", "loading");
   setBusy(true);
   try {
     const parsed = await requestSchedule(file, importController.signal);
@@ -95,7 +95,7 @@ async function importFile() {
     collapsed.clear();
     syncControls();
     persist();
-    setFeedback(`Расписание прочитано.${parsed.skipped.length ? ` Пропущены листы: ${parsed.skipped.join("; ")}` : ""}`, "success");
+    setFeedback(`Расписание прочитано. Excel побеждён.${parsed.skipped.length ? ` Пропущены листы: ${parsed.skipped.join("; ")}` : ""}`, "success");
   } catch (error) {
     if (ticket === requestId) setFeedback(`${error.message} Прежнее расписание сохранено`, "error");
   } finally {
@@ -110,7 +110,7 @@ form.addEventListener("submit", (event) => {
 });
 fileInput.addEventListener("change", importFile);
 fileInput.addEventListener("invalid", () => {
-  setFeedback("Сначала выбери файл .xls или .xlsx", "error");
+  setFeedback("Сначала выбери .xls или .xlsx — читать мысли деканата мы пока не умеем", "error");
 });
 form.addEventListener("change", (event) => {
   if (event.target.name === "week") { collapsed.clear(); refresh(); }
@@ -150,7 +150,7 @@ $(".schedule-days").addEventListener("click", (event) => {
 
 form.addEventListener("reset", (event) => {
   event.preventDefault();
-  if (!window.confirm("Восстановить учебный пример? Загруженное расписание и настройки в этом браузере будут заменены")) return;
+  if (!window.confirm("Вернуться к учебному примеру? Он заменит загруженное расписание и настройки в этом браузере. Если передумал — жми «Отмена»")) return;
   requestId++;
   importController?.abort();
   setBusy(false);
@@ -160,20 +160,20 @@ form.addEventListener("reset", (event) => {
   collapsed.clear();
   syncControls();
   persist();
-  setFeedback("Пример восстановлен. Можно выбрать новый Excel", "success");
+  setFeedback("Пример снова на месте. Можно заходить с новым Excel", "success");
 });
 
 exportButton.addEventListener("click", async () => {
   exportButton.disabled = true;
-  $("#export-status").textContent = "Готовим картинку всей недели…";
+  $("#export-status").textContent = "Собираем PNG всей недели… Сейчас будет что отправить в чат";
   try {
     await downloadSchedule(current(), { ...state.options });
-    $("#export-status").textContent = "PNG готов и передан браузеру для скачивания";
+    $("#export-status").textContent = "PNG готов, передали браузеру для скачивания. Твой выход в чат группы";
   } catch (error) {
-    $("#export-status").textContent = error.message || "Не удалось создать PNG. Попробуй ещё раз";
+    $("#export-status").textContent = error.message || "PNG не собрался с первого раза. Попробуй ещё раз — расписание на месте";
   } finally { exportButton.disabled = form.getAttribute("aria-busy") === "true"; }
 });
 
 syncControls();
 $("#storage-status").textContent = restored.message;
-if (restored.state) setFeedback("Сохранённое расписание готово. Можно скачать PNG или выбрать новый Excel", "success");
+if (restored.state) setFeedback("С возвращением! Расписание на месте — скачивай PNG или выбирай новый Excel", "success");

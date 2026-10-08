@@ -2,6 +2,10 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 
 import { schedule } from "./data/schedule-example.mjs";
+import { bellMarkup } from "./data/bell-schedule.mjs";
+
+const selectedLab = process.argv[2];
+if (selectedLab && !["1", "2"].includes(selectedLab)) throw new Error("Expected lab number 1 or 2");
 
 const escape = (text) => String(text).replace(/[&<>"']/g, (character) => ({
   "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
@@ -18,34 +22,33 @@ function documentStart(lab) {
 </head>
 <body id="top">
   <header>
-    <p>Учебный проект · лабораторная работа ${lab}</p>
     <h1>Экспарс</h1>
     <p><strong>Расписание прислали — разбираться опять нам</strong></p>
     <p>Закинь Excel — получи картинку, которую можно прочитать без высшего образования</p>
   </header>
   <nav aria-label="Разделы Экспарса">
     <ul>
-      <li><a href="#about">Что это за зверь</a></li>
-      <li><a href="#how-it-works">Три шага до картинки</a></li>
-      <li><a href="#schedule">Пример расписания</a></li>${lab === 2 ? '\n      <li><a href="#upload">Загрузить Excel</a></li>' : ''}
+      ${lab === 2 ? '<li><a href="#upload">Загрузить Excel</a></li>' : '<li><a href="#about">О сервисе</a></li>'}
+      <li><a href="#schedule">Расписание</a></li>
+      <li><a href="#bell-schedule">Звонки</a></li>
     </ul>
   </nav>
 <!-- example:document:end -->
   <main>
     <section id="about" aria-labelledby="about-title">
-      <h2 id="about-title">Что это за зверь</h2>
-      <p>Экспарс превращает расписание из Excel в картинку для чата группы.
-        Выбираешь верхнюю, нижнюю или обе недели — и больше не объясняешь, где смотреть пары.</p>
-      <p>Здесь показана HTML-заготовка: пример расписания уже есть,
-        чтение файла и создание PNG появятся в лабораторных по JavaScript.</p>
+      <h2 id="about-title">Из Excel — в чат группы</h2>
+      <p>В чат опять прилетел Excel, и теперь вторую пару надо найти среди объединённых ячеек.
+        План Экспарса простой: выбираешь верхнюю, нижнюю или обе недели и забираешь картинку для группы.</p>
+      <p><small>ЛР ${lab} · пока знакомимся с HTML и смотрим пример.
+        Читать Excel и делать PNG научимся дальше. Легендой группы становимся постепенно.</small></p>
     </section>
 <!-- example:steps:start -->
     <section id="how-it-works" aria-labelledby="steps-title">
       <h2 id="steps-title">Три шага до картинки</h2>
       <ol>
-        <li>Загрузить Excel с расписанием</li>
-        <li>Выбрать верхнюю, нижнюю или обе недели</li>
-        <li>Скачать картинку со всей неделей и отправить её в чат группы</li>
+        <li>Загрузить Excel с расписанием — тот самый, из чата</li>
+        <li>Выбрать верхнюю, нижнюю или обе недели и перестать их путать</li>
+        <li>Скачать всю неделю картинкой и отправить группе. Минутка славы обеспечена</li>
       </ol>
       <p>Варианты недели:</p>
       <ul>
@@ -71,7 +74,7 @@ const lab01 = `${documentStart(1)}
     <section id="schedule" aria-labelledby="schedule-title">
       <h2 id="schedule-title">Пример: понедельник КИ-24</h2>
       <p>Фрагмент расписания на осенний семестр 2026–2027 из файла КИ-24.xls.
-        В исходнике указаны номера пар, а не время звонков.</p>
+        Обе недели; общие занятия показаны один раз. Лишних пар не подкидываем.</p>
       <ul>
 ${schedule[0].pairs.map((pair) => `        <li><strong>${pair.number}-я пара</strong>
           <ul>
@@ -81,22 +84,22 @@ ${pair.both ? `            <li>Обе недели: ${escape(pair.both)}</li>` :
         </li>`).join("\n")}
       </ul>
       <p>Первая пара свободна — будильник одобряет</p>
-    </section>${end}`;
+    </section>
+    ${bellMarkup()}${end}`;
 
 const tableDays = schedule.map(({ day, pairs }) => `        <tbody>
 ${pairs.map((pair, index) => `          <tr>
 ${index === 0 ? `            <th scope="rowgroup" rowspan="${pairs.length}">${escape(day)}</th>\n` : ''}            <th scope="row">${pair.number}</th>
-${pair.both ? `            <td colspan="2">${escape(pair.both)}</td>` : `            <td>${escape(pair.upper ?? "Пары нет")}</td>
-            <td>${escape(pair.lower ?? "Пары нет")}</td>`}
+${pair.both ? `            <td colspan="2">${escape(pair.both.startsWith("Окно.") ? "Окно" : pair.both)}</td>` : `            <td>${escape(pair.upper ?? "Окно")}</td>
+            <td>${escape(pair.lower ?? "Окно")}</td>`}
           </tr>`).join("\n")}
         </tbody>`).join("\n");
 
 const lab02 = `${documentStart(2)}
     <section id="upload" aria-labelledby="form-title">
       <h2 id="form-title">Загрузить Excel</h2>
-      <p id="form-note">Это макет на HTML. Кнопка «Скачать картинку» пока открывает
-        пояснение: файл не читается и PNG не создаётся. При отправке передаются
-        только имя файла и выбранный вариант недели, содержимое Excel не загружается.</p>
+      <p id="form-note"><small>Выбери файл и неделю — браузер проверит заполнение формы.
+        Сам Excel пока не читаем: это следующий уровень. На экране учебный пример.</small></p>
 <!-- example:form:start -->
       <form action="form-result.html" method="get" aria-describedby="form-note">
         <p>
@@ -115,7 +118,7 @@ const lab02 = `${documentStart(2)}
             <label for="week-both">Обе</label></p>
         </fieldset>
         <p>
-          <button type="submit">Скачать картинку</button>
+          <button type="submit">Проверить форму</button>
           <button type="reset">Начать заново</button>
         </p>
       </form>
@@ -123,10 +126,8 @@ const lab02 = `${documentStart(2)}
     </section>
     <section id="schedule" aria-labelledby="schedule-title">
       <h2 id="schedule-title">Пример расписания</h2>
-      <p id="table-note">Статический пример из КИ-24.xls, обе недели. Выбор в форме пока
-        не меняет таблицу. Общие занятия занимают две колонки; пустая половина означает,
-        что на этой неделе пары нет. Свободные пары в начале и конце дня опущены,
-        окно между занятиями сохранено. Времени звонков в исходном файле нет.</p>
+      <p id="table-note"><small>КИ-24.xls · обе недели. Выбор в форме пока не меняет таблицу.
+        Общие занятия показаны один раз, свободная половина подписана «Окно». Можно выдохнуть.</small></p>
 <!-- example:table:start -->
       <table aria-describedby="table-note">
         <caption>КИ-24 · осенний семестр 2026–2027 · верхняя и нижняя недели</caption>
@@ -142,6 +143,7 @@ ${tableDays}
       </table>
 <!-- example:table:end -->
     </section>
+    ${bellMarkup()}
     <section aria-labelledby="image-title">
       <h2 id="image-title">Из Excel — в чат группы</h2>
 <!-- example:image:start -->
@@ -162,11 +164,11 @@ const result = `<!DOCTYPE html>
 </head>
 <body>
   <main>
-    <h1>Картинка пока на паре</h1>
-    <p>Браузер проверил, что файл выбран, и отправил имя файла и вариант недели.</p>
-    <p><strong>Excel не обработан, PNG не создан.</strong> Это HTML-этап проекта:
-      чтение расписания, переключение недель и скачивание появятся в лабораторных по JavaScript.</p>
-    <p>Содержимое файла не отправлялось. Расписание в примере осталось прежним.</p>
+    <h1>Форма проверена. Первый квест закрыт</h1>
+    <p>Браузер убедился, что файл выбран, и передал его имя вместе с вариантом недели. С этой частью разобрались.</p>
+    <p><strong>Excel ещё не обработан, PNG не создан.</strong> Сейчас учим страницу HTML:
+      чтение файла, переключение недель и скачивание появятся в JS-лабах. До финального босса ещё дойдём.</p>
+    <p>Содержимое файла никуда не отправлялось, пример расписания остался прежним. Можно вернуться и потыкать ещё.</p>
     <p><a href="index.html#upload">Вернуться к форме</a></p>
     <p><a href="index.html#schedule">Посмотреть пример расписания</a></p>
   </main>
@@ -177,6 +179,7 @@ const result = `<!DOCTYPE html>
 for (const [file, content] of Object.entries({
   "01/index.html": lab01, "02/index.html": lab02, "02/form-result.html": result,
 })) {
+  if (selectedLab && Number(file.slice(0, 2)) !== Number(selectedLab)) continue;
   const target = new URL(`../public/labs/${file}`, import.meta.url);
   await mkdir(fileURLToPath(new URL(".", target)), { recursive: true });
   await writeFile(target, content, "utf8");

@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { selectSchedule, pairEntries } from "../public/labs/10/js/view.js";
-import { selectSchedule as selectLab9 } from "../public/labs/09/js/view.js";
+import { selectSchedule as selectLab9, pairEntries as pairEntriesLab9 } from "../public/labs/09/js/view.js";
 import { scheduleStats } from "../public/labs/10/js/schedule.js";
 import { demo } from "../public/labs/10/js/demo.js";
 import { loadState, saveState, validState, STORAGE_KEY } from "../public/labs/10/js/storage.js";
@@ -33,7 +33,8 @@ for (const [lab, select] of [[9, selectLab9], [10, selectSchedule]]) {
 const state = () => ({ version: 1, schedules: [structuredClone(demo)], selected: 0, source: "test.xls", importedAt: "2026-10-01T12:00:00.000Z",
   options: { week: "lower", query: "преподаватель", day: "0", compact: true } });
 
-test("week gaps show the missing week in order without changing lesson counts or source data", () => {
+for (const [lab, select, makeEntries] of [[9, selectLab9, pairEntriesLab9], [10, selectSchedule, pairEntries]]) {
+test(`lab ${lab}: week gaps show the missing week in order without changing lesson counts or source data`, () => {
   const lesson = (week, subject) => ({ week, subject, kind: "лекция", room: "101", teacher: "Иванов" });
   const schedules = { ...demo, days: [{ day: "Понедельник", dayIndex: 0, pairs: [
     { number: 1, lessons: [lesson("lower", "Математика")] },
@@ -43,8 +44,8 @@ test("week gaps show the missing week in order without changing lesson counts or
     { number: 5, lessons: [lesson("upper", "Первая подгруппа"), lesson("upper", "Вторая подгруппа")] },
   ] }] };
   const original = JSON.stringify(schedules);
-  const view = selectSchedule(schedules, { week: "both" });
-  const entries = view.days[0].pairs.map((pair) => pairEntries(pair).map((entry) => [entry.week, entry.lesson?.subject ?? "Окно"]));
+  const view = select(schedules, { week: "both" });
+  const entries = view.days[0].pairs.map((pair) => makeEntries(pair).map((entry) => [entry.week, entry.lesson?.subject ?? "Окно"]));
   assert.deepEqual(entries, [
     [["upper", "Окно"], ["lower", "Математика"]],
     [["upper", "Физика"], ["lower", "Окно"]],
@@ -54,21 +55,22 @@ test("week gaps show the missing week in order without changing lesson counts or
   ]);
   assert.equal(scheduleStats(view, "both").lessons, 5);
   assert.equal(JSON.stringify(schedules), original);
-  const upper = selectSchedule(schedules, { week: "upper" });
-  assert.deepEqual(pairEntries(upper.days[0].pairs[0], "upper"), [{ week: "upper", lesson: null }]);
+  const upper = select(schedules, { week: "upper" });
+  assert.deepEqual(makeEntries(upper.days[0].pairs[0], "upper"), [{ week: "upper", lesson: null }]);
 });
 
-test("search cannot turn a hidden lesson into an empty week", () => {
+test(`lab ${lab}: search cannot turn a hidden lesson into an empty week`, () => {
   const source = { ...demo, days: [{ day: "Понедельник", dayIndex: 0, pairs: [{ number: 1, lessons: [
     { week: "upper", subject: "Физика", teacher: "Иванов", kind: "лекция", room: "101" },
     { week: "lower", subject: "Математика", teacher: "Петров", kind: "лекция", room: "102" },
   ] }] }] };
-  const view = selectSchedule(source, { query: "Математика" });
-  const entries = pairEntries(view.days[0].pairs[0]);
+  const view = select(source, { query: "Математика" });
+  const entries = makeEntries(view.days[0].pairs[0]);
   assert.equal(entries.length, 1);
   assert.equal(entries[0].lesson.subject, "Математика");
-  assert.equal(selectSchedule(source, { query: "Математика", week: "upper" }).days.length, 0);
+  assert.equal(select(source, { query: "Математика", week: "upper" }).days.length, 0);
 });
+}
 const memory = () => {
   const data = new Map();
   return { getItem: (key) => data.get(key) ?? null, setItem: (key, value) => data.set(key, value) };

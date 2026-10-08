@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { LabReport } from "@/components/LabReport";
 import { getLab, labs } from "@/data/labs";
+import { labPresentation } from "@/data/lab-presentation";
 
 export const dynamicParams = false;
 
@@ -13,7 +14,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps<"/labs/[id]">): Promise<Metadata> {
   const lab = getLab((await params).id);
   if (!lab) notFound();
-  return { title: `Лабораторная № ${lab.id}. ${lab.title}` };
+  return { title: `Лабораторная № ${lab.id}. ${lab.title}`, description: labPresentation[lab.id]?.description };
 }
 
 export default async function LabPage({ params }: PageProps<"/labs/[id]">) {

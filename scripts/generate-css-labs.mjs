@@ -1,6 +1,10 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { schedule } from "./data/schedule-example.mjs";
 import { teachersByDay } from "./data/teachers-example.mjs";
+import { bellMarkup } from "./data/bell-schedule.mjs";
+
+const selectedLab = process.argv[2];
+if (selectedLab && !["3", "4", "5", "6"].includes(selectedLab)) throw new Error("Expected lab number 3–6");
 
 const escape = (value) => String(value).replace(/[&<>"']/g, (char) => ({
   "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
@@ -46,10 +50,10 @@ const footer = `  <footer class="site-footer container">
 `;
 
 function lesson(text, week, teacher) {
-  const [title, kind, room] = (text ?? "Пары нет").split(" · ");
   const empty = !text || text.startsWith("Окно.");
+  const [title, kind, room] = (empty ? "Окно" : text).split(" · ");
   return `<div class="lesson" data-week="${week}"${empty ? ' data-empty="true"' : ''}>
-                  <span class="week-badge">${{upper:"Верхняя",lower:"Нижняя",both:"Обе недели"}[week]}</span>
+                  <span class="week-badge">${{upper:"Верхняя неделя",lower:"Нижняя неделя",both:"Обе недели"}[week]}</span>
                   <p class="lesson-title">${escape(title)}</p>
                   ${kind ? `<p class="lesson-meta">${escape(kind)} <span>${escape(room)}</span></p>` : ''}${teacher ? `\n                  <p class="lesson-teacher"><span class="visually-hidden">Преподаватель: </span>${escape(teacher)}</p>` : ''}
                 </div>`;
@@ -76,12 +80,12 @@ const cascade = `
         <p class="cascade-internal" style="color: #2d5f49"><code>Атрибут style</code><strong>У меня VIP-пропуск</strong><span>#2d5f49</span></p>
       </div>
 <!-- example:samples:end -->
-      <p class="study-note">Внешнее правило и блок style имеют одинаковую специфичность.
-        Позднее правило побеждает. У третьего примера обычный inline-стиль сильнее этих правил.
-        В примере нет !important и слоёв каскада.</p>`;
+      <p class="study-note">У внешнего правила и блока style одинаковая специфичность — решает очередь: кто позже, тот и красит.
+        В третьем примере обычный inline-стиль сильнее этих правил.
+        Здесь без !important и слоёв каскада, чтобы спор прошёл без тяжёлой артиллерии.</p>`;
 
 const boxModel = `
-      <p>У обоих блоков width: 160px, padding: 16px, border: 4px и margin: 8px. Результат — разный.</p>
+      <p>Обоим выдали width: 160px, padding: 16px, border: 4px и margin: 8px. Один всё равно занял больше места. Разбираемся без скандала.</p>
 <!-- example:boxes:start -->
       <div class="box-comparison">
         <figure><div class="box-sample content-box">content-box</div><figcaption>160 + 32 + 8 = <strong>200 px</strong></figcaption></figure>
@@ -92,30 +96,22 @@ const boxModel = `
       <div class="state-demo"><button class="button" type="button" disabled>Автопилот старосты</button><span>Недоступная кнопка: пример :disabled. Староста пока работает вручную.</span></div>`;
 
 const dropdownMenu = `<!-- example:menu:start -->
-    <nav class="dropdown-nav" aria-label="Навигация по Экспарсу">
-      <details class="nav-dropdown" name="site-menu">
-        <summary>Разделы <span class="menu-plus" aria-hidden="true">+</span></summary>
-        <ul class="dropdown-list">
-          <li><a href="#how-it-works">Как это работает</a></li>
-          <li><a href="#upload-title">Загрузить Excel</a></li>
-          <li><a href="#schedule">Расписание</a></li>
-          <li><a href="#css-lab">Под капотом</a></li>
-        </ul>
-      </details>
-      <details class="nav-dropdown" name="site-menu">
-        <summary>Дни недели <span class="menu-plus" aria-hidden="true">+</span></summary>
-        <ul class="dropdown-list">
+    <nav class="dropdown-nav" aria-label="Дни расписания">
+      <details class="nav-dropdown">
+        <summary>Перейти к дню <span class="menu-plus" aria-hidden="true">+</span></summary>
+        <ul class="dropdown-list" id="day-links">
 ${schedule.map(({day},index)=>`          <li><a href="#weekday-${index}">${escape(day)}</a></li>`).join("\n")}
+          <li><a href="#bell-schedule">Расписание звонков</a></li>
         </ul>
       </details>
     </nav>
 <!-- example:menu:end -->`;
 
-const menuStudy = `<p>Меню открывается через details/summary — мышью, касанием, Enter или пробелом. Tab ведёт к ссылкам. Одинаковый атрибут name оставляет открытым одно меню.</p>
-      <p class="study-note">На узком экране список входит в поток страницы, на широком выпадает под заголовком. Выбранный день отмечается через :target. Чтобы закрыть меню, нажми на его заголовок ещё раз: автоматического закрытия по ссылке или клику снаружи пока нет.</p>`;
-const layoutStudy = `<p>Один Экспарс — три компоновки. Содержание, преподаватели и переключение недель одинаковые.</p>
+const menuStudy = `<p>Это меню работает на details/summary: мышь, касание, Enter или пробел открывают список, Tab ведёт к дням и звонкам. JavaScript в этой лабе ещё не проснулся, а меню уже на работе.</p>
+      <p class="study-note">На телефоне список раздвигает страницу, на широком экране выпадает под заголовком. :target отмечает выбранный день. Повторно нажми заголовок, чтобы закрыть меню: телепатию пока не добавляли.</p>`;
+const layoutStudy = `<p>Один Экспарс — три способа расставить мебель. Пары, преподаватели и недели одинаковые: перестановка от занятий не освобождает.</p>
       <ul><li><strong>Поток:</strong> форма и расписание идут друг за другом.</li><li><strong>Таблица:</strong> две ячейки удерживают колонки; на телефоне контейнер прокручивается.</li><li><strong>Grid:</strong> две колонки на широком экране, одна — на узком. Этот вариант продолжаем развивать.</li></ul>
-      <p class="study-note">Таблица компоновки имеет role="presentation". Она нужна для сравнения способов вёрстки, а не для данных расписания. Плоская вёрстка здесь — обычный последовательный поток документа.</p>`;
+      <p class="study-note">У таблицы компоновки role="presentation": её работа — расставлять блоки. Плоская вёрстка здесь означает обычный поток документа. Grid выигрывает место в следующих лабах; остальным спасибо за участие.</p>`;
 
 function layoutLinks(active) {
   return `<!-- example:layouts:start -->
@@ -127,14 +123,14 @@ ${[["flow","flow.html","01 · Поток"],["table","table.html","02 · Табл
 }
 
 for (const lab of [3,4,5,6]) {
+  if (selectedLab && Number(selectedLab) !== lab) continue;
   const isCards = lab >= 4;
   const html = `${head(lab)}
 <body id="top">
   <a class="skip-link" href="#main">К содержимому</a>
   <header class="site-header container">
     <a class="brand" href="#top" aria-label="Экспарс — наверх"><span class="brand-mark">${icon("calendar")}</span>Экспарс</a>
-    ${lab >= 5 ? dropdownMenu : '<nav aria-label="Навигация"><a href="#how-it-works">Как это работает</a><a href="#schedule">Расписание</a></nav>'}
-    <span class="version-chip">ЛР 0${lab} <span aria-hidden="true">/</span> CSS</span>
+    <nav class="workspace-nav" aria-label="Навигация по Экспарсу"><a href="#upload-title">Загрузить Excel</a><a href="#schedule">Расписание</a></nav>
   </header>
   <main id="main" class="container">
     <section class="hero" aria-labelledby="hero-title">
@@ -171,9 +167,9 @@ for (const lab of [3,4,5,6]) {
               <input class="visually-hidden" id="week-both" type="radio" name="week" value="both" required checked><label for="week-both">Обе</label>
             </div>
           </fieldset>
-          <button class="button button-primary" type="submit">Скачать картинку ${icon("arrow")}</button>
+          <button class="button button-primary" type="submit">Проверить форму ${icon("arrow")}</button>
           <button class="button-reset" type="reset">Начать заново</button>
-          <p id="stage-note" class="stage-note">Пока показываем пример КИ-24. ${isCards ? "Недели в примере уже переключаются." : "Выбор недели пока не меняет таблицу."} Чтение Excel и PNG — на этапе JavaScript. Кнопка откроет пояснение.</p>
+          <p id="stage-note" class="stage-note">Пример КИ-24. ${isCards ? "Недели уже переключаются — можно потыкать." : "Пока смотрим обе недели сразу."} Кнопка проверяет форму. Читать Excel и делать PNG научимся в JS-лабах.</p>
         </form>
 <!-- example:form:end -->
         <p class="privacy-note">Содержимое Excel не отправляется.<br>Деканат ничего не узнает.</p>
@@ -181,15 +177,20 @@ for (const lab of [3,4,5,6]) {
       <section id="schedule" class="preview-panel" aria-labelledby="schedule-title">
         <div class="preview-heading"><div><p class="eyebrow">Пример расписания</p><h2 id="schedule-title">КИ-24 <span>на связи</span></h2></div><span class="preview-icon">${icon("image")}</span></div>
         <div class="preview-meta"><span>Осень 2026–2027</span><span class="mode-label mode-both">Обе недели</span>${isCards ? '<span class="mode-label mode-upper">Верхняя неделя</span><span class="mode-label mode-lower">Нижняя неделя</span>' : ''}</div>
-        <p id="table-note" class="preview-caption">${lab >= 5 ? "Предметы, аудитории и преподаватели" : "Номера пар и аудитории"} — из расписания, время звонков не выдумываем</p>
-        ${isCards ? `<label class="compact-toggle"><input id="compact-view" type="checkbox" form="schedule-form"> Компактный вид для телефона</label>
+        <p id="table-note" class="preview-caption">${lab >= 5 ? "Предметы, аудитории и преподаватели" : "Предметы и аудитории"} — из расписания. Звонки указаны для понедельника — пятницы.</p>${lab >= 5 ? '\n        ' + dropdownMenu : ''}
+        ${isCards ? `<div class="view-tools">
+          <label class="chat-view-switch"><input id="compact-view" class="visually-hidden" type="checkbox" role="switch" form="schedule-form" aria-describedby="compact-note"><span class="switch-track" aria-hidden="true"></span><span>${lab >= 6 ? "Вид для чата" : "Плотные карточки"}</span></label>
+          <p id="compact-note" class="view-note">${lab >= 6 ? "Пн–Вт–Ср сверху, Чт–Пт–звонки снизу. На телефоне листай вбок: вся неделя на месте." : "Меньше отступов, столько же пар. Раскладку для чата освоим в ЛР 6."}</p>
+        </div>
 <!-- example:cards:start -->
-        <div class="schedule-days">
+        <div class="schedule-days"${lab >= 6 ? ' role="region" aria-label="Карточки расписания; в виде для чата прокручиваются вбок" tabindex="0"' : ''}>
 ${renderCards(lab >= 5)}
+          ${bellMarkup({ card: true })}
         </div>
 <!-- example:cards:end -->` : `<div class="table-scroll" role="region" aria-label="Расписание КИ-24, прокручиваемая таблица" tabindex="0">
 ${table}
-        </div>`}
+        </div>
+        ${bellMarkup({ card: true })}`}
         <p class="preview-footnote">${isCards ? "Общие занятия показаны один раз, окна между парами сохранены" : "Общие пары занимают обе колонки, разные недели стоят рядом"}<br>Красивое расписание не является уважительной причиной прогула</p>
       </section>
     </div>
@@ -205,10 +206,10 @@ ${footer}`;
   <main class="result-page container">
     <a class="brand" href="index.html"><span class="brand-mark">${icon("calendar")}</span>Экспарс</a>
     <section class="result-card">
-      <p class="eyebrow">Форма дошла, картинка задерживается</p>
-      <h1>PNG пока<br><span>на другой паре</span></h1>
-      <p>Это этап HTML и CSS. Браузер проверил выбор файла и передал его имя и вариант недели.</p>
-      <p><strong>Excel не обработан, PNG не создан.</strong> Содержимое файла не отправлялось. Настоящее скачивание добавим в лабораторных по JavaScript.</p>
+      <p class="eyebrow">Учебная форма</p>
+      <h1>Форма проверена.<br><span>Красота тоже на месте</span></h1>
+      <p>Браузер проверил выбор файла и передал его имя и неделю. HTML и CSS свою часть работы выполнили.</p>
+      <p><strong>Excel ещё не обработан, PNG не создан.</strong> Содержимое файла никуда не отправлялось. Скачивание появится в JS-лабах — сейчас у нас этап «уже красиво».</p>
       <a class="button button-primary" href="index.html#upload-title">Вернуться к форме ${icon("arrow")}</a>
       <a class="result-link" href="index.html#schedule">Посмотреть расписание</a>
     </section>

@@ -7,9 +7,14 @@ const title = document.querySelector("#schedule-title");
 const originalTitle = title.textContent;
 const weekLabels = { upper: "верхняя", lower: "нижняя", both: "обе" };
 
+function setFeedback(message, state = "idle") {
+  feedback.textContent = message;
+  feedback.dataset.state = state;
+}
+
 fileInput.addEventListener("change", () => {
   fileInput.setCustomValidity("");
-  feedback.textContent = "Выбранный файл пока не прочитан. На экране учебный пример";
+  setFeedback("Файл на месте. Жми «Проверить файл» — познакомимся. На экране пока пример");
 });
 
 /* example:submit:start */
@@ -19,14 +24,14 @@ form.addEventListener("submit", (event) => {
   const error = validateFile(file);
   if (error) {
     fileInput.setCustomValidity(error);
-    feedback.textContent = error;
+    setFeedback(error, "error");
     fileInput.reportValidity();
     return;
   }
   const week = new FormData(form).get("week");
   const message = `${fileSummary(file)}. Неделя: ${weekLabels[week]}.`;
-  feedback.textContent = `${message} Имя и размер проверены; содержимое ещё не читали`;
-  window.alert(`${message}\nФормат по расширению подходит. Чтение Excel — в ЛР 8`);
+  setFeedback(`${message} Имя и размер в порядке. Внутрь ещё не заглядывали`, "success");
+  window.alert(`${message}\nРасширение подходит, размер тоже. Сам Excel прочитаем в ЛР 8 — прокачиваемся по порядку`);
 });
 /* example:submit:end */
 
@@ -36,19 +41,19 @@ document.querySelector("#rename-group").addEventListener("click", () => {
   if (answer === null) return;
   const group = answer.trim();
   if (!group || group.length > 40) {
-    window.alert("Название должно содержать от 1 до 40 символов");
+    window.alert("Нужно от 1 до 40 символов. Название группы, а не тема диплома");
     return;
   }
   title.textContent = group;
 });
 
 form.addEventListener("reset", (event) => {
-  if (!window.confirm("Очистить файл и вернуть учебный пример?")) {
+  if (!window.confirm("Вернуть учебный пример? Выбранный файл, подпись группы и настройки сбросятся. Если нажал случайно — жми «Отмена»")) {
     event.preventDefault();
     return;
   }
   fileInput.setCustomValidity("");
   title.textContent = originalTitle;
-  feedback.textContent = "Учебный пример восстановлен. Excel не обработан, PNG пока не создаётся";
+  setFeedback("Вернулись к примеру. Можно выбрать новый файл — попытки не ограничены");
 });
 /* example:dialogs:end */

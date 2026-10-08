@@ -1,14 +1,14 @@
 /* example:menu:start */
-.site-header .dropdown-nav { gap: 10px; align-items: start; }
+.preview-panel .dropdown-nav { display: flex; margin-bottom: 18px; align-items: start; }
 .nav-dropdown { position: relative; }
 .nav-dropdown summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 9px; list-style: none; font-size: 1rem; cursor: pointer; }
 .nav-dropdown summary::-webkit-details-marker { display: none; }
 .nav-dropdown summary:hover, .nav-dropdown[open] > summary { background: var(--surface-soft); border-color: var(--green-soft); }
 .menu-plus { transition: transform .15s; font-size: 18px; line-height: 1; }
 .nav-dropdown[open] .menu-plus { transform: rotate(45deg); }
-.dropdown-list { position: absolute; top: calc(100% + 8px); right: 0; z-index: 5; width: 230px; margin: 0; padding: 8px; list-style: none; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); }
-.site-header .dropdown-list a { display: block; min-height: 42px; padding: 10px 12px; border-radius: 6px; color: var(--ink); }
-.site-header .dropdown-list a:hover, .site-header .dropdown-list a:focus-visible { background: var(--surface-soft); text-decoration: none; }
+.dropdown-list { position: absolute; top: calc(100% + 8px); left: 0; z-index: 5; width: 230px; margin: 0; padding: 8px; list-style: none; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); }
+.preview-panel .dropdown-list a { display: block; min-height: 42px; padding: 10px 12px; border-radius: 6px; color: var(--ink); text-decoration: none; }
+.preview-panel .dropdown-list a:hover, .preview-panel .dropdown-list a:focus-visible { background: var(--surface-soft); text-decoration: none; }
 .nav-dropdown summary:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; }
 .day-card:target { outline: 3px solid var(--green-brand); outline-offset: 3px; }
 body:has(#weekday-0:target) a[href="#weekday-0"],
@@ -20,10 +20,10 @@ body:has(#weekday-4:target) a[href="#weekday-4"] { background: var(--surface-sof
 
 /* example:menu-mobile:start */
 @media (max-width: 760px) {
-  .site-header .dropdown-nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+  .preview-panel .dropdown-nav { display: grid; grid-template-columns: minmax(0, 1fr); align-items: start; }
   .nav-dropdown { min-width: 0; }
   .nav-dropdown summary { padding-inline: 10px; gap: 8px; }
   .dropdown-list { position: static; width: 100%; margin-top: 8px; box-shadow: none; }
-  .site-header .dropdown-list a { padding-inline: 6px; overflow-wrap: anywhere; }
+  .preview-panel .dropdown-list a { padding-inline: 6px; overflow-wrap: anywhere; }
 }
 /* example:menu-mobile:end */

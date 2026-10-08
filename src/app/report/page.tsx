@@ -6,7 +6,10 @@ import { labs } from "@/data/labs";
 import { labStatusLabels } from "@/data/labs/types";
 import { report } from "@/data/report";
 
-export const metadata: Metadata = { title: "Единый отчёт" };
+export const metadata: Metadata = {
+  title: "Единый отчёт",
+  description: "Как Экспарс приручил Excel за десять лаб: HTML, CSS, JavaScript, исходники и результаты. Есть что показать на защите.",
+};
 
 export default function ReportPage() {
   const completed = labs.filter((lab) => lab.status === "done").length;
@@ -16,10 +19,10 @@ export default function ReportPage() {
     <div className="combined-report">
       <header className="report-cover">
         <div className="report-cover-main">
-          <p className="eyebrow">Документация проекта <span aria-hidden="true">/</span> Web-технологии</p>
+          <p className="eyebrow">Как это вообще заработало <span aria-hidden="true">/</span> Web-технологии</p>
           <h1>Отчёт по<br /><span>лабораторным</span></h1>
-          <p className="lead">{report.title}. Задания, исходный код и результаты работ по HTML, CSS и JavaScript</p>
-          <div className="report-cover-actions no-print"><PrintButton /><span>Откроется окно печати<br />Выберите «Сохранить как PDF»</span></div>
+          <p className="lead">{report.title}. Десять лаб, исходники и доказательства, что кнопки здесь для дела. Можно читать по порядку или сразу идти к интересному</p>
+          <div className="report-cover-actions no-print"><PrintButton /><span>В окне печати выбери «Сохранить как PDF»<br />Бумага может пока выдохнуть</span></div>
         </div>
         <div className="report-cover-document">
           <div className="report-document-top"><Icon name="file" size={26} /><span>XlsParse / ОТЧЁТ</span></div>
@@ -27,7 +30,7 @@ export default function ReportPage() {
           <p className="report-document-subtitle">HTML · CSS · JavaScript</p>
           <div className="report-completion"><strong>{String(completed).padStart(2, "0")}<span> / {labs.length}</span></strong><span>глав готово</span></div>
           <progress className="report-progress" value={completed} max={labs.length} aria-label={`Заполнено ${completed} из ${labs.length} глав`} />
-          <div className="report-document-bottom"><span>Черновик отчёта</span><span>{progress}%</span></div>
+          <div className="report-document-bottom"><span>Черновик перед сдачей</span><span>{progress}%</span></div>
         </div>
       </header>
 
@@ -38,7 +41,7 @@ export default function ReportPage() {
           <div><dt>Проверил</dt><dd>{report.teacher}</dd></div>
           <div><dt>Дисциплина</dt><dd>Web-технологии</dd></div>
         </dl>
-        <p className="report-draft-note"><Icon name="file" size={15} /><span>Заполнено {completed} из {labs.length} работ. Реквизиты и требования методички нужно уточнить перед сдачей</span></p>
+        <p className="report-draft-note"><Icon name="file" size={15} /><span>Заполнено {completed} из {labs.length} работ. Перед сдачей впиши имена и группу, затем сверься с методичкой: у неё своя атмосфера</span></p>
       </div>
 
       <nav className="report-toc" aria-label="Оглавление отчёта">
@@ -56,7 +59,7 @@ export default function ReportPage() {
 
       <section id="about-project" className="report-introduction" aria-labelledby="report-introduction-title">
         <div className="report-introduction-icon" aria-hidden="true"><Icon name="book" size={22} /></div>
-        <div><p className="eyebrow">О проекте</p><h2 id="report-introduction-title">Один проект — десять этапов</h2><p>{report.introduction}</p></div>
+        <div><p className="eyebrow">О проекте</p><h2 id="report-introduction-title">Десять лаб спустя: Excel приручён</h2><p>{report.introduction}</p></div>
       </section>
       {labs.map((lab) => <LabReport key={lab.id} lab={lab} combined />)}
     </div>

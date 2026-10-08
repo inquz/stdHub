@@ -8,34 +8,33 @@
 </head>
 <body id="top">
   <header>
-    <p>Учебный проект · лабораторная работа 1</p>
     <h1>Экспарс</h1>
     <p><strong>Расписание прислали — разбираться опять нам</strong></p>
     <p>Закинь Excel — получи картинку, которую можно прочитать без высшего образования</p>
   </header>
   <nav aria-label="Разделы Экспарса">
     <ul>
-      <li><a href="#about">Что это за зверь</a></li>
-      <li><a href="#how-it-works">Три шага до картинки</a></li>
-      <li><a href="#schedule">Пример расписания</a></li>
+      <li><a href="#about">О сервисе</a></li>
+      <li><a href="#schedule">Расписание</a></li>
+      <li><a href="#bell-schedule">Звонки</a></li>
     </ul>
   </nav>
 <!-- example:document:end -->
   <main>
     <section id="about" aria-labelledby="about-title">
-      <h2 id="about-title">Что это за зверь</h2>
-      <p>Экспарс превращает расписание из Excel в картинку для чата группы.
-        Выбираешь верхнюю, нижнюю или обе недели — и больше не объясняешь, где смотреть пары.</p>
-      <p>Здесь показана HTML-заготовка: пример расписания уже есть,
-        чтение файла и создание PNG появятся в лабораторных по JavaScript.</p>
+      <h2 id="about-title">Из Excel — в чат группы</h2>
+      <p>В чат опять прилетел Excel, и теперь вторую пару надо найти среди объединённых ячеек.
+        План Экспарса простой: выбираешь верхнюю, нижнюю или обе недели и забираешь картинку для группы.</p>
+      <p><small>ЛР 1 · пока знакомимся с HTML и смотрим пример.
+        Читать Excel и делать PNG научимся дальше. Легендой группы становимся постепенно.</small></p>
     </section>
 <!-- example:steps:start -->
     <section id="how-it-works" aria-labelledby="steps-title">
       <h2 id="steps-title">Три шага до картинки</h2>
       <ol>
-        <li>Загрузить Excel с расписанием</li>
-        <li>Выбрать верхнюю, нижнюю или обе недели</li>
-        <li>Скачать картинку со всей неделей и отправить её в чат группы</li>
+        <li>Загрузить Excel с расписанием — тот самый, из чата</li>
+        <li>Выбрать верхнюю, нижнюю или обе недели и перестать их путать</li>
+        <li>Скачать всю неделю картинкой и отправить группе. Минутка славы обеспечена</li>
       </ol>
       <p>Варианты недели:</p>
       <ul>
@@ -48,7 +47,7 @@
     <section id="schedule" aria-labelledby="schedule-title">
       <h2 id="schedule-title">Пример: понедельник КИ-24</h2>
       <p>Фрагмент расписания на осенний семестр 2026–2027 из файла КИ-24.xls.
-        В исходнике указаны номера пар, а не время звонков.</p>
+        Обе недели; общие занятия показаны один раз. Лишних пар не подкидываем.</p>
       <ul>
         <li><strong>2-я пара</strong>
           <ul>
@@ -69,6 +68,19 @@
         </li>
       </ul>
       <p>Первая пара свободна — будильник одобряет</p>
+    </section>
+    <section id="bell-schedule" aria-labelledby="bell-title">
+      <header><h2 id="bell-title">Расписание звонков</h2></header>
+      <p class="bell-weekdays">Понедельник — пятница</p>
+      <dl class="bell-times">
+        <div><dt>1 пара</dt><dd><time datetime="08:00">08:00</time> — <time datetime="09:35">09:35</time></dd></div>
+        <div><dt>2 пара</dt><dd><time datetime="09:55">09:55</time> — <time datetime="11:30">11:30</time></dd></div>
+        <div><dt>3 пара</dt><dd><time datetime="11:50">11:50</time> — <time datetime="13:25">13:25</time></dd></div>
+        <div><dt>4 пара</dt><dd><time datetime="13:45">13:45</time> — <time datetime="15:20">15:20</time></dd></div>
+        <div><dt>5 пара</dt><dd><time datetime="15:30">15:30</time> — <time datetime="17:05">17:05</time></dd></div>
+        <div><dt>6 пара</dt><dd><time datetime="17:15">17:15</time> — <time datetime="18:50">18:50</time></dd></div>
+        <div><dt>7 пара</dt><dd><time datetime="19:00">19:00</time> — <time datetime="20:35">20:35</time></dd></div>
+      </dl>
     </section>
   </main>
   <footer>

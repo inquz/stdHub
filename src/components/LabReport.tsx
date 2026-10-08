@@ -64,8 +64,8 @@ export async function LabReport({ lab, combined = false }: { lab: Lab; combined?
         <section className="upcoming-preview" aria-label="План работы">
           <Icon name="clock" size={23} />
           <div className="upcoming-copy">
-            {combined ? <h3>Работа ещё не выполнена</h3> : <h2>Работа ещё не выполнена</h2>}
-            <p>{presentation?.description ?? "Задание и материалы пока не добавлены"}</p>
+            {combined ? <h3>Эта лаба ещё на подходе</h3> : <h2>Эта лаба ещё на подходе</h2>}
+            <p>{presentation?.description ?? "Материалы ещё собираются. Тут пока режим ожидания"}</p>
           </div>
         </section>
       ) : (
@@ -78,12 +78,12 @@ export async function LabReport({ lab, combined = false }: { lab: Lab; combined?
             </nav>
           )}
           <ReportSection id={sectionId("task")} number="01" title="Задание" combined={combined}>
-            <p className={lab.task ? "text-content" : "placeholder"}>{lab.task ?? "Условие работы пока не добавлено"}</p>
+            <p className={lab.task ? "text-content" : "placeholder"}>{lab.task ?? "Задание ещё в пути. Пока можно выдохнуть"}</p>
           </ReportSection>
           <ReportSection id={sectionId("steps")} number="02" title="Ход работы" combined={combined}>
             {lab.steps?.length ? (
               <ol className="report-steps">{lab.steps.map((step) => <li key={step}>{step}</li>)}</ol>
-            ) : <p className="placeholder">Шаги работы пока не описаны</p>}
+            ) : <p className="placeholder">История сборки ещё дописывается</p>}
           </ReportSection>
           <ReportSection id={sectionId("code")} number="03" title="Исходный код" combined={combined}>
             {codeExamples.length ? (
@@ -93,21 +93,21 @@ export async function LabReport({ lab, combined = false }: { lab: Lab; combined?
                   <CodeBlock {...code} />
                 </details>
               ))}</div>
-            ) : <p className="placeholder">Исходный код пока не добавлен</p>}
+            ) : <p className="placeholder">Код ещё не доехал до отчёта</p>}
           </ReportSection>
           <ReportSection id={sectionId("result")} number="04" title="Демо и результат" combined={combined}>
             <Demo demo={lab.demo} result={lab.result} />
             <LabResultExtras lab={lab} />
             {lab.checks?.length ? (
               <div className="report-verification" id={sectionId("checks")}>
-                <Subheading>Что проверить в демо</Subheading>
+                <Subheading>Потыкать и убедиться</Subheading>
                 <ul className="report-checks">{lab.checks.map((check) => <li key={check}><Icon name="check" size={16} /><span>{check}</span></li>)}</ul>
               </div>
             ) : null}
           </ReportSection>
           {lab.sources?.length ? (
             <footer className="report-references" id={sectionId("sources")}>
-              <p>Документация к работе</p>
+              <p>Где подсмотреть, если магия не объясняет</p>
               <ul className="report-sources">{lab.sources.map((source) => (
                 <li key={source.href}><a href={source.href} target="_blank" rel="noopener noreferrer"><span>{source.title}</span><Icon name="external" size={14} /></a></li>
               ))}</ul>

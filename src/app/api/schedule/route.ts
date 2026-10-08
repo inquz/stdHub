@@ -9,7 +9,7 @@ export async function POST(request: Request) {
     const name = new URL(request.url).searchParams.get("filename") ?? "";
     const extensionError = validateFile({ name, size: 1 });
     if (extensionError) throw new ParserError(extensionError, 400);
-    if (!request.body) throw new ParserError("Файл не передан.", 400);
+    if (!request.body) throw new ParserError("Файл до сервера не доехал. Выбери его ещё раз.", 400);
     const reader = request.body.getReader();
     const chunks: Uint8Array[] = [];
     let size = 0;
@@ -20,7 +20,7 @@ export async function POST(request: Request) {
         size += value.byteLength;
         if (size > MAX_FILE_BYTES) {
           await reader.cancel();
-          throw new ParserError("Файл больше 5 МБ. Выбери расписание одной группы.", 413);
+          throw new ParserError("Файл больше 5 МБ. Целый факультет пока не осилим — выбери расписание одной группы.", 413);
         }
         chunks.push(value);
       }
@@ -34,6 +34,6 @@ export async function POST(request: Request) {
   } catch (error) {
     if (error instanceof ParserError) return Response.json({ error: error.message }, { status: error.status, headers });
     console.error("Schedule import failed:", error);
-    return Response.json({ error: "Не удалось обработать файл. Попробуй ещё раз." }, { status: 500, headers });
+    return Response.json({ error: "С разбором файла что-то пошло не так. Попробуй выбрать его ещё раз." }, { status: 500, headers });
   }
 }

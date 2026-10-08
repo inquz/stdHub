@@ -12,11 +12,11 @@ export function Demo({ demo, result }: { demo?: Lab["demo"]; result?: string }) 
             <a href={demo.src} target="_blank" rel="noopener noreferrer">Открыть отдельно <Icon name="external" size={14} /></a>
           </div>
           <iframe className="demo-frame" src={demo.src} title={demo.title} loading="lazy" />
-          <div className="demo-footnote"><Icon name="code" size={14} /><span>Самостоятельная HTML-страница · исходный вид лабораторной</span></div>
+          <div className="demo-footnote"><Icon name="code" size={14} /><span>Живая HTML-страница этого этапа. Можно тыкать: это демо, а не скрин для отчёта</span></div>
         </div>
-      ) : <p className="placeholder no-print">Демонстрация ещё не добавлена</p>}
+      ) : <p className="placeholder no-print">Демо ещё собирается. Пока можно заглянуть в описание</p>}
       <p className="print-only">
-        {demo ? <>Веб-демонстрация: <a href={demo.src}>{demo.src}</a>.</> : "Демонстрация ещё не добавлена"}
+        {demo ? <>Потыкать демо в браузере: <a href={demo.src}>{demo.src}</a>.</> : "Демо ещё собирается"}
       </p>
       {result && <div className="demo-result"><span className="eyebrow">Результат работы</span><p className="text-content">{result}</p></div>}
     </>

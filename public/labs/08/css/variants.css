@@ -34,3 +34,24 @@
   .layout-switch a { padding-inline: 10px; }
 }
 /* example:responsive:end */
+
+/* example:chat-grid:start */
+/* Six cards remain readable; narrow screens scroll only this region. */
+.preview-panel:has(#compact-view:checked) .schedule-days {
+  grid-template-columns: repeat(3, minmax(290px, 1fr));
+  align-items: stretch;
+  overflow-x: auto;
+  gap: 12px;
+  padding-bottom: 8px;
+}
+.preview-panel:has(#compact-view:checked) .day-heading { padding: 12px; }
+.preview-panel:has(#compact-view:checked) .day-number,
+.preview-panel:has(#compact-view:checked) .pair-number > span { display: none; }
+.preview-panel:has(#compact-view:checked) .pair-number { width: 24px; }
+.preview-panel:has(#compact-view:checked) .lesson { background: transparent; border: 0; padding: 0; }
+.preview-panel:has(#compact-view:checked) .lesson + .lesson { padding-top: 8px; border-top: 1px dashed var(--line); border-radius: 0; }
+.preview-panel:has(#compact-view:checked) .lesson-title { font-size: .9375rem; line-height: 1.4; }
+.preview-panel:has(#compact-view:checked) .week-badge { font-size: .75rem; }
+.preview-panel:has(#compact-view:checked) .lesson-meta,
+.preview-panel:has(#compact-view:checked) .lesson-teacher { font-size: .8125rem; }
+/* example:chat-grid:end */

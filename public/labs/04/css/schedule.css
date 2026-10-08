@@ -30,3 +30,16 @@
 @media (min-width: 761px) and (max-width: 1100px), (max-width: 560px) {
   .schedule-days { grid-template-columns: minmax(0, 1fr); }
 }
+
+.view-tools { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 20px; margin-block: 18px; }
+.chat-view-switch { position: relative; display: inline-flex; align-items: center; gap: 12px; min-height: 48px; padding: 10px 14px; border: 1px solid #a5b6ac; border-radius: 12px; background: var(--surface); color: var(--ink); font-size: 1rem; font-weight: 650; cursor: pointer; transition: background-color .18s ease, border-color .18s ease; }
+.chat-view-switch:hover { border-color: #047857; background: #f0f8f3; }
+.chat-view-switch:has(input:checked) { border-color: #047857; background: #e4f5ec; }
+.switch-track { position: relative; flex-shrink: 0; width: 48px; height: 28px; border-radius: 20px; background: #76877d; transition: background-color .18s ease; }
+.switch-track::before { position: absolute; top: 4px; left: 4px; width: 20px; height: 20px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px #0003; content: ""; transition: transform .18s ease; }
+.chat-view-switch input:checked + .switch-track { background: #047857; }
+.chat-view-switch input:checked + .switch-track::before { transform: translateX(20px); }
+.chat-view-switch:has(input:focus-visible) { outline: 3px solid #047857; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .chat-view-switch, .switch-track, .switch-track::before { transition: none; } }
+.view-tools .compact-toggle { min-height: 32px; margin: 0; color: var(--ink); }
+.view-note { flex-basis: 100%; color: var(--muted); font-size: .8125rem; line-height: 1.5; }

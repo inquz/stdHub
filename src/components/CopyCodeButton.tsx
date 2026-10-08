@@ -23,7 +23,7 @@ export function CopyCodeButton({ source }: { source: string }) {
         {status === "copied" ? "Скопировано" : "Копировать"}
       </button>
       <span className={status === "error" ? "code-copy-error" : "code-copy-status"} role="status">
-        {status === "error" ? "Не удалось скопировать. Выделите код вручную" : status === "copied" ? "Код скопирован в буфер обмена" : ""}
+        {status === "error" ? "Браузер не дал скопировать. Выдели код и нажми Ctrl+C — старый добрый способ" : status === "copied" ? "Код в буфере. Ctrl+V ждёт своего часа" : ""}
       </span>
     </div>
   );

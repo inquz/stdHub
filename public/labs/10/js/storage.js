@@ -30,15 +30,15 @@ export function validState(state) {
 export function loadState(getStorage = () => window.localStorage) {
   try {
     const raw = getStorage().getItem(STORAGE_KEY);
-    if (raw === null) return { state: null, message: "Расписание и настройки сохраняются в этом браузере" };
+    if (raw === null) return { state: null, message: "Этот браузер запомнит расписание и настройки. Одной заботой меньше" };
     if (raw.length > MAX_LENGTH) throw new Error("size");
     const state = JSON.parse(raw);
     if (!validState(state)) throw new Error("shape");
-    return { state, message: "Расписание восстановлено из этого браузера. Для обновления выбери Excel снова" };
+    return { state, message: "Расписание вернулось из памяти браузера. Пришёл новый Excel? Выбери его снова" };
   } catch (error) {
     return { state: null, message: error.name === "SecurityError"
-      ? "Хранилище недоступно. Можно работать и скачивать PNG; после закрытия данные могут потеряться"
-      : "Сохранённые данные не удалось прочитать. Показан учебный пример. Нажми «Восстановить пример» для сброса сохранения" };
+      ? "Хранилище недоступно. Браузер сегодня без автосейва: работа и PNG доступны, но после закрытия данные могут потеряться"
+      : "Сохранение не прочиталось — бывает и у браузера. Сейчас показан учебный пример. Нажми «Восстановить пример», чтобы сбросить сохранение" };
   }
 }
 
@@ -47,9 +47,9 @@ export function saveState(state, getStorage = () => window.localStorage) {
     const raw = JSON.stringify(state);
     if (raw.length > MAX_LENGTH || !validState(state)) throw new Error("size or shape");
     getStorage().setItem(STORAGE_KEY, raw);
-    return "Расписание и настройки сохранены в этом браузере";
+    return "Сохранено в этом браузере. Ctrl+S за тебя уже нажали";
   } catch {
-    return "Не удалось сохранить изменения в браузере. Текущая версия доступна до перезагрузки; PNG можно скачать";
+    return "Не удалось сохранить изменения в браузере. До перезагрузки всё работает; скачай PNG, чтобы унести расписание с собой";
   }
 }
 /* example:storage:end */

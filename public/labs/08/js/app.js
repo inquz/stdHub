@@ -9,11 +9,15 @@ const fileInput = document.querySelector("#schedule-file");
 const feedback = document.querySelector("#feedback");
 const source = document.querySelector("#source-label");
 const sheetSelect = document.querySelector("#sheet-select");
-const submit = form.querySelector("[type=submit]");
 let current = demo;
 let schedules = [];
 let requestId = 0;
 let importController;
+
+function setFeedback(message, state = "idle") {
+  feedback.textContent = message;
+  feedback.dataset.state = state;
+}
 
 function refreshStats() {
   const week = new FormData(form).get("week") ?? "both";
@@ -35,14 +39,14 @@ async function importFile() {
   importController = new AbortController();
   const file = fileInput.files[0];
   fileInput.setCustomValidity("");
-  submit.disabled = false;
+  form.removeAttribute("aria-busy");
   const error = validateFile(file);
   if (error) {
-    feedback.textContent = `${error} На экране остаётся прежнее расписание`;
+    setFeedback(`${error} На экране остаётся прежнее расписание`, "error");
     return;
   }
-  feedback.textContent = "Читаем Excel. Сейчас узнаем, кто ведёт первую пару";
-  submit.disabled = true;
+  setFeedback("Читаем Excel… Ячейки, по местам", "loading");
+  form.setAttribute("aria-busy", "true");
   try {
     const parsed = await requestSchedule(file, importController.signal);
     if (ticket !== requestId) return;
@@ -56,11 +60,11 @@ async function importFile() {
     time.dateTime = importedAt.toISOString();
     time.textContent = `Прочитано: ${formatImportDate(importedAt)}`;
     time.hidden = false;
-    feedback.textContent = `Расписание прочитано. Файл обработан без сохранения.${parsed.skipped.length ? ` Пропущены листы: ${parsed.skipped.join("; ")}` : ""}`;
+    setFeedback(`Расписание прочитано. Excel побеждён.${parsed.skipped.length ? ` Пропущены листы: ${parsed.skipped.join("; ")}` : ""}`, "success");
   } catch (error) {
-    if (ticket === requestId) feedback.textContent = `${error.message} На экране остаётся прежнее расписание; новый файл не применён`;
+    if (ticket === requestId) setFeedback(`${error.message} На экране остаётся прежнее расписание; новый файл не применён`, "error");
   } finally {
-    if (ticket === requestId) submit.disabled = false;
+    if (ticket === requestId) form.removeAttribute("aria-busy");
   }
 }
 /* example:import:end */
@@ -73,14 +77,14 @@ form.addEventListener("reset", () => {
   requestId++;
   importController?.abort();
   schedules = [];
-  submit.disabled = false;
+  form.removeAttribute("aria-busy");
   fileInput.setCustomValidity("");
   sheetSelect.replaceChildren();
   document.querySelector("#sheet-field").hidden = true;
   document.querySelector("#imported-at").hidden = true;
   source.textContent = "Источник: учебный пример КИ-24";
-  feedback.textContent = "Пример восстановлен. Можно выбрать новый Excel";
-  // Native reset applies the radio defaults after the event handlers return.
-  queueMicrotask(() => show(demo));
+  setFeedback("Пример снова на месте. Можно заходить с новым Excel", "success");
+  // A browser event can flush microtasks before the native reset applies defaults.
+  setTimeout(() => show(demo), 0);
 });
 show(demo);

@@ -1,3 +1,5 @@
+import { bellSchedule, scheduleCards } from "./bell-schedule.js";
+
 // Imported Excel text is always assigned via textContent, never interpreted as HTML.
 function element(tag, className, text) {
   const node = document.createElement(tag);
@@ -10,8 +12,8 @@ function lessonCard(lesson, week) {
   const card = element("div", "lesson");
   card.dataset.week = week;
   if (!lesson) card.dataset.empty = "true";
-  card.append(element("span", "week-badge", { upper: "Верхняя", lower: "Нижняя", both: "Обе недели" }[week]));
-  card.append(element("p", "lesson-title", lesson?.subject ?? "Пары нет"));
+  card.append(element("span", "week-badge", { upper: "Верхняя неделя", lower: "Нижняя неделя", both: "Обе недели" }[week]));
+  card.append(element("p", "lesson-title", lesson?.subject ?? "Окно"));
   if (lesson) {
     const meta = element("p", "lesson-meta", lesson.kind);
     meta.append(element("span", "", lesson.room || "Аудитория не указана"));
@@ -25,8 +27,33 @@ function lessonCard(lesson, week) {
 export function renderSchedule(schedule) {
   const days = document.createDocumentFragment();
   const links = document.createDocumentFragment();
-  for (const day of schedule.days) {
+  for (const item of scheduleCards(schedule.days)) {
     const section = element("section", "day-card");
+    if (item.type === "bells") {
+      section.id = "bell-schedule";
+      section.classList.add("bell-card");
+      section.setAttribute("aria-labelledby", "bell-title");
+      const heading = element("h3", "", bellSchedule.title);
+      heading.id = "bell-title";
+      const header = element("header", "day-heading");
+      header.append(heading);
+      const times = element("dl", "bell-times");
+      for (const pair of bellSchedule.pairs) {
+        const row = element("div");
+        const time = element("dd");
+        const start = element("time", "", pair.start);
+        start.dateTime = pair.start;
+        const end = element("time", "", pair.end);
+        end.dateTime = pair.end;
+        time.append(start, " — ", end);
+        row.append(element("dt", "", `${pair.number} пара`), time);
+        times.append(row);
+      }
+      section.append(header, element("p", "bell-weekdays", bellSchedule.days), times);
+      days.append(section);
+      continue;
+    }
+    const day = item.day;
     section.id = `weekday-${day.dayIndex}`;
     section.setAttribute("aria-labelledby", `day-${day.dayIndex}`);
     const header = element("header", "day-heading");
@@ -57,13 +84,18 @@ export function renderSchedule(schedule) {
     section.append(header, list);
     if (!day.pairs.length) section.append(element("p", "preview-caption", "Пар нет. Можно выдохнуть"));
     days.append(section);
-    const item = element("li");
+    const menuItem = element("li");
     const link = element("a", "", day.day);
     link.href = `#${section.id}`;
-    item.append(link);
-    links.append(item);
+    menuItem.append(link);
+    links.append(menuItem);
   }
   document.querySelector(".schedule-days").replaceChildren(days);
-  document.querySelector(".nav-dropdown:nth-child(2) .dropdown-list").replaceChildren(links);
+  const bellLink = element("a", "", bellSchedule.title);
+  bellLink.href = "#bell-schedule";
+  const bellItem = element("li");
+  bellItem.append(bellLink);
+  links.append(bellItem);
+  document.querySelector("#day-links").replaceChildren(links);
   document.querySelector("#schedule-title").textContent = schedule.group;
 }

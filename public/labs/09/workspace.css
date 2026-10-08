@@ -10,9 +10,23 @@
 .lesson:first-child { margin-top: 0; }
 .lesson-title, .lesson-teacher, .lesson-notes, #schedule-title { overflow-wrap: anywhere; }
 .day-heading h3 { flex: 1; min-width: 0; }
-.day-toggle { display: flex; justify-content: space-between; align-items: center; gap: 12px; width: 100%; padding: 8px 0; border: 0; text-align: left; font: inherit; background: transparent; }
-.toggle-symbol { font-size: 22px; }
-.export-tools { margin-top: 20px; padding: 16px; border-radius: 12px; background: var(--paper); }
-.export-tools p { margin-top: 10px; font-size: 1rem; color: var(--muted); }
-#export-status:empty { display: none; }
+.schedule-days[data-compact="true"] { grid-template-columns: repeat(var(--chat-columns), minmax(290px, 1fr)); align-items: stretch; gap: 12px; overflow-x: auto; padding-bottom: 8px; }
+.schedule-days[data-compact="true"] .day-card { border-radius: 8px; background: var(--surface); }
+.schedule-days[data-compact="true"] .day-heading { padding: 4px 12px; background: var(--surface-soft); }
+.schedule-days[data-compact="true"] .day-number { display: none; }
+.schedule-days[data-compact="true"] .day-heading h3 { padding-block: 7px; font-size: .9375rem; }
+.schedule-days[data-compact="true"] .day-toggle { padding-block: 7px; }
+.schedule-days[data-compact="true"] .pair { gap: 10px; padding: 10px 12px; }
+.schedule-days[data-compact="true"] .pair-number { width: 24px; padding-top: 1px; }
+.schedule-days[data-compact="true"] .pair-number > span { display: none; }
+.schedule-days[data-compact="true"] .lesson { display: grid; grid-template-columns: minmax(0, 1fr) 3.25rem; gap: 3px 8px; padding: 0; border: 0; border-radius: 0; background: transparent; }
+.schedule-days[data-compact="true"] .lesson + .lesson { margin-top: 9px; padding-top: 9px; border-top: 1px dashed var(--line); }
+.schedule-days[data-compact="true"] .week-badge { grid-column: 1 / -1; margin-bottom: 3px; font-size: .75rem; }
+.schedule-days[data-compact="true"] .lesson-title { margin: 0; font-size: .9375rem; line-height: 1.4; }
+.schedule-days[data-compact="true"] .lesson-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; margin: 0; font-size: .8125rem; line-height: 1.4; text-align: right; overflow-wrap: anywhere; }
+.schedule-days[data-compact="true"] .lesson-meta .compact-room { color: var(--ink); }
+.schedule-days[data-compact="true"] .lesson-meta .compact-kind { font-size: .75rem; font-weight: 400; }
+.schedule-days[data-compact="true"] .lesson-teacher, .schedule-days[data-compact="true"] .lesson-notes { grid-column: 1 / -1; margin: 0; padding: 0; border: 0; font-size: .8125rem; font-weight: 400; line-height: 1.5; }
+.schedule-days[data-compact="true"] .empty-pair { grid-column: 1 / -1; padding: 0; font-size: .875rem; }
+
 @media (max-width: 1100px) { .schedule-filters { grid-template-columns: minmax(0, 1fr); } }
